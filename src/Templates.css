@@ -1,0 +1,24 @@
+.template-form{
+    text-align: left;
+    position: relative;
+    height: 100%;
+}
+
+.label-textarea{
+    position: relative;
+    top: 10%;
+}
+
+.config-area{
+    position: relative;
+    padding-left: 3%;
+}
+
+textarea{
+    width: 500px;
+    height: 300px;
+}
+
+.Select{
+    width: 500px;
+}
