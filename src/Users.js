@@ -3,9 +3,8 @@ import './Users.css';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
-var stuff=[]
-var products = []
-
+let stuff=[];
+const products = [];
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys)
@@ -20,9 +19,9 @@ function onDeleteRow(rowKeys) {
 
 const options = {
     afterDeleteRow: onDeleteRow
-}
+};
 
-var selectRowProp = {
+const selectRowProp = {
     mode: "checkbox",
     clickToSelect: true,
 };
@@ -43,8 +42,6 @@ class Users extends Component {
             items: []
         };
     }
-
-
 
     componentDidMount() {
 
@@ -85,13 +82,13 @@ class Users extends Component {
         let users = this.state.items;
         while(typeof users === "undefined"){}
         if (typeof users !== "undefined"){
-            for(var i=0; i<users.length; i++){
-                var user={
+            for(let i=0; i<users.length; i++){
+                const user={
                     name: users[i][0],
                     role: users[i][1],
                     email: "fake",
                     lastlogin: users[i][2]
-                }
+                };
                 products.push(user);
             }
         }
@@ -111,7 +108,6 @@ class Users extends Component {
                         placeholder="Enter User Name"
                         onChange={this.handleChange}
                     />
-                    <FormControl.Feedback />
                 </FormGroup>
                 <FormGroup
                     className="email-input"

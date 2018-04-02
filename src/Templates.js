@@ -40,7 +40,7 @@ class Templates extends Component {
         render() {
             const { selectedOption } = this.state;
             const value = selectedOption && selectedOption.value;
-            let device = ['One','Two','Three'];
+            let device = ['MDS Orbit ECR','MDS Orbit MCR'];
             let devices = [];
             for(var i=0; i<device.length; i++){
                 var user={

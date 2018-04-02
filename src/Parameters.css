@@ -1,0 +1,42 @@
+.name-input{
+    width: 20%;
+    padding-top: 3%;
+}
+
+.value-input{
+    width: 20%;
+    padding-top: 1%;
+}
+
+
+.range-start-input{
+    width: 20%;
+    padding-top: 1%;
+}
+.range-end-input{
+    width: 20%;
+    padding-top: 1%;
+    position: relative;
+    left: 22%;
+    bottom: 84px;
+}
+.range-div{
+    height: 15%;
+}
+.container > .Select{
+    width: 20%;
+}
+.table-user{
+    width: max-content;
+    position: relative;
+    height: content-box;
+    top: 5%;
+    padding-bottom: 10%;
+    text-align: left;
+
+}
+
+.button-import-submit{
+    position: relative;
+    left: 5%;
+}

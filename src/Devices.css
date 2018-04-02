@@ -1,0 +1,27 @@
+.name-input{
+    width: 20%;
+    padding-top: 3%;
+}
+
+.serial-input{
+    width: 20%;
+    padding-top: 1%;
+}
+
+.container > .Select{
+    width: 20%;
+}
+.table-user{
+    width: max-content;
+    position: relative;
+    height: content-box;
+    top: 5%;
+    padding-bottom: 10%;
+    text-align: left;
+
+}
+
+.button-import-submit{
+    position: relative;
+    left: 5%;
+}
