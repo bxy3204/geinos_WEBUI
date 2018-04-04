@@ -4,6 +4,7 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import './Devices.css';
+import {add_device, get_devices} from "./rest_api";
 
 
 
@@ -36,12 +37,44 @@ class Devices extends Component {
     constructor(props,context) {
         super(props,context);
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.addDevice = this.addDevice.bind(this);
         this.state = {
-            selectedOption: '',
+            device_model: '',
             name: '',
-            serial:''
+            serial:'',
+            deviceList:'',
+            device_models: [],
         }
 
+    }
+    componentWillMount(){
+        let device_models = ['MDS Orbit ECR','MDS Orbit MCR'];
+        let devicetypes = [];
+        for(let i=0; i<device_models.length; i++){
+            let dev={
+                value: device_models[i],
+                label: device_models[i]
+            };
+            devicetypes.push(dev);
+        }
+        this.setState({device_models:devicetypes})
+    }
+
+    componentDidMount() {
+        get_devices().then(result=> result.json()).then((items) => {
+                this.setState({deviceList: items.data});
+            }
+        );
+    }
+
+    addDevice(){
+        console.log("ADD_Device")
+        const newDevice={
+            name: this.state.name,
+            model: this.state.device_model.value,
+            serial: this.state.serial,
+        };
+        add_device(newDevice)
     }
 
     handleNameChange(e) {
@@ -49,20 +82,21 @@ class Devices extends Component {
     }
 
 
-    handleChange = (selectedOption) => {
-        this.setState({ selectedOption });
+    handleChange = (device_model) => {
+        this.setState({ device_model });
     };
     render() {
-        const { selectedOption } = this.state;
-        const value = selectedOption && selectedOption.value;
-        let device = ['MDS Orbit ECR','MDS Orbit MCR'];
-        let devices = [];
-        for(let i=0; i<device.length; i++){
-            let user={
-                value: device[i],
-                label: device[i]
-            };
-            devices.push(user);
+        let devices = this.state.deviceList;
+        while(typeof devices === "undefined"){}
+        if (typeof devices !== "undefined"){
+            for(let i=0; i<devices.length; i++){
+                const device={
+                    vendor: devices[i][0],
+                    serial: devices[i][1],
+                    model: devices[i][2]
+                };
+                products.push(device);
+            }
         }
         return (
             <div className="container">
@@ -82,9 +116,9 @@ class Devices extends Component {
                 <ControlLabel>Model</ControlLabel>
             <Select
                 name="form-field-name"
-                value={value}
+                value={this.state.device_model}
                 onChange={this.handleChange}
-                options={devices}
+                options={this.state.device_models}
             />
 
                 <FormGroup
@@ -100,13 +134,12 @@ class Devices extends Component {
                         onChange={this.handleNameChange}
                     />
                 </FormGroup>
-                <Button className="button-add-submit" type="submit">Add Device</Button>
+                <Button className="button-add-submit" onClick={this.addDevice} type="submit">Add Device</Button>
                 <Button className="button-import-submit" type="submit">Import from file</Button>
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-                    <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="vendor" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model"  width="150" dataSort>Model</TableHeaderColumn>
                     <TableHeaderColumn dataField="serial"  width="200" dataSort >Serial-Number</TableHeaderColumn>
-                    <TableHeaderColumn dataField="group"  width="150" dataSort >Group</TableHeaderColumn>
                 </BootstrapTable>
 
             </div>
@@ -114,6 +147,5 @@ class Devices extends Component {
         );
     }
 }
-
 
 export default Devices;

@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import './Users.css';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
+import {get_users,delete_user,add_user} from "./rest_api";
 
-let stuff=[];
 const products = [];
 
 function onDeleteRow(rowKeys) {
-    alert('You deleted: ' + rowKeys)
-/*   const data = new FormData(event.target);
-    fetch('/api/form-submit-url', {
-        method: 'POST',
-        body: data,
-    });*/
+    alert('You deleted: ' + rowKeys);
+    delete_user(rowKeys[0]);
 }
 
 
@@ -32,31 +28,23 @@ class Users extends Component {
         super(props, context);
 
         this.handleChange = this.handleChange.bind(this);
-
+        this.addUser = this.addUser.bind(this);
         this.state = {
             name: '',
             password: '',
             passwordverify: '',
             email:'',
-            role:'',
+            role:'Operator',
             items: []
         };
     }
 
     componentDidMount() {
-
-        fetch('http://127.0.0.1:5000/users',
-            {
-                method: 'get'
-            })
-            .then(result=> result.json()).then((items) => {
-                // console.log(items);
-                //  console.log(items.length);
-                this.setState({items: items.data});
-                stuff=items.data;
-                console.log(stuff[0]);
-            }
-        );
+            get_users().then(result=> result.json()).then((items) => {
+                    this.setState({items: items.data});
+                    console.log(items.data);
+                }
+            );
         }
 
     getValidationState() {
@@ -70,11 +58,24 @@ class Users extends Component {
         if(this.state.passwordverify==='') return null;
         if(this.state.password === this.state.passwordverify) return 'success';
         else return 'error';
-        return null;
     }
 
+    addUser(){
+        console.log("ADD_USER")
+        const newUser={
+            name: this.state.name,
+            password: this.state.password,
+            retypepassword: this.state.passwordverify,
+            email: this.state.email,
+            role: this.state.role
+        };
+        if(this.getVerifyPassword() && this.getValidationState()){
+            add_user(newUser)
+        }
+    }
 
     handleChange(e) {
+
         this.setState({ [e.target.id]: e.target.value});
     }
 
@@ -157,15 +158,13 @@ class Users extends Component {
                     className="role-input"
                     controlId="role"
                 >
-                    <ControlLabel></ControlLabel>
                     <FormControl componentClass="select" placeholder="select" onChange={this.handleChange}>
 
-                        <option value="admin">Admin</option>
                         <option value="operator">Operator</option>
-
+                        <option value="admin">Admin</option>
                     </FormControl>
                 </FormGroup>
-                <Button className="button-submit" type="submit">Create User</Button>
+                    <Button className="button-submit" onClick={this.addUser} >Create User</Button>
             </form>
             <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>User Name</TableHeaderColumn>

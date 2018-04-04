@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
+import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
+//import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import './Templates.css';
+
 
 
 class Templates extends Component {
@@ -30,7 +31,7 @@ class Templates extends Component {
     handleSelectChange = (selectedOption) => {
         this.setState({ selectedOption });
         console.log(`Selected: ${selectedOption.label}`);
-    }
+    };
 
     handleSubmit(event) {
         alert('An essay was submitted: ' + this.state.value);
