@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Assignments.css';
 import {DropdownTemplate} from "./common";
-import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
+import { Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
 const products = [];

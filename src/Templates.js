@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css';
-//import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import './Templates.css';
 
 
@@ -53,6 +52,9 @@ class Templates extends Component {
         return (
             <form onSubmit={this.handleSubmit} className="template-form">
                 <div className="config-area">
+                    <div className="Home">
+                        <h2>Templates</h2>
+                    </div>
                     <div>
                         <FormGroup
                             className="name-input"

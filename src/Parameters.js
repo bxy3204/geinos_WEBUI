@@ -120,6 +120,9 @@ class Parameters extends Component {
 
         return (
             <div className="container">
+                <div className="Home">
+                    <h2>Parameters</h2>
+                </div>
                 <FormGroup
                     className="name-input"
                     controlId="name"

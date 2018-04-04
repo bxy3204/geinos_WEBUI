@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
+import React from 'react';
+import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 
 export function FormGroupCreate(props){
     return <FormGroup
@@ -36,6 +36,7 @@ export function DropdownTemplate(props){
         className={props.className}
         controlId={props.controlId}
     >
+        <ControlLabel>{props.label}</ControlLabel>
         <FormControl componentClass="select" placeholder="select" onChange={props.change}>
         </FormControl>
     </FormGroup>

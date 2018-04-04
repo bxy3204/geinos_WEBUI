@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './DeviceGroups.css';
-import {FormGroupCreate, DropdownFormGroupCreate} from "./common";
-import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
+import {FormGroupCreate} from "./common";
+import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
 
