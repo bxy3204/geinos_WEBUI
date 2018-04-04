@@ -3,6 +3,7 @@ import './Users.css';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users,delete_user,add_user} from "./rest_api";
+import {FormGroupCreate, DropdownFormGroupCreate} from "./common";
 
 const products = [];
 
@@ -10,7 +11,6 @@ function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys);
     delete_user(rowKeys[0]);
 }
-
 
 
 const options = {
@@ -97,73 +97,50 @@ class Users extends Component {
 
             <div className="container">
             <form className="form-createuser">
-                <FormGroup
+                <FormGroupCreate
                     className="name-input"
                     controlId="name"
-                >
-                    <ControlLabel>User Name</ControlLabel>
-
-                    <FormControl
-                        type="text"
-                        value={this.state.name}
-                        placeholder="Enter User Name"
-                        onChange={this.handleChange}
-                    />
-                </FormGroup>
-                <FormGroup
+                    label="User Name"
+                    value={this.state.name}
+                    change={this.handleChange}
+                    placeholder="Enter user name"
+                    type="text"
+                />
+                <FormGroupCreate
                     className="email-input"
                     controlId="email"
-                >
-                    <ControlLabel>Email</ControlLabel>
-
-                    <FormControl
-                        type="text"
-                        value={this.state.email}
-                        placeholder="Enter email"
-                        onChange={this.handleChange}
-                    />
-                    <FormControl.Feedback />
-                </FormGroup>
-
-                <FormGroup
+                    label="Email"
+                    value={this.state.email}
+                    change={this.handleChange}
+                    placeholder="Enter email"
+                    type="text"
+                />
+                <FormGroupCreate
                     className="pass-input"
                     controlId="password"
+                    label="Password"
                     validationState={this.getValidationState()}
-                 >
-                    <ControlLabel>Password</ControlLabel>
-                    <FormControl
-                        type="password"
-                        value={this.state.password}
-                        placeholder="Enter password"
-                        onChange={this.handleChange}
-                    />
-                    <FormControl.Feedback />
-                </FormGroup>
-                <FormGroup
-                    className={"pass-verify-input"}
+                    value={this.state.password}
+                    change={this.handleChange}
+                    placeholder="Enter password"
+                    type="password"
+                />
+                <FormGroupCreate
+                    className="pass-verify-input"
                     controlId="passwordverify"
+                    label="Verify Password"
                     validationState={this.getVerifyPassword()}
-                >
-                    <ControlLabel>Verify Password</ControlLabel>
-
-                    <FormControl
-                        type="password"
-                        value={this.state.passwordverify}
-                        placeholder="Re-Enter password"
-                        onChange={this.handleChange}
-                    />
-                    <FormControl.Feedback />
-                </FormGroup>
-                <FormGroup
+                    value={this.state.passwordverify}
+                    change={this.handleChange}
+                    placeholder="Re-Enter password"
+                    type="password"
+                />
+                <DropdownFormGroupCreate
                     className="role-input"
                     controlId="role"
-                >
-                    <FormControl componentClass="select" placeholder="select" onChange={this.handleChange}>
-
-                        <option value="operator">Operator</option>
-                        <option value="admin">Admin</option>
-                    </FormControl>
-                </FormGroup>
+                    value={this.state.passwordverify}
+                    change={this.handleChange}
+                />
                     <Button className="button-submit" onClick={this.addUser} >Create User</Button>
             </form>
             <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
