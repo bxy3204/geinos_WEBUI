@@ -8,15 +8,10 @@ import {add_device, get_devices} from "./rest_api";
 
 
 
-const products = [];
+let products = [];
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys)
-    /*   const data = new FormData(event.target);
-        fetch('/api/form-submit-url', {
-            method: 'POST',
-            body: data,
-        });*/
 }
 
 
@@ -87,6 +82,7 @@ class Devices extends Component {
     };
     render() {
         let devices = this.state.deviceList;
+        products = [];
         while(typeof devices === "undefined"){}
         if (typeof devices !== "undefined"){
             for(let i=0; i<devices.length; i++){
@@ -100,6 +96,9 @@ class Devices extends Component {
         }
         return (
             <div className="container">
+                <div className="Home">
+                    <h2>Devices</h2>
+                </div>
             <FormGroup
                 className="name-input"
                 controlId="name"

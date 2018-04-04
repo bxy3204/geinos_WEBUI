@@ -12,15 +12,14 @@
 }
 .name-input{
     width: 20%;
-    padding-top: 3%;
+
     display:inline-block;
 }
 .email-input{
-    position: absolute;
+    position: relative;
     padding-top: 3%;
     width: 20%;
-    top: 0%;
-    left: 22%;
+    left: 1%;
     display:inline-block;
 }
 .role-input{

@@ -48,7 +48,7 @@ class Parameters extends Component {
     }
 
     componentWillMount() {
-        let param = ['Range','Value'];
+        let param = ['IP-Range','Value','IP-List'];
         let params = [];
         for(let i=0; i<param.length; i++){
             let param_type={
@@ -144,8 +144,8 @@ class Parameters extends Component {
 
 
                 {this.renderTypeField()}
-                <Button className="button-add-submit" type="submit">Add Device</Button>
-                <Button className="button-import-submit" type="submit">Import from file</Button>
+                <Button className="button-param-submit" type="submit">Add Parameter</Button>
+                <Button className="button-param-import-submit" type="submit">Import from file</Button>
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>

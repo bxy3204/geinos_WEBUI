@@ -1,0 +1,31 @@
+.group-name-input{
+    padding-top: 3%;
+    width: 20%;
+}
+
+.filter-input{
+    width: 20%;
+}
+
+.button-group-submit{
+    position: relative;
+}
+
+.table-group{
+    width: max-content;
+    position: relative;
+    height: content-box;
+    top: 100px;
+    padding-bottom: 30%;
+    text-align: left;
+}
+
+
+.container{
+    width: 100%;
+    margin: 0 0 0 0;
+    height: 100%;
+    padding-bottom: 100px;
+    position: relative;
+    overflow: auto;
+}

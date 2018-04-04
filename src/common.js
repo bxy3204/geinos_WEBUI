@@ -30,3 +30,14 @@ export function DropdownFormGroupCreate(props){
         </FormControl>
     </FormGroup>
 }
+
+export function DropdownTemplate(props){
+    return <FormGroup
+        className={props.className}
+        controlId={props.controlId}
+    >
+        <FormControl componentClass="select" placeholder="select" onChange={props.change}>
+        </FormControl>
+    </FormGroup>
+}
+

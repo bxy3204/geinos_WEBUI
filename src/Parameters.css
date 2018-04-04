@@ -36,7 +36,14 @@
 
 }
 
-.button-import-submit{
+.button-param-submit{
     position: relative;
-    left: 5%;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.button-param-import{
+    position: relative;
+
+    padding-top: 3%;
 }

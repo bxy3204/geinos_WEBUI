@@ -1,6 +1,8 @@
-.name-input{
+.container > .name-input{
     width: 20%;
     padding-top: 3%;
+    display:block;
+
 }
 
 .serial-input{
@@ -9,6 +11,7 @@
 }
 
 .container > .Select{
+
     width: 20%;
 }
 .table-user{

@@ -96,6 +96,9 @@ class Users extends Component {
         return (
 
             <div className="container">
+                <div className="Home">
+                    <h2>Users</h2>
+                </div>
             <form className="form-createuser">
                 <FormGroupCreate
                     className="name-input"
