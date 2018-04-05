@@ -5,7 +5,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users,delete_user,add_user} from "./rest_api";
 import {FormGroupCreate, DropdownFormGroupCreate} from "./common";
 
-const products = [];
+let products = [];
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys);
@@ -42,7 +42,6 @@ class Users extends Component {
     componentDidMount() {
             get_users().then(result=> result.json()).then((items) => {
                     this.setState({items: items.data});
-                    console.log(items.data);
                 }
             );
         }
@@ -81,6 +80,7 @@ class Users extends Component {
 
     render() {
         let users = this.state.items;
+        products = [];
         while(typeof users === "undefined"){}
         if (typeof users !== "undefined"){
             for(let i=0; i<users.length; i++){

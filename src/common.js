@@ -10,7 +10,7 @@ export function FormGroupCreate(props){
         <ControlLabel>{props.label}</ControlLabel>
 
         <FormControl
-            type={props.text}
+            type={props.type}
             value={props.value}
             placeholder={props.placeholder}
             onChange={props.change}

@@ -1,5 +1,5 @@
 const route='http://127.0.0.1:5000';
-
+const creds = 'Basic '+btoa('test:password');
 export function get_devices() {
     const devices = fetch( route + '/devices',
         {
@@ -11,6 +11,8 @@ export function get_devices() {
     return devices;
 }
 
+
+
 export function add_device(device){
     const formdata = new FormData();
     formdata.append('vendor_id', device.name);
@@ -19,6 +21,8 @@ export function add_device(device){
     fetch(route + '/devices', {
         method: 'put',
         body: formdata,
+        headers: new Headers({
+            'Authorization': creds})
     });
 }
 
@@ -26,7 +30,9 @@ export function add_device(device){
 export function get_users() {
     const users = fetch( route + '/users',
         {
-            method: 'get'
+            method: 'get',
+            headers: new Headers({
+                'Authorization': creds}),
 
         });
     return users;
@@ -40,6 +46,8 @@ export function delete_user(user){
         fetch( route + '/users', {
             method: 'delete',
             body: formdata,
+            headers: new Headers({
+                'Authorization': creds})
         });
 }
 
@@ -53,5 +61,7 @@ export function add_user(user){
     fetch(route + '/users', {
         method: 'put',
         body: formdata,
+        headers: new Headers({
+            'Authorization': creds})
     });
 }
