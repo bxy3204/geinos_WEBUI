@@ -5,6 +5,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import './Devices.css';
 import {add_device, get_devices} from "./rest_api";
+import {create_device_list} from "./common";
 
 
 
@@ -81,19 +82,7 @@ class Devices extends Component {
         this.setState({ device_model });
     };
     render() {
-        let devices = this.state.deviceList;
-        products = [];
-        while(typeof devices === "undefined"){}
-        if (typeof devices !== "undefined"){
-            for(let i=0; i<devices.length; i++){
-                const device={
-                    vendor: devices[i][0],
-                    serial: devices[i][1],
-                    model: devices[i][2]
-                };
-                products.push(device);
-            }
-        }
+        products = create_device_list({items:this.state.deviceList})
         return (
             <div className="container">
                 <div className="Home">

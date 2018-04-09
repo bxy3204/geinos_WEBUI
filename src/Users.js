@@ -3,7 +3,7 @@ import './Users.css';
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users,delete_user,add_user} from "./rest_api";
-import {FormGroupCreate, DropdownFormGroupCreate} from "./common";
+import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from "./common";
 
 let products = [];
 
@@ -79,20 +79,10 @@ class Users extends Component {
     }
 
     render() {
-        let users = this.state.items;
-        products = [];
-        while(typeof users === "undefined"){}
-        if (typeof users !== "undefined"){
-            for(let i=0; i<users.length; i++){
-                const user={
-                    name: users[i][0],
-                    role: users[i][1],
-                    email: "fake",
-                    lastlogin: users[i][2]
-                };
-                products.push(user);
-            }
+        let new_list={
+            items:this.state.items
         }
+        products = create_user_list(new_list);
         return (
 
             <div className="container">

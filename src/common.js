@@ -42,3 +42,36 @@ export function DropdownTemplate(props){
     </FormGroup>
 }
 
+export function create_user_list(props){
+    let users = props.items;
+    let products = [];
+    if (typeof users !== "undefined"){
+        for(let i=0; i<users.length; i++){
+            const user={
+                name: users[i][0],
+                role: users[i][1],
+                email: "Unknown",
+                lastlogin: users[i][2]
+            };
+            products.push(user);
+        }
+    }
+    return products;
+}
+
+export function create_device_list(props){
+    let devices = props.items;
+    let products = [];
+    while(typeof devices === "undefined"){}
+    if (typeof devices !== "undefined"){
+        for(let i=0; i<devices.length; i++){
+            const device={
+                vendor: devices[i][0],
+                serial: devices[i][1],
+                model: devices[i][2]
+            };
+            products.push(device);
+        }
+    }
+    return products;
+}

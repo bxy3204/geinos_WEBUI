@@ -4,8 +4,9 @@ import Select from 'react-select'
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
+import {add_param, get_param} from "./rest_api";
 
-const products = [];
+let List = [];
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys)
@@ -34,6 +35,7 @@ class Parameters extends Component {
         super(props,context);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.addParameter= this.addParameter.bind(this);
         this.state = {
             name: '',
             serial:'',
@@ -41,7 +43,8 @@ class Parameters extends Component {
             params: '',
             value: '',
             range_start: '',
-            range_end: ''
+            range_end: '',
+            params_list:[]
 
         }
 
@@ -57,21 +60,39 @@ class Parameters extends Component {
             };
             params.push(param_type);
         }
-        this.setState({value: "Range"});
+        this.setState({param_type: "Range"});
         this.setState({params:params});
     }
 
+    componentDidMount() {
+        get_param().then(result=> result.json()).then((items) => {
+                this.setState({params_list: items.data});
+            }
+        );
+    }
+
+    addParameter(){
+        const newparam={
+            name: this.state.name,
+            value: this.state.value,
+            type: this.state.param_type
+        };
+            add_param(newparam)
+    }
+
+
+
     renderTypeField(){
-        if (this.state.value.toString() === "Value"){
+        if (this.state.param_type.toString() !== "IP-Range"){
             return <FormGroup
                 className="value-input"
-                controlId="serial"
+                controlId="value"
             >
                 <ControlLabel>Value</ControlLabel>
 
                 <FormControl
                     type="text"
-                    value={this.state.serial}
+                    value={this.state.value}
                     placeholder="Enter Value"
                     onChange={this.handleNameChange}
                 />
@@ -113,11 +134,25 @@ class Parameters extends Component {
     }
 
     handleChange(e) {
-        this.setState({value: e.value});
+        this.setState({param_type: e.value});
+        console.log(this.state.param_type)
     }
 
     render() {
-
+        let params = this.state.params_list;
+        console.log(params);
+        List = [];
+        while(typeof params === "undefined"){}
+        if (typeof params !== "undefined"){
+            for(let i=0; i<params.length; i++){
+                const param={
+                    name: params[0],
+                    type: 'Unknown',
+                    para: 'Unknown',
+                    };
+                List.push(param);
+            }
+        }
         return (
             <div className="container">
                 <div className="Home">
@@ -140,19 +175,19 @@ class Parameters extends Component {
                 <Select
                     name="form-field-name"
                     id="param"
-                    value={this.state.value}
+                    value={this.state.param_type}
                     onChange={this.handleChange}
                     options={this.state.params}
                 />
 
 
                 {this.renderTypeField()}
-                <Button className="button-param-submit" type="submit">Add Parameter</Button>
+                <Button className="button-param-submit" onClick={this.addParameter} type="submit">Add Parameter</Button>
                 <Button className="button-param-import-submit" type="submit">Import from file</Button>
-                <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
+                <BootstrapTable className="table-user" data={List} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>
-                    <TableHeaderColumn dataField="table-value"  width="200" dataSort >Value</TableHeaderColumn>
+                    <TableHeaderColumn dataField="para"  width="200" dataSort >Value</TableHeaderColumn>
                     <TableHeaderColumn dataField="modified"  width="150" dataSort >Last Modified</TableHeaderColumn>
                 </BootstrapTable>
 

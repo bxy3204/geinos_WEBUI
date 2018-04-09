@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import Select from 'react-select'
+import Files from 'react-files'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
 
@@ -27,6 +28,8 @@ class Templates extends Component {
         this.setState({ [e.target.id]: e.target.value});
     }
 
+
+
     handleSelectChange = (selectedOption) => {
         this.setState({ selectedOption });
         console.log(`Selected: ${selectedOption.label}`);
@@ -35,7 +38,9 @@ class Templates extends Component {
     handleSubmit(event) {
         alert('An essay was submitted: ' + this.state.value);
         event.preventDefault();
-    }
+    };
+
+
 
         render() {
             const { selectedOption } = this.state;
