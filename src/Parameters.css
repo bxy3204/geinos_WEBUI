@@ -3,6 +3,11 @@
     padding-top: 3%;
 }
 
+.param-template-input{
+    padding-top: 3%;
+    width: 20%;
+}
+
 .value-input{
     width: 20%;
     padding-top: 1%;

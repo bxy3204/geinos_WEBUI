@@ -75,3 +75,20 @@ export function create_device_list(props){
     }
     return products;
 }
+
+export function create_devicegroup_list(props){
+    let device_groups = props.items;
+    let products = [];
+    while(typeof device_groups === "undefined"){}
+    if (typeof device_groups !== "undefined"){
+        for(let i=0; i<device_groups.length; i++){
+            const group_name={
+                name: device_groups[i][0],
+
+            };
+            products.push(group_name);
+        }
+    }
+    return products;
+}
+

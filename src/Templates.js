@@ -1,31 +1,52 @@
 import React, { Component } from 'react';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import Select from 'react-select'
-import Files from 'react-files'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
 
 
 
+
+
+
+export function uploadFail(error) {
+    return {
+        type: 'UPLOAD_DOCUMENT_FAIL',
+        error,
+    };
+}
+
+
 class Templates extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             name: '',
             selectedOption: '',
-            value: ''
+            value: '',
+            filetext: '',
+            filename: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.onFilesChange = this.onFilesChange.bind(this);
+        this.handleTextChange = this.handleTextChange.bind(this);
     }
 
     handleChange(event) {
         this.setState({value: event.target.value},);
     }
 
+    handleTextChange(event) {
+        this.setState({filetext: event.target.value},);
+    }
+
     handleNameChange(e) {
         this.setState({ [e.target.id]: e.target.value});
+        console.log(this.state.value);
     }
 
 
@@ -41,8 +62,24 @@ class Templates extends Component {
     };
 
 
+    onFilesChange(event) {
+        let reader = new FileReader();
+        reader.readAsText(event.target.files[0]);
+        this.setState({filename: event.target.value})
+        let state = this;
+        reader.onload = function(){
+            state.setState({filetext: reader.result})
+        }
+    };
 
-        render() {
+    onFilesError(error, file) {
+        console.log('error code ' + error.code + ': ' + error.message)
+    }
+
+
+
+
+    render() {
             const { selectedOption } = this.state;
             const value = selectedOption && selectedOption.value;
             let device = ['MDS Orbit ECR','MDS Orbit MCR'];
@@ -76,27 +113,33 @@ class Templates extends Component {
                             <FormControl.Feedback />
                         </FormGroup>
                     </div>
-                    <div>
-                        <label>Device Model</label>
-                        <Select
-                            name="form-field-name"
-                            value={value}
-                            onChange={this.handleSelectChange}
-                            options={devices}
-                            clearable={false}
-                            deleteRemoves={false}
-                            backspaceRemoves={false}
-                        />
-                    </div>
+
                     <div>
                         <label className="label-textarea">Base Configuration File</label>
                     </div>
                     <div>
-                    <textarea  value={this.state.value} onChange={this.handleChange} />
+                    <textarea  value={this.state.filetext} onChange={this.handleTextChange} />
                     </div>
                     <div>
                     <input type="submit" value="Submit" />
                     </div>
+                    <div>
+                        <FormGroup
+                            className="file-input"
+                            controlId="file"
+                        >
+                            <ControlLabel>Import From File</ControlLabel>
+
+                            <FormControl
+                                type="file"
+                                label="File"
+                                value={this.state.filename}
+                                onChange={this.onFilesChange}
+                            />
+                            <FormControl.Feedback />
+                        </FormGroup>
+                    </div>
+
                 </div>
             </form>
         );

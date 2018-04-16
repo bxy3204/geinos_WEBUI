@@ -3,13 +3,28 @@ const creds = 'Basic '+btoa('test:password');
 export function get_devices() {
     const devices = fetch( route + '/devices',
         {
-            method: 'get'
+            method: 'get',
+            headers: new Headers({
+                'Authorization': creds}),
 
         });
 
 
     return devices;
 }
+
+export function get_device_groups() {
+    const devices = fetch( route + '/device_groups',
+        {
+            method: 'get',
+            headers: new Headers({
+                'Authorization': creds}),
+        });
+
+
+    return devices;
+}
+
 
 
 

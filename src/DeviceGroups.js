@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './DeviceGroups.css';
-import {FormGroupCreate} from "./common";
+import {create_device_list, FormGroupCreate} from "./common";
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
+import {get_device_groups} from "./rest_api";
 
 
-const products = [];
+let products = [];
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys)
@@ -26,15 +27,24 @@ class DeviceGroups extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             name: '',
-            filter:''
+            filter:'',
+            deviceGroups: '',
         }
 
+    }
+
+    componentDidMount() {
+        get_device_groups().then(result=> result.json()).then((items) => {
+                this.setState({deviceGroups: items.data});
+            }
+        );
     }
     handleChange(e) {
 
         this.setState({ [e.target.id]: e.target.value});
     }
     render() {
+        products = create_device_list({items:this.state.deviceGroups})
         return (
             <div className="container">
                 <div className="Home">

@@ -44,7 +44,8 @@ class Parameters extends Component {
             value: '',
             range_start: '',
             range_end: '',
-            params_list:[]
+            params_list:[],
+            template:''
 
         }
 
@@ -158,6 +159,7 @@ class Parameters extends Component {
                 <div className="Home">
                     <h2>Parameters</h2>
                 </div>
+
                 <FormGroup
                     className="name-input"
                     controlId="name"
