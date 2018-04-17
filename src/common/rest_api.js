@@ -25,11 +25,27 @@ export function get_device_groups() {
     return devices;
 }
 
+export function add_device_group(group) {
+    let formdata = new FormData();
+    formdata.append('group_name', group.name);
+    formdata.append('attribute', group.attribute);
+
+
+    fetch( route + '/device_groups',
+        {
+            method: 'post',
+            body: formdata,
+            headers: new Headers({
+                'Authorization': creds}),
+        });
+}
+
+
 
 
 
 export function add_device(device){
-    const formdata = new FormData();
+    let formdata = new FormData();
     formdata.append('vendor_id', device.name);
     formdata.append('serial_num', device.password);
     formdata.append('model_num', device.retypepassword);

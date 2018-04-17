@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Users.css';
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {get_users,delete_user,add_user} from "./rest_api";
-import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from "./common";
+import {get_users,delete_user,add_user} from "../common/rest_api";
+import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from "../common/common";
 
 let products = [];
 
@@ -71,6 +71,7 @@ class Users extends Component {
         if(this.getVerifyPassword() && this.getValidationState()){
             add_user(newUser)
         }
+        window.location.reload();
     }
 
     handleChange(e) {
@@ -80,9 +81,10 @@ class Users extends Component {
 
     render() {
         let new_list={
-            items:this.state.items
-        }
+            items:this.state.items,
+        };
         products = create_user_list(new_list);
+        console.log(products);
         return (
 
             <div className="container">

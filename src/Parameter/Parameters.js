@@ -4,7 +4,7 @@ import Select from 'react-select'
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
-import {add_param, get_param} from "./rest_api";
+import {add_param, get_param} from "../common/rest_api";
 
 let List = [];
 
@@ -185,7 +185,7 @@ class Parameters extends Component {
 
                 {this.renderTypeField()}
                 <Button className="button-param-submit" onClick={this.addParameter} type="submit">Add Parameter</Button>
-                <Button className="button-param-import-submit" type="submit">Import from file</Button>
+
                 <BootstrapTable className="table-user" data={List} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>

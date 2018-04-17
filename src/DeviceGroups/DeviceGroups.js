@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './DeviceGroups.css';
-import {create_device_list, FormGroupCreate} from "./common";
+import {create_device_list, FormGroupCreate} from "../common/common";
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {get_device_groups} from "./rest_api";
+import {add_device_group, get_device_groups} from "../common/rest_api";
 
 
 let products = [];
@@ -25,6 +25,7 @@ class DeviceGroups extends Component {
     constructor(props,context) {
         super(props,context);
         this.handleChange = this.handleChange.bind(this);
+        this.addGroup = this.addGroup.bind(this);
         this.state = {
             name: '',
             filter:'',
@@ -43,6 +44,16 @@ class DeviceGroups extends Component {
 
         this.setState({ [e.target.id]: e.target.value});
     }
+
+    addGroup(){
+        console.log("ADD_Device_Group")
+        const newGroup={
+            name: this.state.name,
+            attribute: this.state.filter
+        };
+        add_device_group(newGroup)
+    }
+
     render() {
         products = create_device_list({items:this.state.deviceGroups})
         return (
@@ -52,7 +63,7 @@ class DeviceGroups extends Component {
                 </div>
                 <FormGroupCreate
                     className="group-name-input"
-                    controlId="group-name"
+                    controlId="name"
                     label="Group Name"
                     value={this.state.name}
                     change={this.handleChange}
@@ -67,7 +78,7 @@ class DeviceGroups extends Component {
                     change={this.handleChange}
                     type="text"
                 />
-                <Button className="button-group-submit" type="submit">Add Device Group</Button>
+                <Button className="button-group-submit" type="submit" onClick={this.addGroup()}>Add Device Group</Button>
                 <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="devices"  width="150" dataSort>Devices</TableHeaderColumn>

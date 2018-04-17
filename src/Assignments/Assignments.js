@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Assignments.css';
-import {DropdownTemplate} from "./common";
+import {DropdownTemplate} from "../common/common";
 import { Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 

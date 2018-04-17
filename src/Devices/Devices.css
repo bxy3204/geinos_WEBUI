@@ -27,4 +27,11 @@
 .button-import-submit{
     position: relative;
     left: 5%;
+    background-color: orange;
+    color: white;
+}
+
+.button-add-submit{
+    background-color: orange;
+    color: white;
 }

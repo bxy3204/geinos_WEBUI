@@ -6,13 +6,13 @@ import {
     NavLink,
     HashRouter
 } from "react-router-dom";
-import Devices from "./Devices";
-import DeviceGroups from "./DeviceGroups";
-import Templates from "./Templates";
-import Parameters from "./Parameters";
-import Assignments from "./Assignments";
-import LogOut from "./LogOut";
-import Users from "./Users";
+import Devices from "../Devices/Devices";
+import DeviceGroups from "../DeviceGroups/DeviceGroups";
+import Templates from "../Templates/Templates";
+import Parameters from "../Parameter/Parameters";
+import Assignments from "../Assignments/Assignments";
+import LogOut from "../Logout/LogOut";
+import Users from "../User/Users";
 
 class App extends Component {
   render() {
@@ -32,8 +32,8 @@ class App extends Component {
               <li><NavLink to="/Devices">Devices</NavLink></li>
               <li><NavLink to="/DeviceGroups">Device Groups</NavLink></li>
               <h1>Template Inventory</h1>
-              <li><NavLink to="/Templates">Templates</NavLink></li>
               <li><NavLink to="/Parameters">Parameters</NavLink></li>
+              <li><NavLink to="/Templates">Templates</NavLink></li>
               <li><NavLink to="/Assignments">Assignments</NavLink></li>
               <h1>Reports</h1>
           </ul>
