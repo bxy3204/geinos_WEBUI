@@ -11,7 +11,7 @@
     background-color: #f0ad4e;
     border-color: #eea236;
     color: white;
-    margin-top: 3%;
+    margin-top: 1%;
 
 }
 
@@ -22,4 +22,12 @@
     top: 5%;
     padding-bottom: 30%;
     text-align: left;
+}
+
+.label-template{
+    padding-top: 3%;
+}
+
+.label-group{
+    padding-top: 1%;
 }

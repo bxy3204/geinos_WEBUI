@@ -40,13 +40,13 @@ class Assignments extends Component {
                 <div className="Home">
                     <h2>Assignments</h2>
                 </div>
-                <ControlLabel>Template Name</ControlLabel>
+                <ControlLabel className="label-template">Template Name</ControlLabel>
                 <Select
                     name="assignment-template-input"
                     value={this.state.template}
                     onChange={this.handleChange}
                 />
-                <ControlLabel>Group</ControlLabel>
+                <ControlLabel className="label-group">Group</ControlLabel>
                 <Select
                     name="assignment-group-input"
                     value={this.state.group}

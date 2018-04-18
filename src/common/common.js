@@ -23,6 +23,7 @@ export function DropdownFormGroupCreate(props){
         className={props.className}
         controlId={props.controlId}
     >
+        <ControlLabel>Role</ControlLabel>
         <FormControl componentClass="select" placeholder="select" onChange={props.change}>
 
             <option value="operator">Operator</option>

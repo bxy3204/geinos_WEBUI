@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Users.css';
-import {Button} from 'react-bootstrap'
+import {Button, ControlLabel} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users,delete_user,add_user} from "../common/rest_api";
 import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from "../common/common";
@@ -130,12 +130,17 @@ class Users extends Component {
                     placeholder="Re-Enter password"
                     type="password"
                 />
+                <div>
+
                 <DropdownFormGroupCreate
                     className="role-input"
                     controlId="role"
-                    value={this.state.passwordverify}
+                    value={this.state.role}
                     change={this.handleChange}
                 />
+
+                </div>
+
                     <Button className="button-submit" onClick={this.addUser} >Create User</Button>
             </form>
             <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>

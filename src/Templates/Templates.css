@@ -24,3 +24,10 @@ textarea{
 .Select{
     width: 500px;
 }
+
+.button-templates-submit{
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    color: white;
+}
+
