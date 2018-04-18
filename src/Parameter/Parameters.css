@@ -6,6 +6,9 @@
 .param-template-input{
     padding-top: 3%;
     width: 20%;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+
 }
 
 .value-input{
@@ -45,10 +48,7 @@
     position: relative;
     display: block;
     margin-bottom: 15px;
-}
-
-.button-param-import{
-    position: relative;
-
-    padding-top: 3%;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    color: white;
 }

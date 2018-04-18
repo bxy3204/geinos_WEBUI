@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Assignments.css';
+import Select from 'react-select'
 import {DropdownTemplate} from "../common/common";
-import { Button} from 'react-bootstrap'
+import { Button, ControlLabel} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 
 const products = [];
@@ -39,22 +40,17 @@ class Assignments extends Component {
                 <div className="Home">
                     <h2>Assignments</h2>
                 </div>
-                <DropdownTemplate
-                    className="assignment-template-input"
-                    controlId="assignment-template"
-                    label="Template Name"
+                <ControlLabel>Template Name</ControlLabel>
+                <Select
+                    name="assignment-template-input"
                     value={this.state.template}
-                    change={this.handleChange}
-                    placeholder="Enter template name"
-                    type="text"
+                    onChange={this.handleChange}
                 />
-                <DropdownTemplate
-                    className="assignment-group-input"
-                    controlId="assignment-group"
-                    label="Group"
+                <ControlLabel>Group</ControlLabel>
+                <Select
+                    name="assignment-group-input"
                     value={this.state.group}
-                    change={this.handleChange}
-                    type="text"
+                    onChange={this.handleChange}
                 />
                 <Button className="button-assign-submit" type="submit">Assign</Button>
                 <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>

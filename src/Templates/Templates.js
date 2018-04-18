@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
+import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
@@ -120,16 +120,12 @@ class Templates extends Component {
                     <div>
                     <textarea  value={this.state.filetext} onChange={this.handleTextChange} />
                     </div>
-                    <div>
-                    <input type="submit" value="Submit" />
-                    </div>
+
                     <div>
                         <FormGroup
                             className="file-input"
                             controlId="file"
                         >
-                            <ControlLabel>Import From File</ControlLabel>
-
                             <FormControl
                                 type="file"
                                 label="File"
@@ -138,6 +134,9 @@ class Templates extends Component {
                             />
                             <FormControl.Feedback />
                         </FormGroup>
+                    </div>
+                    <div>
+                        <Button className="button-templates-submit"  >Submit</Button>
                     </div>
 
                 </div>

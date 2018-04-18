@@ -27,7 +27,8 @@ class App extends Component {
           <ul className="header">
               <h1>Administration</h1>
               <li><NavLink exact to="/Users">Users</NavLink></li>
-              <li><NavLink exact to="/Logout">Log Out</NavLink></li>
+              <li><NavLink exact to="/UserAuthentication">User Authentication</NavLink></li>
+              <li><NavLink exact to="/DeviceEnrollment">Device Enrollment</NavLink></li>
               <h1>Device Inventory</h1>
               <li><NavLink to="/Devices">Devices</NavLink></li>
               <li><NavLink to="/DeviceGroups">Device Groups</NavLink></li>
@@ -40,7 +41,6 @@ class App extends Component {
 
           <div className="content">
               <Route exact path="/Users" component={Users}/>
-              <Route path="/logout" component={LogOut}/>
               <Route path="/Devices" component={Devices}/>
               <Route exact path="/DeviceGroups" component={DeviceGroups}/>
               <Route path="/Templates" component={Templates}/>
