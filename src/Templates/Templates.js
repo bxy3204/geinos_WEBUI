@@ -3,6 +3,7 @@ import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
+import {add_template} from "../common/rest_api";
 
 
 
@@ -34,6 +35,7 @@ class Templates extends Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.onFilesChange = this.onFilesChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
+        this.addTemplate = this.addTemplate.bind(this);
     }
 
     handleChange(event) {
@@ -61,11 +63,17 @@ class Templates extends Component {
         event.preventDefault();
     };
 
+    addTemplate(){
+        let newtemp = new File([this.state.filetext], this.state.filename);
+        add_template(newtemp);
+        console.log(newtemp);
+    }
+
 
     onFilesChange(event) {
         let reader = new FileReader();
         reader.readAsText(event.target.files[0]);
-        this.setState({filename: event.target.value})
+        this.setState({filename: event.target.value});
         let state = this;
         reader.onload = function(){
             state.setState({filetext: reader.result})
@@ -136,7 +144,7 @@ class Templates extends Component {
                         </FormGroup>
                     </div>
                     <div>
-                        <Button className="button-templates-submit"  >Submit</Button>
+                        <Button className="button-templates-submit" onClick={this.addTemplate}  >Submit</Button>
                     </div>
 
                 </div>

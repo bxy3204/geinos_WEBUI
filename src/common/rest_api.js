@@ -1,5 +1,22 @@
 const route='http://127.0.0.1:5000';
 const creds = 'Basic '+btoa('test:password');
+
+export function add_template(file){
+
+
+    let templateForm = new FormData();
+    templateForm.append('file',file);
+       return fetch( route + '/templates',
+        {
+            method: 'post',
+            body: templateForm,
+            headers: new Headers({
+                'Authorization': creds}),
+
+        });
+}
+
+
 export function get_devices() {
     const devices = fetch( route + '/devices',
         {

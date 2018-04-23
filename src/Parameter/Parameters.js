@@ -52,7 +52,7 @@ class Parameters extends Component {
     }
 
     componentWillMount() {
-        let param = ['IP-Range','Value','IP-List'];
+        let param = ['IP-Range','Scalar','IP-List'];
         let params = [];
         for(let i=0; i<param.length; i++){
             let param_type={
@@ -147,9 +147,9 @@ class Parameters extends Component {
         if (typeof params !== "undefined"){
             for(let i=0; i<params.length; i++){
                 const param={
-                    name: params[0],
-                    type: 'Unknown',
-                    para: 'Unknown',
+                    name: params[i][0],
+                    type: params[i][1],
+                    para: params[i][2],
                     };
                 List.push(param);
             }
