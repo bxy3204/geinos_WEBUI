@@ -63,11 +63,12 @@ class DeviceGroups extends Component {
     };
 
     addGroup(){
-        console.log("ADD_Device_Group");
         const newGroup={
             name: this.state.name,
-            attribute: this.state.filter
+            attribute: 'model',
+            value: this.state.device_model.value
         };
+        console.log(newGroup);
         add_device_group(newGroup);
     }
     componentDidMount() {
@@ -79,7 +80,6 @@ class DeviceGroups extends Component {
 
     render() {
         products = create_devicegroup_list({items:this.state.deviceGroups});
-        console.log(products);
         return (
             <div className="container">
                 <div className="Home">
@@ -114,8 +114,6 @@ class DeviceGroups extends Component {
                     onChange={this.handleModelChange}
                     options={this.state.device_models}
                 />
-
-
 
 
 

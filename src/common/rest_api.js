@@ -64,6 +64,7 @@ export function get_device_groups() {
             headers: new Headers({
                 'Authorization': creds}),
         });
+
     return device_groups;
 }
 
@@ -71,6 +72,7 @@ export function add_device_group(group) {
     let formdata = new FormData();
     formdata.append('group_name', group.name);
     formdata.append('attribute', group.attribute);
+    formdata.append('value', group.value);
 
 
     fetch( route + '/device_groups',
@@ -80,6 +82,7 @@ export function add_device_group(group) {
             headers: new Headers({
                 'Authorization': creds}),
         });
+    console.log(formdata);
 }
 
 
