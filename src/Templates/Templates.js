@@ -7,9 +7,6 @@ import {add_template} from "../common/rest_api";
 
 
 
-
-
-
 export function uploadFail(error) {
     return {
         type: 'UPLOAD_DOCUMENT_FAIL',
@@ -64,9 +61,9 @@ class Templates extends Component {
     };
 
     addTemplate(){
-        let newtemp = new File([this.state.filetext], this.state.filename);
+        let newtemp = new File([this.state.filetext], this.state.name);
         add_template(newtemp);
-        console.log(newtemp);
+        window.location.reload();
     }
 
 
@@ -89,7 +86,6 @@ class Templates extends Component {
 
     render() {
             const { selectedOption } = this.state;
-            const value = selectedOption && selectedOption.value;
             let device = ['MDS Orbit ECR','MDS Orbit MCR'];
             let devices = [];
             for(var i=0; i<device.length; i++){

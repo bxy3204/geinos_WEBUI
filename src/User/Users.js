@@ -39,12 +39,7 @@ class Users extends Component {
         };
     }
 
-    componentDidMount() {
-            get_users().then(result=> result.json()).then((items) => {
-                    this.setState({items: items.data});
-                }
-            );
-        }
+
 
     getValidationState() {
         const length = this.state.password.length;
@@ -77,6 +72,13 @@ class Users extends Component {
     handleChange(e) {
 
         this.setState({ [e.target.id]: e.target.value});
+    }
+
+    componentDidMount() {
+        get_users().then(result=> result.json()).then((items) => {
+                this.setState({items: items.data});
+            }
+        );
     }
 
     render() {

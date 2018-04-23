@@ -71,12 +71,12 @@ class Devices extends Component {
             serial: this.state.serial,
         };
         add_device(newDevice)
+        window.location.reload();
     }
 
     handleNameChange(e) {
         this.setState({ [e.target.id]: e.target.value});
     }
-
 
     handleChange = (device_model) => {
         this.setState({ device_model });

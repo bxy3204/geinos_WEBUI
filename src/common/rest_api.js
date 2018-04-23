@@ -1,6 +1,22 @@
 const route='http://127.0.0.1:5000';
 const creds = 'Basic '+btoa('test:password');
 
+export function assign(assign_data){
+    const assign = new FormData();
+    assign.append('temp_name', assign_data.temp_name);
+    assign.append('group_name', assign_data.group_name);
+
+
+    fetch(route + '/assign', {
+        method: 'post',
+        body: assign,
+        headers: new Headers({
+            'Authorization': creds})
+    });
+}
+
+
+
 export function add_template(file){
 
 
@@ -17,6 +33,19 @@ export function add_template(file){
 }
 
 
+export function get_templates() {
+    const templateList = fetch( route + '/templates',
+        {
+            method: 'get',
+            headers: new Headers({
+                'Authorization': creds}),
+
+        });
+
+
+    return templateList;
+}
+
 export function get_devices() {
     const devices = fetch( route + '/devices',
         {
@@ -25,21 +54,17 @@ export function get_devices() {
                 'Authorization': creds}),
 
         });
-
-
     return devices;
 }
 
 export function get_device_groups() {
-    const devices = fetch( route + '/device_groups',
+    const device_groups = fetch( route + '/device_groups',
         {
             method: 'get',
             headers: new Headers({
                 'Authorization': creds}),
         });
-
-
-    return devices;
+    return device_groups;
 }
 
 export function add_device_group(group) {
@@ -64,8 +89,8 @@ export function add_device_group(group) {
 export function add_device(device){
     let formdata = new FormData();
     formdata.append('vendor_id', device.name);
-    formdata.append('serial_num', device.password);
-    formdata.append('model_num', device.retypepassword);
+    formdata.append('serial_num', device.serial);
+    formdata.append('model_num', device.model);
     fetch(route + '/devices', {
         method: 'put',
         body: formdata,

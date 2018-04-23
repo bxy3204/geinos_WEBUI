@@ -3,7 +3,7 @@
     width: 20%;
 }
 
-.filter-input{
+.group-type-input{
     width: 20%;
 }
 
@@ -11,6 +11,7 @@
     position: relative;
     background-color: #f0ad4e;
     border-color: #eea236;
+    margin-top: 1%;
     color: white;
 }
 
