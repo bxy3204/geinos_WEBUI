@@ -3,7 +3,7 @@ import './DeviceGroups.css';
 import {create_devicegroup_list, DropdownTemplate, FormGroupCreate} from "../common/common";
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {add_device_group, get_device_groups} from "../common/rest_api";
+import {add_device_group, get_device_groups} from "../REST_API/DeviceGroups_API";
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import Select from 'react-select';
 

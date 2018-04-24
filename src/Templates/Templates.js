@@ -3,7 +3,7 @@ import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
-import {add_template} from "../common/rest_api";
+import {add_template} from "../REST_API/Templates_API";
 
 
 

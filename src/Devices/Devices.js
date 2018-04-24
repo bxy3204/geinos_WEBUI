@@ -4,7 +4,7 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import './Devices.css';
-import {add_device, get_devices} from "../common/rest_api";
+import {add_device, get_devices} from "../REST_API/Devices_API";
 import {create_device_list} from "../common/common";
 
 

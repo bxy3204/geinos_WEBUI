@@ -4,7 +4,7 @@ import Select from 'react-select'
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
-import {add_param, get_param} from "../common/rest_api";
+import {add_param, get_param} from "../REST_API/Parameter_API";
 
 let List = [];
 

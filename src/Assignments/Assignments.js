@@ -3,7 +3,9 @@ import './Assignments.css';
 import Select from 'react-select'
 import { Button, ControlLabel} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {get_device_groups, get_templates, assign, add_user} from "../common/rest_api";
+import {assign} from "../REST_API/Assignments_API";
+import {get_device_groups} from "../REST_API/DeviceGroups_API";
+import {get_templates} from "../REST_API/Templates_API";
 
 
 let products = [];
