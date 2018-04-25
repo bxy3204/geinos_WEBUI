@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
-import Select from 'react-select'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
 import {add_template} from "../REST_API/Templates_API";
@@ -85,7 +84,6 @@ class Templates extends Component {
 
 
     render() {
-            const { selectedOption } = this.state;
             let device = ['MDS Orbit ECR','MDS Orbit MCR'];
             let devices = [];
             for(var i=0; i<device.length; i++){

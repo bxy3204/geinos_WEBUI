@@ -1,7 +1,8 @@
-const route='http://127.0.0.1:5000';
-const creds = 'Basic '+btoa('test:password');
+import {get_creds, get_route} from "./API";
 
 export function get_device_groups() {
+    let route = get_route();
+    let creds = get_creds();
     const device_groups = fetch( route + '/device_groups',
         {
             method: 'get',
@@ -13,6 +14,9 @@ export function get_device_groups() {
 }
 
 export function add_device_group(group) {
+    let route = get_route();
+    let creds = get_creds();
+
     let formdata = new FormData();
     formdata.append('group_name', group.name);
     formdata.append('attribute', group.attribute);

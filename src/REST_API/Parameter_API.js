@@ -1,7 +1,9 @@
-const route='http://127.0.0.1:5000';
-const creds = 'Basic '+btoa('test:password');
+import {get_creds, get_route} from "./API";
 
 export function add_param(param){
+    let route = get_route();
+    let creds = get_creds();
+
     const paramdata = new FormData();
     paramdata.append('name', param.name);
     paramdata.append('type', param.type);
@@ -15,6 +17,8 @@ export function add_param(param){
 }
 
 export function get_param() {
+    let route = get_route();
+    let creds = get_creds();
     return fetch( route + '/parameters',
         {
             method: 'get',

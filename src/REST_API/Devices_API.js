@@ -1,7 +1,9 @@
-const route='http://127.0.0.1:5000';
-const creds = 'Basic '+btoa('test:password');
+import {get_creds, get_route} from "./API";
 
 export function get_devices() {
+
+    let route = get_route();
+    let creds = get_creds();
     const devices = fetch( route + '/devices',
         {
             method: 'get',
@@ -13,6 +15,8 @@ export function get_devices() {
 }
 
 export function add_device(device){
+    let route = get_route();
+    let creds = get_creds();
     let formdata = new FormData();
     formdata.append('vendor_id', device.name);
     formdata.append('serial_num', device.serial);

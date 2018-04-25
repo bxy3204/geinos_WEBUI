@@ -11,7 +11,6 @@ import DeviceGroups from "../DeviceGroups/DeviceGroups";
 import Templates from "../Templates/Templates";
 import Parameters from "../Parameter/Parameters";
 import Assignments from "../Assignments/Assignments";
-import LogOut from "../Logout/LogOut";
 import Users from "../User/Users";
 
 class App extends Component {

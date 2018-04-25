@@ -1,7 +1,9 @@
-const route='http://127.0.0.1:5000';
-const creds = 'Basic '+btoa('test:password');
+import {get_creds, get_route} from "./API";
+
 
 export function get_users() {
+    let route = get_route();
+    let creds = get_creds();
     const users = fetch( route + '/users',
         {
             method: 'get',
@@ -15,6 +17,8 @@ export function get_users() {
 
 
 export function delete_user(user){
+    let route = get_route();
+    let creds = get_creds();
     const formdata = new FormData();
     formdata.append('rmusr', user);
     fetch( route + '/users', {
@@ -26,6 +30,8 @@ export function delete_user(user){
 }
 
 export function add_user(user){
+    let route = get_route();
+    let creds = get_creds();
     const formdata = new FormData();
     formdata.append('usr', user.name);
     formdata.append('password', user.password);

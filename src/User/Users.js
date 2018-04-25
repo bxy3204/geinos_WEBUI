@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Users.css';
-import {Button, ControlLabel} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users,delete_user,add_user} from "../REST_API/User_API";
 import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from "../common/common";
