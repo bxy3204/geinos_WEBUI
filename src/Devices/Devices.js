@@ -64,7 +64,6 @@ class Devices extends Component {
     }
 
     addDevice(){
-        console.log("ADD_Device")
         const newDevice={
             name: this.state.name,
             model: this.state.device_model.value,

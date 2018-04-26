@@ -136,12 +136,10 @@ class Parameters extends Component {
 
     handleChange(e) {
         this.setState({param_type: e.value});
-        console.log(this.state.param_type)
     }
 
     render() {
         let params = this.state.params_list;
-        console.log(params);
         List = [];
         while(typeof params === "undefined"){}
         if (typeof params !== "undefined"){
@@ -190,7 +188,6 @@ class Parameters extends Component {
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>
                     <TableHeaderColumn dataField="para"  width="200" dataSort >Value</TableHeaderColumn>
-                    <TableHeaderColumn dataField="modified"  width="150" dataSort >Last Modified</TableHeaderColumn>
                 </BootstrapTable>
 
             </div>
@@ -198,6 +195,5 @@ class Parameters extends Component {
         );
     }
 }
-
 
 export default Parameters;

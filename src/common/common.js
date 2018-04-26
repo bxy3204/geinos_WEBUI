@@ -53,7 +53,7 @@ export function create_user_list(props){
             const user={
                 name: users[i][0],
                 role: users[i][1],
-                email: "Unknown",
+                email: users[i][3],
                 lastlogin: users[i][2]
             };
             products.push(user);
@@ -63,7 +63,6 @@ export function create_user_list(props){
 }
 
 export function create_device_list(props){
-    console.log(props.items);
     let devices = props.items;
     let products = [];
     while(typeof devices === "undefined"){}
@@ -87,7 +86,9 @@ export function create_devicegroup_list(props){
     if (typeof device_groups !== "undefined"){
         for(let i=0; i<device_groups.length; i++){
             const group_name={
-                name: device_groups[i],
+                name: device_groups[i][0],
+                last_modified: device_groups[i][1],
+                template_name: device_groups[i][2]
             };
             products.push(group_name);
         }

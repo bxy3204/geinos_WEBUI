@@ -44,12 +44,10 @@ class Assignments extends Component {
 
     handleSelectChange = (group) => {
         this.setState({ group });
-        console.log(`Selected: ${group.label}`);
     };
 
     handleSelectTemplateChange = (template) => {
         this.setState({ template });
-        console.log(`Selected: ${template.label}`);
     };
 
     assign_template(){
@@ -57,7 +55,6 @@ class Assignments extends Component {
             temp_name: this.state.template.label,
             group_name: this.state.group.label,
         };
-        console.log(newAssign);
         assign(newAssign);
 
     }

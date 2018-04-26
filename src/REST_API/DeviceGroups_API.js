@@ -30,5 +30,4 @@ export function add_device_group(group) {
             headers: new Headers({
                 'Authorization': creds}),
         });
-    console.log(formdata);
 }

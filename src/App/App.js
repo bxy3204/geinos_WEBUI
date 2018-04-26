@@ -12,6 +12,7 @@ import Templates from "../Templates/Templates";
 import Parameters from "../Parameter/Parameters";
 import Assignments from "../Assignments/Assignments";
 import Users from "../User/Users";
+import Deployments from "../Reports/Deployments"
 
 class App extends Component {
   render() {
@@ -36,6 +37,7 @@ class App extends Component {
               <li><NavLink to="/Templates">Templates</NavLink></li>
               <li><NavLink to="/Assignments">Assignments</NavLink></li>
               <h1>Reports</h1>
+              <li><NavLink to="/Deployments">Deployments</NavLink></li>
           </ul>
 
           <div className="content">
@@ -45,6 +47,7 @@ class App extends Component {
               <Route path="/Templates" component={Templates}/>
               <Route path="/Parameters" component={Parameters}/>
               <Route path="/Assignments" component={Assignments}/>
+              <Route path="/Deployments" component={Deployments}/>
           </div>
       </div>
       </HashRouter>

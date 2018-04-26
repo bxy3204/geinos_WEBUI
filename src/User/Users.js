@@ -55,7 +55,6 @@ class Users extends Component {
     }
 
     addUser(){
-        console.log("ADD_USER")
         const newUser={
             name: this.state.name,
             password: this.state.password,
@@ -86,7 +85,6 @@ class Users extends Component {
             items:this.state.items,
         };
         products = create_user_list(new_list);
-        console.log(products);
         return (
 
             <div className="container">

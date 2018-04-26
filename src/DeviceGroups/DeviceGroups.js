@@ -68,7 +68,6 @@ class DeviceGroups extends Component {
             attribute: 'model',
             value: this.state.device_model.value
         };
-        console.log(newGroup);
         add_device_group(newGroup);
     }
     componentDidMount() {
@@ -120,8 +119,8 @@ class DeviceGroups extends Component {
                 <Button className="button-group-submit" type="submit" onClick={this.addGroup}>Add Device Group</Button>
                 <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="devices"  width="150" dataSort>Devices</TableHeaderColumn>
-                    <TableHeaderColumn dataField="last-modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
+                    <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
+                    <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
                     <TableHeaderColumn dataField="staged"  width="200" dataSort >Staged</TableHeaderColumn>
                     <TableHeaderColumn dataField="provisioned"  width="200" dataSort >Provisioned</TableHeaderColumn>
                 </BootstrapTable>

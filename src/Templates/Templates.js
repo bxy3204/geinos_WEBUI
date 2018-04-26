@@ -44,14 +44,12 @@ class Templates extends Component {
 
     handleNameChange(e) {
         this.setState({ [e.target.id]: e.target.value});
-        console.log(this.state.value);
     }
 
 
 
     handleSelectChange = (selectedOption) => {
         this.setState({ selectedOption });
-        console.log(`Selected: ${selectedOption.label}`);
     };
 
     handleSubmit(event) {
@@ -77,7 +75,7 @@ class Templates extends Component {
     };
 
     onFilesError(error, file) {
-        console.log('error code ' + error.code + ': ' + error.message)
+
     }
 
 
