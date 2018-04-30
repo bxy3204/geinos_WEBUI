@@ -4,8 +4,8 @@ import 'react-select/dist/react-select.css';
 
 let List = [];
 
-
 class Deployments extends Component {
+
         render() {
         return (
                 <BootstrapTable className="table-user" data={List}   striped={true} hover={true} pagination>
