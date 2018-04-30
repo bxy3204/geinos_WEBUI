@@ -1,6 +1,6 @@
 export function get_route()
 {
-    return window.location.hostname + ":5000";
+    return 'http://' + window.location.hostname.toString() + ':5000';
 }
 
 export function get_creds()
