@@ -122,9 +122,9 @@ class Assignments extends Component {
                 />
                 <Button className="button-assign-submit" type="submit" onClick={this.assign_template}>Assign</Button>
                 <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-                    <TableHeaderColumn dataField="templateName" isKey={true}  width="150"  dataSort>Template Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="groupName"  width="150" dataSort>Group Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="last-modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
+                    <TableHeaderColumn dataField="template_name" isKey={true}  width="150"  dataSort>Template Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="name"  width="150" dataSort>Group Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
                 </BootstrapTable>
             </div>
         );
