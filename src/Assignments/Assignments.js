@@ -6,6 +6,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {assign} from "../REST_API/Assignments_API";
 import {get_device_groups} from "../REST_API/DeviceGroups_API";
 import {get_templates} from "../REST_API/Templates_API";
+import {create_devicegroup_list} from "../common/common";
 
 
 let products = [];
@@ -35,7 +36,8 @@ class Assignments extends Component {
             template: '',
             group: '',
             template_list:[],
-            group_list:[]
+            group_list:[],
+            deviceGroups: '',
         }
     }
     handleChange(e) {
@@ -75,11 +77,12 @@ class Assignments extends Component {
 
 
         get_device_groups().then(result=> result.json()).then((items) => {
+                this.setState({deviceGroups: items.data});
                 for (let i = 0; i <= items.data.length -1; i++) {
 
                     let newGroup ={
-                        value: [i],
-                        label:items.data[i]
+                        value: [i][0],
+                        label:items.data[i][0]
                     };
                     this.state.group_list.push(newGroup);
 
@@ -92,6 +95,7 @@ class Assignments extends Component {
     render() {
         let listOfGroups = this.state.group_list;
         let listOfTemplates = this.state.template_list;
+        products = create_devicegroup_list({items:this.state.deviceGroups});
         return (
             <div className="container">
                 <div className="Home">
@@ -118,8 +122,8 @@ class Assignments extends Component {
                 />
                 <Button className="button-assign-submit" type="submit" onClick={this.assign_template}>Assign</Button>
                 <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-                    <TableHeaderColumn dataField="templateName" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="groupName"  width="150" dataSort>Devices</TableHeaderColumn>
+                    <TableHeaderColumn dataField="templateName" isKey={true}  width="150"  dataSort>Template Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="groupName"  width="150" dataSort>Group Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="last-modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
                 </BootstrapTable>
             </div>

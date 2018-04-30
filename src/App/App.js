@@ -14,11 +14,17 @@ import Assignments from "../Assignments/Assignments";
 import Users from "../User/Users";
 import Deployments from "../Reports/Deployments"
 
+
+
 class App extends Component {
+
   render() {
     return (
+
       <HashRouter>
+
       <div className="App">
+
           <div className="panel-heading panel-heading-custom">
             <h1>Device Provisioning</h1>
           </div>
@@ -49,6 +55,7 @@ class App extends Component {
               <Route path="/Assignments" component={Assignments}/>
               <Route path="/Deployments" component={Deployments}/>
           </div>
+
       </div>
       </HashRouter>
     );
