@@ -3,7 +3,7 @@ import './DeviceGroups.css';
 import {create_devicegroup_list, FormGroupCreate} from "../common/common";
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {add_device_group, get_device_groups} from "../REST_API/DeviceGroups_API";
+import {add_device_group, get_device_groups,delete_group} from "../REST_API/DeviceGroups_API";
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import Select from 'react-select';
 
@@ -11,7 +11,8 @@ import Select from 'react-select';
 let products = [];
 
 function onDeleteRow(rowKeys) {
-    alert('You deleted: ' + rowKeys)
+    alert('You deleted: ' + rowKeys);
+    delete_group(rowKeys[0]);
 
 }
 const options = {

@@ -4,7 +4,7 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import './Devices.css';
-import {add_device, get_devices} from "../REST_API/Devices_API";
+import {add_device, get_devices,delete_device} from "../REST_API/Devices_API";
 import {create_device_list} from "../common/common";
 
 
@@ -12,7 +12,8 @@ import {create_device_list} from "../common/common";
 let products = [];
 
 function onDeleteRow(rowKeys) {
-    alert('You deleted: ' + rowKeys)
+    alert('You deleted: ' + rowKeys);
+    delete_device(rowKeys[0])
 }
 
 
@@ -124,9 +125,9 @@ class Devices extends Component {
                 <Button className="button-add-submit" onClick={this.addDevice} type="submit">Add Device</Button>
                 <Button className="button-import-submit" type="submit">Import from file</Button>
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-                    <TableHeaderColumn dataField="vendor" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="vendor"  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model"  width="150" dataSort>Model</TableHeaderColumn>
-                    <TableHeaderColumn dataField="serial"  width="200" dataSort >Serial-Number</TableHeaderColumn>
+                    <TableHeaderColumn dataField="serial"  isKey={true}  width="200" dataSort >Serial-Number</TableHeaderColumn>
                 </BootstrapTable>
 
             </div>

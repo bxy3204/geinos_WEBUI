@@ -31,3 +31,16 @@ export function add_device_group(group) {
                 'Authorization': creds}),
         });
 }
+
+export function delete_group(group_name){
+    let route = get_route();
+    let creds = get_creds();
+    const formdata = new FormData();
+    formdata.append('group_name', group_name);
+    fetch( route + '/device_groups', {
+        method: 'delete',
+        body: formdata,
+        headers: new Headers({
+            'Authorization': creds})
+    });
+}

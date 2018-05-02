@@ -28,3 +28,16 @@ export function add_device(device){
             'Authorization': creds})
     });
 }
+
+export function delete_device(serial_num){
+    let route = get_route();
+    let creds = get_creds();
+    const formdata = new FormData();
+    formdata.append('serial_num', serial_num);
+    fetch( route + '/devices', {
+        method: 'delete',
+        body: formdata,
+        headers: new Headers({
+            'Authorization': creds})
+    });
+}

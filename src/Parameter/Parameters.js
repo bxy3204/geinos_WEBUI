@@ -4,20 +4,14 @@ import Select from 'react-select'
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
-import {add_param, get_param} from "../REST_API/Parameter_API";
+import {add_param, delete_param, get_param} from "../REST_API/Parameter_API";
 
 let List = [];
 
 function onDeleteRow(rowKeys) {
-    alert('You deleted: ' + rowKeys)
-    /*   const data = new FormData(event.target);
-        fetch('/api/form-submit-url', {
-            method: 'POST',
-            body: data,
-        });*/
+    alert('You deleted: ' + rowKeys);
+    delete_param(rowKeys[0])
 }
-
-
 
 const options = {
     afterDeleteRow: onDeleteRow
