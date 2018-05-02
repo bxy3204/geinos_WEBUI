@@ -3,9 +3,10 @@ import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
 import {add_template} from "../REST_API/Templates_API";
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
+import {get_param} from "../REST_API/Parameter_API";
 
-
-
+let List = [];
 export function uploadFail(error) {
     return {
         type: 'UPLOAD_DOCUMENT_FAIL',
@@ -23,7 +24,8 @@ class Templates extends Component {
             selectedOption: '',
             value: '',
             filetext: '',
-            filename: ''
+            filename: '',
+            params_list: []
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -33,6 +35,14 @@ class Templates extends Component {
         this.handleTextChange = this.handleTextChange.bind(this);
         this.addTemplate = this.addTemplate.bind(this);
     }
+
+    componentDidMount() {
+        get_param().then(result=> result.json()).then((items) => {
+                this.setState({params_list: items.data});
+            }
+        );
+    }
+
 
     handleChange(event) {
         this.setState({value: event.target.value},);
@@ -88,9 +98,23 @@ class Templates extends Component {
                 var user={
                     value: device[i],
                     label: device[i]
-                }
+                };
                 devices.push(user);
             }
+
+            let params = this.state.params_list;
+            List = [];
+            while(typeof params === "undefined"){}
+            if (typeof params !== "undefined"){
+            for(let i=0; i<params.length; i++){
+                const param={
+                    name: params[i][0],
+                    type: params[i][1],
+                    para: params[i][2],
+                };
+                List.push(param);
+            }
+        }
         return (
             <form onSubmit={this.handleSubmit} className="template-form">
                 <div className="config-area">
@@ -112,13 +136,21 @@ class Templates extends Component {
                             />
                             <FormControl.Feedback />
                         </FormGroup>
+
                     </div>
 
                     <div>
                         <label className="label-textarea">Base Configuration File</label>
+                        <label className="label-param-table">Available Parameters</label>
                     </div>
                     <div>
                     <textarea  value={this.state.filetext} onChange={this.handleTextChange} />
+
+                        <BootstrapTable className="table-template" data={List}    striped={true} hover={true} pagination>
+                            <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
+                            <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>
+                            <TableHeaderColumn dataField="para"  width="200" dataSort >Value</TableHeaderColumn>
+                        </BootstrapTable>
                     </div>
 
                     <div>
@@ -137,6 +169,7 @@ class Templates extends Component {
                     </div>
                     <div>
                         <Button className="button-templates-submit" onClick={this.addTemplate}  >Submit</Button>
+
                     </div>
 
                 </div>

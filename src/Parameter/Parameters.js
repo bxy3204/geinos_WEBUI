@@ -72,7 +72,8 @@ class Parameters extends Component {
             value: this.state.value,
             type: this.state.param_type
         };
-            add_param(newparam)
+            add_param(newparam);
+            window.location.reload();
     }
 
 

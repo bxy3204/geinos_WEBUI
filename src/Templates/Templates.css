@@ -19,6 +19,8 @@
 textarea{
     width: 500px;
     height: 300px;
+    display: inline-block;
+
 }
 
 .Select{
@@ -30,4 +32,18 @@ textarea{
     border-color: #eea236;
     color: white;
 }
+.table-template{
+    width: max-content;
+    position: relative;
+    height: content-box;
+    text-align: left;
+    left: 5%;
+    display: inline-block;
+    vertical-align: top;
+}
+.label-param-table{
+    position: relative;
+    display: inline-block;
+    left: 27%
 
+}

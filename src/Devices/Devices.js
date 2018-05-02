@@ -70,7 +70,7 @@ class Devices extends Component {
             model: this.state.device_model.value,
             serial: this.state.serial,
         };
-        add_device(newDevice)
+        add_device(newDevice);
         window.location.reload();
     }
 
