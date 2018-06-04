@@ -4,6 +4,7 @@ import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 export function FormGroupCreate(props){
     return <FormGroup
         className={props.className}
+        requird ={props.required}
         controlId={props.controlId}
         validationState={props.validationState}
     >

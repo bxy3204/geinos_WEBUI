@@ -90,10 +90,12 @@ class DeviceGroups extends Component {
                     className="group-name-input"
                     controlId="name"
                     label="Group Name"
+
                     value={this.state.name}
                     change={this.handleChange}
                     placeholder="Enter group name"
                     type="text"
+                    required="true"
                 />
 
                 <FormGroup
@@ -113,6 +115,7 @@ class DeviceGroups extends Component {
                     name="form-field-name"
                     value={this.state.device_model}
                     onChange={this.handleModelChange}
+                    required="true"
                     options={this.state.device_models}
                 />
 

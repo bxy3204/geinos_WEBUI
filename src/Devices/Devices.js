@@ -82,14 +82,28 @@ class Devices extends Component {
         this.setState({ device_model });
     };
     render() {
-        products = create_device_list({items:this.state.deviceList})
+        products = create_device_list({items:this.state.deviceList});
+        const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
+        const modelLink = this.state.device_model, modelIsValid = modelLink;
+        const serialLink = this.state.serial, serialIsValid = serialLink && serialLink.indexOf( ' ' ) < 0;
+        var complete = false;
+        if (nameIsValid && modelIsValid && serialIsValid){
+            complete = true;
+        }        /*
+        const emailLink = this.state.email, emailIsValid = emailLink && emailLink.match(emailRe) != null;
+        const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.length >= 6;
+        const passwordVerifyLink = this.state.passwordverify, verifyPasswordIsValid = passwordLink == passwordVerifyLink;
+        var complete = false;
+        if (nameIsValid && emailIsValid && passwordIsValid && verifyPasswordIsValid){
+            complete = true;
+        }*/
         return (
             <div className="container">
                 <div className="Home">
                     <h2>Devices</h2>
                 </div>
             <FormGroup
-                className="name-input"
+                className = { nameIsValid ? 'name-input' : 'name-input-error'}
                 controlId="name"
             >
                 <ControlLabel>Name</ControlLabel>
@@ -103,6 +117,7 @@ class Devices extends Component {
             </FormGroup>
                 <ControlLabel>Model</ControlLabel>
             <Select
+                className = { modelIsValid ? '' : 'model-input-error'}
                 name="form-field-name"
                 value={this.state.device_model}
                 onChange={this.handleChange}
@@ -110,7 +125,7 @@ class Devices extends Component {
             />
 
                 <FormGroup
-                    className="serial-input"
+                    className = { serialIsValid ? 'serial-input' : 'serial-input-error'}
                     controlId="serial"
                 >
                     <ControlLabel>Serial</ControlLabel>
@@ -122,8 +137,8 @@ class Devices extends Component {
                         onChange={this.handleNameChange}
                     />
                 </FormGroup>
-                <Button className="button-add-submit" onClick={this.addDevice} type="submit">Add Device</Button>
-                <Button className="button-import-submit" type="submit">Import from file</Button>
+                <Button className="button-add-submit" disabled = {!complete} onClick={this.addDevice} type="submit">Add Device</Button>
+                <Button className="button-import-submit" disabled = {!complete} type="submit">Import from file</Button>
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="vendor"  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model"  width="150" dataSort>Model</TableHeaderColumn>

@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users,delete_user,add_user} from "../REST_API/User_API";
 import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from "../common/common";
+const emailRe = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 let products = [];
 
@@ -63,8 +64,10 @@ class Users extends Component {
             role: this.state.role
         };
         if(this.getVerifyPassword() && this.getValidationState()){
-            add_user(newUser)
+            add_user(newUser);
+            console.log("added a user");
         }
+        console.log("didn't add a user");
         window.location.reload();
     }
 
@@ -85,6 +88,15 @@ class Users extends Component {
             items:this.state.items,
         };
         products = create_user_list(new_list);
+        const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
+        const emailLink = this.state.email, emailIsValid = emailLink && emailLink.match(emailRe) != null;
+        const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.length >= 6;
+        const passwordVerifyLink = this.state.passwordverify, verifyPasswordIsValid = passwordLink === passwordVerifyLink;
+        var complete = false;
+        if (nameIsValid && emailIsValid && passwordIsValid && verifyPasswordIsValid){
+            complete = true;
+        }
+
         return (
 
             <div className="container">
@@ -93,7 +105,7 @@ class Users extends Component {
                 </div>
             <form className="form-createuser">
                 <FormGroupCreate
-                    className="name-input"
+                    className = { nameIsValid ? 'name-input' : 'name-input-error'}
                     controlId="name"
                     label="User Name"
                     value={this.state.name}
@@ -102,7 +114,7 @@ class Users extends Component {
                     type="text"
                 />
                 <FormGroupCreate
-                    className="email-input"
+                    className = { emailIsValid ? 'email-input' : 'email-input-error'}
                     controlId="email"
                     label="Email"
                     value={this.state.email}
@@ -110,8 +122,9 @@ class Users extends Component {
                     placeholder="Enter email"
                     type="text"
                 />
+                <div className = 'error-placeholder'> { passwordIsValid && this.state.password !== this.state.passwordverify? "passwords don't match" : ''} </div>
                 <FormGroupCreate
-                    className="pass-input"
+                    className = { passwordIsValid ? 'pass-input' : 'pass-input-error'}
                     controlId="password"
                     label="Password"
                     validationState={this.getValidationState()}
@@ -121,7 +134,7 @@ class Users extends Component {
                     type="password"
                 />
                 <FormGroupCreate
-                    className="pass-verify-input"
+                    className = { passwordIsValid && verifyPasswordIsValid ? 'pass-verify-input' : 'pass-verify-input-error'}
                     controlId="passwordverify"
                     label="Verify Password"
                     validationState={this.getVerifyPassword()}
@@ -141,7 +154,7 @@ class Users extends Component {
 
                 </div>
 
-                    <Button className="button-submit" onClick={this.addUser} >Create User</Button>
+                    <Button className="button-submit" disabled = {!complete} onClick={this.addUser} >Create User</Button>
             </form>
             <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>User Name</TableHeaderColumn>

@@ -9,7 +9,6 @@ export function get_device_groups() {
             headers: new Headers({
                 'Authorization': creds}),
         });
-
     return device_groups;
 }
 
