@@ -1,8 +1,15 @@
+.group-name-input-error{
+    padding-top: 3%;
+    width: 20%;
+    border-bottom: 2px solid red;
+}
+.form-field-name-error{
+    border-bottom: 2px solid red;
+}
 .group-name-input{
     padding-top: 3%;
     width: 20%;
 }
-
 .group-type-input{
     width: 20%;
 }

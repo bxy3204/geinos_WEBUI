@@ -2,7 +2,9 @@
     width: 20%;
     padding-top: 3%;
 }
-
+.form-field-name-error{
+    border-bottom: 2px solid red;
+}
 .param-template-input{
     padding-top: 3%;
     width: 20%;

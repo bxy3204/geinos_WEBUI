@@ -7,7 +7,13 @@ export function add_param(param){
     const paramdata = new FormData();
     paramdata.append('name', param.name);
     paramdata.append('type', param.type);
-    paramdata.append('value', param.value);
+    if (param.type !==  "IP-Range") {
+        paramdata.append('value', param.value);
+    }
+    else{
+        paramdata.append('range_start', param.range_start);
+        paramdata.append('range_end', param.range_end);
+    }
     fetch(route + '/parameters', {
         method: 'put',
         body: paramdata,

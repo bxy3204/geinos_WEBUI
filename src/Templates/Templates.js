@@ -115,15 +115,24 @@ class Templates extends Component {
                 List.push(param);
             }
         }
+
+        const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
+            console.log(nameIsValid);
+
+        const fileTextLink = this.state.filetext, fileTextIsValid = fileTextLink && fileTextLink.indexOf( ' ' ) < 0;
+        var complete = false;
+        if (fileTextIsValid && nameIsValid){
+            complete = true;
+        }
         return (
-            <form onSubmit={this.handleSubmit} className="template-form">
+                <form onSubmit={this.handleSubmit} className="template-form">
                 <div className="config-area">
                     <div className="Home">
                         <h2>Templates</h2>
                     </div>
                     <div>
                         <FormGroup
-                            className="name-input"
+                            className=  { nameIsValid ? 'name-input' : 'name-input-error'}
                             controlId="name"
                         >
                             <ControlLabel>Template Name</ControlLabel>
@@ -144,7 +153,7 @@ class Templates extends Component {
                         <label className="label-param-table">Available Parameters</label>
                     </div>
                     <div>
-                    <textarea  value={this.state.filetext} onChange={this.handleTextChange} />
+                    <textarea  className=  { fileTextIsValid ? 'file-input' : 'file-input-error'} value={this.state.filetext} onChange={this.handleTextChange} />
 
                         <BootstrapTable className="table-template" data={List}    striped={true} hover={true} pagination>
                             <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
@@ -155,7 +164,7 @@ class Templates extends Component {
 
                     <div>
                         <FormGroup
-                            className="file-input"
+                            className=  "file-upload"
                             controlId="file"
                         >
                             <FormControl
@@ -168,7 +177,7 @@ class Templates extends Component {
                         </FormGroup>
                     </div>
                     <div>
-                        <Button className="button-templates-submit" onClick={this.addTemplate}  >Submit</Button>
+                        <Button className="button-templates-submit" disabled = {!complete} onClick={this.addTemplate}  >Submit</Button>
 
                     </div>
 

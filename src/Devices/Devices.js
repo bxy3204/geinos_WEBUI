@@ -89,14 +89,8 @@ class Devices extends Component {
         var complete = false;
         if (nameIsValid && modelIsValid && serialIsValid){
             complete = true;
-        }        /*
-        const emailLink = this.state.email, emailIsValid = emailLink && emailLink.match(emailRe) != null;
-        const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.length >= 6;
-        const passwordVerifyLink = this.state.passwordverify, verifyPasswordIsValid = passwordLink == passwordVerifyLink;
-        var complete = false;
-        if (nameIsValid && emailIsValid && passwordIsValid && verifyPasswordIsValid){
-            complete = true;
-        }*/
+        }
+
         return (
             <div className="container">
                 <div className="Home">
