@@ -96,6 +96,12 @@ class Assignments extends Component {
         let listOfGroups = this.state.group_list;
         let listOfTemplates = this.state.template_list;
         products = create_devicegroup_list({items:this.state.deviceGroups});
+        const templateLink = this.state.template, templateIsValid = templateLink && templateLink.indexOf( ' ' ) < 0;
+        const groupLink = this.state.group, groupIsValid = groupLink;
+        var complete = false;
+        if (templateIsValid && groupIsValid){
+            complete = true;
+        }
         return (
             <div className="container">
                 <div className="Home">
@@ -104,7 +110,7 @@ class Assignments extends Component {
 
                 <ControlLabel className="label-template">Template</ControlLabel>
                 <Select
-                    className="assignment-template-input"
+                    className={ templateIsValid ? 'assignment-template-input' : 'assignment-template-input-error'}
                     controlId="template"
                     value={this.state.template}
                     onChange={this.handleSelectTemplateChange}
@@ -114,13 +120,13 @@ class Assignments extends Component {
 
                 <ControlLabel className="label-group">Group</ControlLabel>
                 <Select
-                    className="assignment-group-input"
+                    className={ groupIsValid ? 'assignment-group-input' : 'assignment-group-input-error'}
                     controlId="group"
                     value={this.state.group}
                     onChange={this.handleSelectChange}
                     options= {listOfGroups}
                 />
-                <Button className="button-assign-submit" type="submit" onClick={this.assign_template}>Assign</Button>
+                <Button className="button-assign-submit" disabled = {!complete} type="submit" onClick={this.assign_template}>Assign</Button>
                 <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="template_name" isKey={true}  width="150"  dataSort>Template Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="name"  width="150" dataSort>Group Name</TableHeaderColumn>
