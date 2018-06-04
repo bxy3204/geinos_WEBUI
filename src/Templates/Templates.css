@@ -47,3 +47,6 @@ textarea{
     left: 27%
 
 }
+.file-input-error{
+    border-bottom: 2px solid red;
+}

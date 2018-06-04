@@ -67,10 +67,11 @@
 .button-submit{
     position: relative;
     width: fit-content;
-    bottom: 75px;
+    bottom: 40px;
     background-color: #f0ad4e;
     border-color: #eea236;
     color: white;
+    margin-right:12px;
 }
 
 .table-user{

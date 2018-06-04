@@ -81,19 +81,29 @@ class DeviceGroups extends Component {
 
     render() {
         products = create_devicegroup_list({items:this.state.deviceGroups});
+        const nameLink = this.state.name, nameIsValid = nameLink && nameLink !== "";
+        const valueLink = this.state.device_model.value, valueIsValid = valueLink && valueLink !== "";
+
+        var complete = false;
+        if (nameIsValid && valueIsValid){
+            complete = true;
+        }
+
         return (
             <div className="container">
                 <div className="Home">
                     <h2>Device Groups</h2>
                 </div>
                 <FormGroupCreate
-                    className="group-name-input"
+                    className={ nameIsValid ? 'group-name-input' : 'group-name-input-error'}
                     controlId="name"
                     label="Group Name"
+
                     value={this.state.name}
                     change={this.handleChange}
                     placeholder="Enter group name"
                     type="text"
+                    required="true"
                 />
 
                 <FormGroup
@@ -110,15 +120,16 @@ class DeviceGroups extends Component {
 
                 <ControlLabel>Value</ControlLabel>
                 <Select
-                    name="form-field-name"
+                    className={ valueIsValid ? 'form-field-name' : 'form-field-name-error'}
                     value={this.state.device_model}
                     onChange={this.handleModelChange}
+                    required="true"
                     options={this.state.device_models}
                 />
 
 
 
-                <Button className="button-group-submit" type="submit" onClick={this.addGroup}>Add Device Group</Button>
+                <Button className="button-group-submit" disabled = {!complete} type="submit" onClick={this.addGroup}>Add Device Group</Button>
                 <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>

@@ -6,7 +6,16 @@
 .assignment-group-input{
     width: 20%;
 }
+.assignment-template-input-error{
+    padding-top: 3%;
+    width: 20%;
+    border-bottom: 2px solid red;
+}
 
+.assignment-group-input-error{
+    width: 20%;
+    border-bottom: 2px solid red;
+}
 .button-assign-submit{
     background-color: #f0ad4e;
     border-color: #eea236;

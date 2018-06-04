@@ -13,12 +13,14 @@ import Parameters from "../Parameter/Parameters";
 import Assignments from "../Assignments/Assignments";
 import Users from "../User/Users";
 import Deployments from "../Reports/Deployments"
+import Login from "../Login/Login";
 
 
 
 class App extends Component {
 
   render() {
+
     return (
 
       <HashRouter>
@@ -27,8 +29,6 @@ class App extends Component {
 
           <div className="panel-heading panel-heading-custom">
             <h1>Device Provisioning</h1>
-          </div>
-          <div className="panel-heading-Navbar">
           </div>
           <ul className="header">
               <h1>Administration</h1>
@@ -44,6 +44,7 @@ class App extends Component {
               <li><NavLink to="/Assignments">Assignments</NavLink></li>
               <h1>Reports</h1>
               <li><NavLink to="/Deployments">Deployments</NavLink></li>
+              <li><NavLink to="/Login">Login</NavLink></li>
           </ul>
 
           <div className="content">
@@ -54,6 +55,7 @@ class App extends Component {
               <Route path="/Parameters" component={Parameters}/>
               <Route path="/Assignments" component={Assignments}/>
               <Route path="/Deployments" component={Deployments}/>
+              <Route path="/Login" component={Login}/>
           </div>
 
       </div>

@@ -55,7 +55,7 @@ class Parameters extends Component {
             };
             params.push(param_type);
         }
-        this.setState({param_type: "Range"});
+        //this.setState({param_type: "Range"});
         this.setState({params:params});
     }
 
@@ -67,11 +67,22 @@ class Parameters extends Component {
     }
 
     addParameter(){
-        const newparam={
-            name: this.state.name,
-            value: this.state.value,
-            type: this.state.param_type
-        };
+        var newparam = null;
+        if (this.state.param_type.toString() == "IP-Range"){
+            var newparam={
+                name: this.state.name,
+                range_start: this.state.name.range_start,
+                range_end: this.state.name.range_end,
+                type: this.state.param_type
+            };
+        } else{
+            var newparam={
+                name: this.state.name,
+                value: this.state.value,
+                type: this.state.param_type
+            };
+        }
+
             add_param(newparam);
             window.location.reload();
     }
@@ -147,6 +158,16 @@ class Parameters extends Component {
                 List.push(param);
             }
         }
+
+        const nameLink = this.state.name, nameIsValid = nameLink && nameLink !== "";
+        const valueLink = this.state.value, valueIsValid = valueLink && valueLink !== "";
+        const paramLink = this.state.param_type, paramIsValid = paramLink && paramLink !== "";
+
+        var complete = false;
+        console.log(paramIsValid);
+        if (nameIsValid && paramIsValid){
+            complete = true;
+        }
         return (
             <div className="container">
                 <div className="Home">
@@ -154,7 +175,7 @@ class Parameters extends Component {
                 </div>
 
                 <FormGroup
-                    className="name-input"
+                    className={ nameIsValid ? "name-input" : "name-input-error"}
                     controlId="name"
                 >
                     <ControlLabel>Name</ControlLabel>
@@ -168,7 +189,7 @@ class Parameters extends Component {
                 </FormGroup>
                 <ControlLabel>Type</ControlLabel>
                 <Select
-                    name="form-field-name"
+                    className= { paramIsValid ? "form-field-name" : "form-field-name-error"}
                     id="param"
                     value={this.state.param_type}
                     onChange={this.handleChange}
@@ -177,7 +198,7 @@ class Parameters extends Component {
 
 
                 {this.renderTypeField()}
-                <Button className="button-param-submit" onClick={this.addParameter} type="submit">Add Parameter</Button>
+                <Button className="button-param-submit" disabled = {!complete} onClick={this.addParameter} type="submit">Add Parameter</Button>
 
                 <BootstrapTable className="table-user" data={List} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
