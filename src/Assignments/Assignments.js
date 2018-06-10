@@ -76,7 +76,7 @@ class Assignments extends Component {
         );
 
 
-        get_device_groups().then(result=> result.json()).then((items) => {
+        get_device_groups().then((items) => {
                 this.setState({deviceGroups: items.data});
                 for (let i = 0; i <= items.data.length -1; i++) {
 

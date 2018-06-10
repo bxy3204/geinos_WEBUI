@@ -73,14 +73,14 @@ class DeviceGroups extends Component {
         window.location.reload();
     }
     componentDidMount() {
-        get_device_groups().then(result=> result.json()).then((items) => {
+        get_device_groups().then((items) => {
                 this.setState({deviceGroups: items.data});
             }
         );
     }
 
     render() {
-        products = create_devicegroup_list({items:this.state.deviceGroups});
+        products = this.state.deviceGroups;
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink !== "";
         const valueLink = this.state.device_model.value, valueIsValid = valueLink && valueLink !== "";
 
@@ -131,7 +131,7 @@ class DeviceGroups extends Component {
 
                 <Button className="button-group-submit" disabled = {!complete} type="submit" onClick={this.addGroup}>Add Device Group</Button>
                 <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-                    <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
                     <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
                     <TableHeaderColumn dataField="staged"  width="200" dataSort >Staged</TableHeaderColumn>

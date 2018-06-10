@@ -5,6 +5,6 @@ export function get_route()
 
 export function get_creds()
 {
-
-    return 'Basic '+btoa(localStorage.getItem("session"));
+    //return 'Basic '+btoa(localStorage.getItem("session"));
+    return 'Basic '+btoa('test:password');
 }

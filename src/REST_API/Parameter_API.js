@@ -31,6 +31,8 @@ export function get_param() {
             headers: new Headers({
                 'Authorization': creds}),
 
+        }).then(function(response) {
+            return response.json();
         });
 }
 

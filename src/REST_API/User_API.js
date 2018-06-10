@@ -4,14 +4,16 @@ import {get_creds, get_route} from "./API";
 export function get_users() {
     let route = get_route();
     let creds = get_creds();
-    const users = fetch( route + '/users',
+
+    return fetch( route + '/users',
         {
             method: 'get',
             headers: new Headers({
                 'Authorization': creds}),
 
+        }).then(function(response) {
+            return response.json();
         });
-    return users;
 }
 
 

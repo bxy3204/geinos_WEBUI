@@ -60,7 +60,7 @@ class Parameters extends Component {
     }
 
     componentDidMount() {
-        get_param().then(result=> result.json()).then((items) => {
+        get_param().then((items) => {
                 this.setState({params_list: items.data});
             }
         );
@@ -145,19 +145,7 @@ class Parameters extends Component {
     }
 
     render() {
-        let params = this.state.params_list;
-        List = [];
-        while(typeof params === "undefined"){}
-        if (typeof params !== "undefined"){
-            for(let i=0; i<params.length; i++){
-                const param={
-                    name: params[i][0],
-                    type: params[i][1],
-                    para: params[i][2],
-                    };
-                List.push(param);
-            }
-        }
+        let List = this.state.params_list;
 
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink !== "";
         const valueLink = this.state.value, valueIsValid = valueLink && valueLink !== "";
@@ -201,9 +189,9 @@ class Parameters extends Component {
                 <Button className="button-param-submit" disabled = {!complete} onClick={this.addParameter} type="submit">Add Parameter</Button>
 
                 <BootstrapTable className="table-user" data={List} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-                    <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>
-                    <TableHeaderColumn dataField="para"  width="200" dataSort >Value</TableHeaderColumn>
+                    <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="param_type"  width="150" dataSort>Type</TableHeaderColumn>
+                    <TableHeaderColumn dataField="start_value"  width="200" dataSort >Value</TableHeaderColumn>
                 </BootstrapTable>
 
             </div>

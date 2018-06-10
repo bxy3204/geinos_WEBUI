@@ -37,7 +37,7 @@ class Templates extends Component {
     }
 
     componentDidMount() {
-        get_param().then(result=> result.json()).then((items) => {
+        get_param().then((items) => {
                 this.setState({params_list: items.data});
             }
         );
@@ -92,29 +92,17 @@ class Templates extends Component {
 
 
     render() {
-            let device = ['MDS Orbit ECR','MDS Orbit MCR'];
-            let devices = [];
-            for(var i=0; i<device.length; i++){
-                var user={
-                    value: device[i],
-                    label: device[i]
-                };
-                devices.push(user);
-            }
-
-            let params = this.state.params_list;
-            List = [];
-            while(typeof params === "undefined"){}
-            if (typeof params !== "undefined"){
-            for(let i=0; i<params.length; i++){
-                const param={
-                    name: params[i][0],
-                    type: params[i][1],
-                    para: params[i][2],
-                };
-                List.push(param);
-            }
+        let device = ['MDS Orbit ECR','MDS Orbit MCR'];
+        let devices = [];
+        for(var i=0; i<device.length; i++){
+            var user={
+                value: device[i],
+                label: device[i]
+            };
+            devices.push(user);
         }
+
+        let List = this.state.params_list;
 
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
             console.log(nameIsValid);
@@ -156,9 +144,9 @@ class Templates extends Component {
                     <textarea  className=  { fileTextIsValid ? 'file-input' : 'file-input-error'} value={this.state.filetext} onChange={this.handleTextChange} />
 
                         <BootstrapTable className="table-template" data={List}    striped={true} hover={true} pagination>
-                            <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
-                            <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>
-                            <TableHeaderColumn dataField="para"  width="200" dataSort >Value</TableHeaderColumn>
+                            <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
+                            <TableHeaderColumn dataField="param_type"  width="150" dataSort>Type</TableHeaderColumn>
+                            <TableHeaderColumn dataField="start_value"  width="200" dataSort >Value</TableHeaderColumn>
                         </BootstrapTable>
                     </div>
 

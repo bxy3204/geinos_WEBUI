@@ -3,13 +3,14 @@ import {get_creds, get_route} from "./API";
 export function get_device_groups() {
     let route = get_route();
     let creds = get_creds();
-    const device_groups = fetch( route + '/device_groups',
+    return fetch( route + '/device_groups',
         {
             method: 'get',
             headers: new Headers({
                 'Authorization': creds}),
+        }).then(function(response) {
+            return response.json();
         });
-    return device_groups;
 }
 
 export function add_device_group(group) {

@@ -77,7 +77,7 @@ class Users extends Component {
     }
 
     componentDidMount() {
-        get_users().then(result=> result.json()).then((items) => {
+        get_users().then((items) => {
                 this.setState({items: items.data});
             }
         );
@@ -87,7 +87,11 @@ class Users extends Component {
         let new_list={
             items:this.state.items,
         };
+        console.log(this.state.items);
+        console.log("AAAAAAAA")
         products = create_user_list(new_list);
+        products = this.state.items;
+        console.log(products);
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
         const emailLink = this.state.email, emailIsValid = emailLink && emailLink.match(emailRe) != null;
         const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.length >= 6;
@@ -157,10 +161,10 @@ class Users extends Component {
                     <Button className="button-submit" disabled = {!complete} onClick={this.addUser} >Create User</Button>
             </form>
             <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-               <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>User Name</TableHeaderColumn>
-               <TableHeaderColumn dataField="role"  width="150" dataSort>Role</TableHeaderColumn>
+               <TableHeaderColumn dataField="username" isKey={true}  width="150"  dataSort>User Name</TableHeaderColumn>
+               <TableHeaderColumn dataField="role_type"  width="150" dataSort>Role</TableHeaderColumn>
                <TableHeaderColumn dataField="email"  width="200" dataSort >Email</TableHeaderColumn>
-               <TableHeaderColumn dataField="lastlogin"  width="150" dataSort >last Login</TableHeaderColumn>
+               <TableHeaderColumn dataField="last_login"  width="150" dataSort >last Login</TableHeaderColumn>
             </BootstrapTable>
             </div>
         );
