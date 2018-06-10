@@ -14,7 +14,7 @@ import Assignments from "../Assignments/Assignments";
 import Users from "../User/Users";
 import Deployments from "../Reports/Deployments"
 import Login from "../Login/Login";
-
+import Logs from "../Reports/Logs"
 
 
 class App extends Component {
@@ -45,6 +45,7 @@ class App extends Component {
               <h1>Reports</h1>
               <li><NavLink to="/Deployments">Deployments</NavLink></li>
               <li><NavLink to="/Login">Login</NavLink></li>
+              <li><NavLink to="/Logs">Logs</NavLink></li>
           </ul>
 
           <div className="content">
@@ -56,6 +57,7 @@ class App extends Component {
               <Route path="/Assignments" component={Assignments}/>
               <Route path="/Deployments" component={Deployments}/>
               <Route path="/Login" component={Login}/>
+              <Route path="/Logs" component={Logs}/>
           </div>
 
       </div>
