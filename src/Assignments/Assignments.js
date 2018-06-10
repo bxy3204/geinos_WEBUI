@@ -3,7 +3,7 @@ import './Assignments.css';
 import Select from 'react-select'
 import { Button, ControlLabel} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {assign} from "../REST_API/Assignments_API";
+import {assign, get_assignments} from "../REST_API/Assignments_API";
 import {get_device_groups} from "../REST_API/DeviceGroups_API";
 import {get_templates} from "../REST_API/Templates_API";
 import {create_devicegroup_list} from "../common/common";
@@ -37,7 +37,8 @@ class Assignments extends Component {
             group: '',
             template_list:[],
             group_list:[],
-            deviceGroups: '',
+            assignments:[],
+            deviceGroups: ''
         }
     }
     handleChange(e) {
@@ -62,31 +63,9 @@ class Assignments extends Component {
     }
 
     componentDidMount() {
-        get_templates().then(result=> result.json()).then((items) => {
-                for (let i = 0; i <= items.data.length -1; i++) {
-
-                    let newTemplates ={
-                        value: [i],
-                        label:items.data[i]
-                    };
-                    this.state.template_list.push(newTemplates);
-
-                }
-        }
-        );
-
-
-        get_device_groups().then((items) => {
-                this.setState({deviceGroups: items.data});
-                for (let i = 0; i <= items.data.length -1; i++) {
-
-                    let newGroup ={
-                        value: [i][0],
-                        label:items.data[i][0]
-                    };
-                    this.state.group_list.push(newGroup);
-
-                }
+        get_assignments().then((items) => {
+                console.log(items.data);
+                this.setState({assignments: items.data});
             }
         );
     }
@@ -95,7 +74,7 @@ class Assignments extends Component {
     render() {
         let listOfGroups = this.state.group_list;
         let listOfTemplates = this.state.template_list;
-        products = create_devicegroup_list({items:this.state.deviceGroups});
+        products = this.state.assignments;
         const templateLink = this.state.template, templateIsValid = templateLink && templateLink.indexOf( ' ' ) < 0;
         const groupLink = this.state.group, groupIsValid = groupLink;
         var complete = false;
@@ -128,8 +107,8 @@ class Assignments extends Component {
                 />
                 <Button className="button-assign-submit" disabled = {!complete} type="submit" onClick={this.assign_template}>Assign</Button>
                 <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-                    <TableHeaderColumn dataField="template_name" isKey={true}  width="150"  dataSort>Template Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="name"  width="150" dataSort>Group Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Device Group</TableHeaderColumn>
+                    <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
                     <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
                 </BootstrapTable>
             </div>

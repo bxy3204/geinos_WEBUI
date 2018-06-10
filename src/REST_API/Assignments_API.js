@@ -15,3 +15,15 @@ export function assign(assign_data){
             'Authorization': creds})
     });
 }
+
+export function get_assignments(){
+    let route = get_route();
+    let creds = get_creds();
+    return fetch(route + '/assign', {
+        method: 'get',
+        headers: new Headers({
+            'Authorization': creds})
+    }).then(function(response) {
+        return response.json();
+    });
+}
