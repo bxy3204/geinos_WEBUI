@@ -79,7 +79,6 @@ class Assignments extends Component {
 
                 }*/
                 this.setState({template_list: []});
-                this.state.template_list = [];
                 let listOfTemplates = items.data;
                 for (let i=0; i<listOfTemplates.length; i++)
                 {
