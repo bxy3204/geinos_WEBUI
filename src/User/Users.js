@@ -93,7 +93,7 @@ class Users extends Component {
         products = this.state.items;
         console.log(products);
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
-        const emailLink = this.state.email, emailIsValid = emailLink && emailLink.match(emailRe) != null;
+        const emailLink = this.state.email, emailIsValid = emailLink;
         const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.length >= 6;
         const passwordVerifyLink = this.state.passwordverify, verifyPasswordIsValid = passwordLink === passwordVerifyLink;
         var complete = false;

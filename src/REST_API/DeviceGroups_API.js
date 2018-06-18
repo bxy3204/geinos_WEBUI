@@ -19,7 +19,7 @@ export function add_device_group(group) {
 
     let jsondata = {
         group_name: group.name,
-        attribut : group.attribute,
+        attribute : group.attribute,
         value : group.value
     };
 
