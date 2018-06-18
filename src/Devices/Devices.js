@@ -41,6 +41,7 @@ class Devices extends Component {
             serial:'',
             deviceList:'',
             device_models: [],
+            devices: [],
         }
 
     }
@@ -58,8 +59,8 @@ class Devices extends Component {
     }
 
     componentDidMount() {
-        get_devices().then(result=> result.json()).then((items) => {
-                this.setState({deviceList: items.data});
+        get_devices().then((items) => {
+                this.setState({devices: items.data});
             }
         );
     }
@@ -82,7 +83,7 @@ class Devices extends Component {
         this.setState({ device_model });
     };
     render() {
-        products = create_device_list({items:this.state.deviceList});
+        products = this.state.devices;
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
         const modelLink = this.state.device_model, modelIsValid = modelLink;
         const serialLink = this.state.serial, serialIsValid = serialLink && serialLink.indexOf( ' ' ) < 0;
@@ -132,11 +133,11 @@ class Devices extends Component {
                     />
                 </FormGroup>
                 <Button className="button-add-submit" disabled = {!complete} onClick={this.addDevice} type="submit">Add Device</Button>
-                <Button className="button-import-submit" disabled = {!complete} type="submit">Import from file</Button>
+                <Button className="button-import-submit" type="submit">Import from file</Button>
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
-                    <TableHeaderColumn dataField="vendor"  width="150"  dataSort>Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="model"  width="150" dataSort>Model</TableHeaderColumn>
-                    <TableHeaderColumn dataField="serial"  isKey={true}  width="200" dataSort >Serial-Number</TableHeaderColumn>
+                    <TableHeaderColumn dataField="vendor_id"  width="150"  dataSort>Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="model_number"  width="150" dataSort>Model</TableHeaderColumn>
+                    <TableHeaderColumn dataField="serial_number"  isKey={true}  width="200" dataSort >Serial-Number</TableHeaderColumn>
                 </BootstrapTable>
 
             </div>

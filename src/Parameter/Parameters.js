@@ -82,9 +82,9 @@ class Parameters extends Component {
                 type: this.state.param_type
             };
         }
-
-            add_param(newparam);
-            window.location.reload();
+        console.log(newparam);
+        add_param(newparam);
+        window.location.reload();
     }
 
 
@@ -95,7 +95,7 @@ class Parameters extends Component {
                 className="value-input"
                 controlId="value"
             >
-                <ControlLabel>Value</ControlLabel>
+            <ControlLabel>Value</ControlLabel>
 
                 <FormControl
                     type="text"

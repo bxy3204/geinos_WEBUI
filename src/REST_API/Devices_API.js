@@ -4,14 +4,15 @@ export function get_devices() {
 
     let route = get_route();
     let creds = get_creds();
-    const devices = fetch( route + '/devices',
+    return fetch( route + '/devices',
         {
             method: 'get',
             headers: new Headers({
                 'Authorization': creds}),
 
+        }).then(function(response) {
+            return response.json();
         });
-    return devices;
 }
 
 export function add_device(device){

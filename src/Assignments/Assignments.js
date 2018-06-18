@@ -64,8 +64,15 @@ class Assignments extends Component {
 
     componentDidMount() {
         get_assignments().then((items) => {
-                console.log(items.data);
                 this.setState({assignments: items.data});
+            }
+        );
+        get_templates().then((items) => {
+                this.setState({template_list: items.data});
+            }
+        );
+        get_device_groups().then((items) => {
+                this.setState({group_list: items.data});
             }
         );
     }

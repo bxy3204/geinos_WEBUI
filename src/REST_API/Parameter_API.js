@@ -14,6 +14,7 @@ export function add_param(param){
         paramdata.append('range_start', param.range_start);
         paramdata.append('range_end', param.range_end);
     }
+    console.log(paramdata);
     fetch(route + '/parameters', {
         method: 'put',
         body: paramdata,
