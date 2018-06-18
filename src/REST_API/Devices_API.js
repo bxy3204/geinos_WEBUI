@@ -33,12 +33,14 @@ export function add_device(device){
 export function delete_device(serial_num){
     let route = get_route();
     let creds = get_creds();
-    const formdata = new FormData();
-    formdata.append('serial_num', serial_num);
+    const jsondata = {
+        serial_num : serial_num
+    };
     fetch( route + '/devices', {
         method: 'delete',
-        body: formdata,
+        body: JSON.stringify(jsondata),
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'})
     });
 }
