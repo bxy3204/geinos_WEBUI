@@ -15,12 +15,10 @@ export function login(user){
     */
     console.log(creds);
 
-    const sess = fetch(route + '/login', {
+    return fetch(route + '/login', {
         method: 'post',
-
         headers: new Headers({
-
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'})
     });
-    return sess;
 }

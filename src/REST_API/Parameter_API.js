@@ -3,23 +3,30 @@ import {get_creds, get_route} from "./API";
 export function add_param(param){
     let route = get_route();
     let creds = get_creds();
-
+    const jsondata = {
+        'name' : param.name,
+        'type' : param.type
+    };
     const paramdata = new FormData();
     paramdata.append('name', param.name);
     paramdata.append('type', param.type);
     if (param.type !==  "IP-Range") {
         paramdata.append('value', param.value);
+        jsondata['value'] = param.value;
     }
     else{
         paramdata.append('range_start', param.range_start);
         paramdata.append('range_end', param.range_end);
+        jsondata['range_start'] = param.range_start;
+        jsondata['range_end'] = param.range_end;
     }
-    console.log(paramdata);
+    console.log(jsondata);
     fetch(route + '/parameters', {
         method: 'put',
-        body: paramdata,
+        body: JSON.stringify(jsondata),
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'})
     });
 }
 

@@ -84,7 +84,7 @@ class Parameters extends Component {
         }
         console.log(newparam);
         add_param(newparam);
-        window.location.reload();
+        //window.location.reload();
     }
 
 
