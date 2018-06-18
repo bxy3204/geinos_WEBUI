@@ -69,10 +69,27 @@ class Assignments extends Component {
         );
         get_templates().then((items) => {
                 this.setState({template_list: items.data});
+                /*for (let i = 0; i <= items.data.length -1; i++) {
+
+                    let newTemplates ={
+                        value: [i],
+                        label:items.data[i]
+                    };
+                    this.state.template_list.push(newTemplates);
+
+                }*/
             }
         );
         get_device_groups().then((items) => {
                 this.setState({group_list: items.data});
+                /*for (let i = 0; i <= items.data.length -1; i++) {
+
+                    let newGroup ={
+                        value: [i],
+                        label:items.data[i]
+                    };
+                    this.state.group_list.push(newGroup);
+                }*/
             }
         );
     }
@@ -80,9 +97,37 @@ class Assignments extends Component {
 
     render() {
         let listOfGroups = this.state.group_list;
+        console.log("aaaaaa");
+        console.log(this.state.group_list);
+        console.log(this.state.template_list);
         let listOfTemplates = this.state.template_list;
+        let grps = [];
+        let tmplts = [];
+        this.state.group_list = [];
+        this.state.template_list = [];
+        for (let i=0; i<listOfTemplates.length; i++)
+        {
+            // tmplts.push(listOfTemplates[i]["name"]);
+            let newTemplates ={
+                        value: [i],
+                        label:listOfTemplates[i]["name"]
+                    };
+            this.state.template_list.push(newTemplates);
+        }
+        for (let i=0; i<listOfGroups.length; i++)
+        {
+        	// grps.push(listOfGroups[i]["device_group_name"]);
+            let newGroup ={
+                        value: [i],
+                        label:listOfGroups[i]["device_group_name"]
+                    };
+            this.state.group_list.push(newGroup);
+        }
+
+        listOfGroups = this.state.group_list;
+
         products = this.state.assignments;
-        const templateLink = this.state.template, templateIsValid = templateLink && templateLink.indexOf( ' ' ) < 0;
+        const templateLink = this.state.template, templateIsValid = templateLink;
         const groupLink = this.state.group, groupIsValid = groupLink;
         var complete = false;
         if (templateIsValid && groupIsValid){
