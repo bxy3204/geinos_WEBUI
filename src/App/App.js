@@ -32,6 +32,7 @@ class App extends Component {
           </div>
           <ul className="header">
               <h1>Administration</h1>
+              <li><NavLink to="/Login">Login</NavLink></li>
               <li><NavLink exact to="/Users">Users</NavLink></li>
               <li><NavLink exact to="/UserAuthentication">User Authentication</NavLink></li>
               <li><NavLink exact to="/DeviceEnrollment">Device Enrollment</NavLink></li>
@@ -44,7 +45,6 @@ class App extends Component {
               <li><NavLink to="/Assignments">Assignments</NavLink></li>
               <h1>Reports</h1>
               <li><NavLink to="/Deployments">Deployments</NavLink></li>
-              <li><NavLink to="/Login">Login</NavLink></li>
               <li><NavLink to="/Logs">Logs</NavLink></li>
           </ul>
 
