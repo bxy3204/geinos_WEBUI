@@ -26,6 +26,5 @@ export function add_template(file){
             body: templateForm,
             headers: new Headers({
                 'Authorization': creds}),
-
         });
 }

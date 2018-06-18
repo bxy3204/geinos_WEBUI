@@ -21,29 +21,33 @@ export function get_users() {
 export function delete_user(user){
     let route = get_route();
     let creds = get_creds();
-    const formdata = new FormData();
-    formdata.append('rmusr', user);
-    fetch( route + '/users', {
+    let jsondata = {
+        rmusr : user
+    };
+    fetch( route + '/devices', {
         method: 'delete',
-        body: formdata,
+        body: JSON.stringify(jsondata),
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'})
     });
 }
 
 export function add_user(user){
     let route = get_route();
     let creds = get_creds();
-    const formdata = new FormData();
-    formdata.append('usr', user.name);
-    formdata.append('password', user.password);
-    formdata.append('retypepassword', user.retypepassword);
-    formdata.append('email', user.email);
-    formdata.append('role', user.role);
+    let jsondata ={
+        usr: user.name,
+        password : user.password,
+        retypepassword : user.retypepassword,
+        email : user.email,
+        role : user.role
+    };
     fetch(route + '/users', {
         method: 'put',
-        body: formdata,
+        body: JSON.stringify(jsondata),
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'})
     });
 }

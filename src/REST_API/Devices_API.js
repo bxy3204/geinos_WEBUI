@@ -18,22 +18,27 @@ export function get_devices() {
 export function add_device(device){
     let route = get_route();
     let creds = get_creds();
-    let formdata = new FormData();
-    formdata.append('vendor_id', device.name);
-    formdata.append('serial_num', device.serial);
-    formdata.append('model_num', device.model);
+    let jsondata = {
+        vendor_id : device.name,
+        serial_num: device.serial,
+        model_num: device.model,
+        //TODO: fix location
+        location: "none"
+    };
     fetch(route + '/devices', {
         method: 'put',
-        body: formdata,
+        body: JSON.stringify(jsondata),
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'
+            })
     });
 }
 
 export function delete_device(serial_num){
     let route = get_route();
     let creds = get_creds();
-    const jsondata = {
+    let jsondata = {
         serial_num : serial_num
     };
     fetch( route + '/devices', {

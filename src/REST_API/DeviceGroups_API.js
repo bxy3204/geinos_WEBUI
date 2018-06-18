@@ -17,30 +17,33 @@ export function add_device_group(group) {
     let route = get_route();
     let creds = get_creds();
 
-    let formdata = new FormData();
-    formdata.append('group_name', group.name);
-    formdata.append('attribute', group.attribute);
-    formdata.append('value', group.value);
-
+    let jsondata = {
+        group_name: group.name,
+        attribut : group.attribute,
+        value : group.value
+    };
 
     fetch( route + '/device_groups',
         {
             method: 'post',
-            body: formdata,
+            body: JSON.stringify(jsondata),
             headers: new Headers({
-                'Authorization': creds}),
+                'Authorization': creds,
+                'content-type': 'application/json'})
         });
 }
 
 export function delete_group(group_name){
     let route = get_route();
     let creds = get_creds();
-    const formdata = new FormData();
-    formdata.append('group_name', group_name);
+    let jsondata = {
+        group_name: group_name,
+    };
     fetch( route + '/device_groups', {
         method: 'delete',
-        body: formdata,
+        body: JSON.stringify(jsondata),
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'})
     });
 }

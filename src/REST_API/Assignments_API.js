@@ -7,12 +7,18 @@ export function assign(assign_data){
     const assign = new FormData();
     assign.append('temp_name', assign_data.temp_name);
     assign.append('group_name', assign_data.group_name);
+    let jsondata = {
+        temp_name : assign_data.temp_name,
+        group_name : assign_data.group_name
+
+    };
 
     fetch(route + '/assign', {
         method: 'post',
-        body: assign,
+        body: JSON.stringify(jsondata),
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'})
     });
 }
 
