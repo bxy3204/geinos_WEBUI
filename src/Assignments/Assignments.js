@@ -68,7 +68,7 @@ class Assignments extends Component {
             }
         );
         get_templates().then((items) => {
-                this.setState({template_list: items.data});
+                //this.setState({template_list: items.data});
                 /*for (let i = 0; i <= items.data.length -1; i++) {
 
                     let newTemplates ={
@@ -78,10 +78,22 @@ class Assignments extends Component {
                     this.state.template_list.push(newTemplates);
 
                 }*/
+                this.setState({template_list: []});
+                this.state.template_list = [];
+                let listOfTemplates = items.data;
+                for (let i=0; i<listOfTemplates.length; i++)
+                {
+                    // tmplts.push(listOfTemplates[i]["name"]);
+                    let newTemplates ={
+                                value: [i],
+                                label:listOfTemplates[i]["name"]
+                            };
+                    this.state.template_list.push(newTemplates);
+                }
             }
         );
         get_device_groups().then((items) => {
-                this.setState({group_list: items.data});
+                //this.setState({group_list: items.data});
                 /*for (let i = 0; i <= items.data.length -1; i++) {
 
                     let newGroup ={
@@ -90,6 +102,18 @@ class Assignments extends Component {
                     };
                     this.state.group_list.push(newGroup);
                 }*/
+                this.setState({group_list: []});
+                //this.state.group_list = [];
+                let listOfGroups = items.data;
+                for (let i=0; i<listOfGroups.length; i++)
+                {
+                    // grps.push(listOfGroups[i]["device_group_name"]);
+                    let newGroup ={
+                                value: [i],
+                                label:listOfGroups[i]["device_group_name"]
+                            };
+                    this.state.group_list.push(newGroup);
+                }
             }
         );
     }
@@ -101,30 +125,6 @@ class Assignments extends Component {
         console.log(this.state.group_list);
         console.log(this.state.template_list);
         let listOfTemplates = this.state.template_list;
-        let grps = [];
-        let tmplts = [];
-        this.state.group_list = [];
-        this.state.template_list = [];
-        for (let i=0; i<listOfTemplates.length; i++)
-        {
-            // tmplts.push(listOfTemplates[i]["name"]);
-            let newTemplates ={
-                        value: [i],
-                        label:listOfTemplates[i]["name"]
-                    };
-            this.state.template_list.push(newTemplates);
-        }
-        for (let i=0; i<listOfGroups.length; i++)
-        {
-        	// grps.push(listOfGroups[i]["device_group_name"]);
-            let newGroup ={
-                        value: [i],
-                        label:listOfGroups[i]["device_group_name"]
-                    };
-            this.state.group_list.push(newGroup);
-        }
-
-        listOfGroups = this.state.group_list;
 
         products = this.state.assignments;
         const templateLink = this.state.template, templateIsValid = templateLink;
