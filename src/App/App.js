@@ -15,6 +15,7 @@ import Users from "../User/Users";
 import Deployments from "../Reports/Deployments"
 import Login from "../Login/Login";
 import Logs from "../Reports/Logs"
+import Scep from "../Scep/Scep"
 
 
 class App extends Component {
@@ -46,6 +47,8 @@ class App extends Component {
               <h1>Reports</h1>
               <li><NavLink to="/Deployments">Deployments</NavLink></li>
               <li><NavLink to="/Logs">Logs</NavLink></li>
+              <h1>Settings</h1>
+              <li><NavLink to="/Scep">Scep</NavLink></li>
           </ul>
 
           <div className="content">
@@ -58,6 +61,7 @@ class App extends Component {
               <Route path="/Deployments" component={Deployments}/>
               <Route path="/Login" component={Login}/>
               <Route path="/Logs" component={Logs}/>
+              <Route path="/Scep" component={Scep}/>
           </div>
 
       </div>
