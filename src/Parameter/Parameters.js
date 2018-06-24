@@ -36,8 +36,6 @@ class Parameters extends Component {
             param_type: '',
             params: '',
             value: '',
-            range_start: '',
-            range_end: '',
             params_list:[],
             template:''
 
@@ -67,21 +65,12 @@ class Parameters extends Component {
     }
 
     addParameter(){
-        var newparam = null;
-        if (this.state.param_type.toString() == "IP-Range"){
-            var newparam={
-                name: this.state.name,
-                range_start: this.state.name.range_start,
-                range_end: this.state.name.range_end,
-                type: this.state.param_type
-            };
-        } else{
-            var newparam={
-                name: this.state.name,
-                value: this.state.value,
-                type: this.state.param_type
-            };
-        }
+
+        var newparam={
+            name: this.state.name,
+            value: this.state.value,
+            type: this.state.param_type
+        };
         console.log(newparam);
         add_param(newparam);
         //window.location.reload();
@@ -105,34 +94,19 @@ class Parameters extends Component {
                 />
             </FormGroup>;
         }
-        return <div className="range-div">
-            <FormGroup
-                className="range-start-input"
-                controlId="range_start"
-            >
-                <ControlLabel>Start</ControlLabel>
+        return <FormGroup
+            className="value-input"
+            controlId="value"
+        >
+            <ControlLabel>Masked IP-Range</ControlLabel>
 
-                <FormControl
-                    type="text"
-                    value={this.state.range_start}
-                    placeholder="Enter Value"
-                    onChange={this.handleNameChange}
-                />
-            </FormGroup>
-            <FormGroup
-                className="range-end-input"
-                controlId="range_end"
-            >
-                <ControlLabel>End</ControlLabel>
-
-                <FormControl
-                    type="text"
-                    value={this.state.range_end}
-                    placeholder="Enter Value"
-                    onChange={this.handleNameChange}
-                />
-            </FormGroup>
-               </div>;
+            <FormControl
+                type="text"
+                value={this.state.value}
+                placeholder="e.g. 127.0.01/24"
+                onChange={this.handleNameChange}
+            />
+        </FormGroup>;
 
     }
 
