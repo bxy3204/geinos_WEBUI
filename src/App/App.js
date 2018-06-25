@@ -16,12 +16,11 @@ import Deployments from "../Reports/Deployments"
 import Login from "../Login/Login";
 import Logs from "../Reports/Logs"
 import Scep from "../Scep/Scep"
-
+import {verify_token} from "../REST_API/Login_API";
 
 class App extends Component {
 
   render() {
-
     return (
 
       <HashRouter>
