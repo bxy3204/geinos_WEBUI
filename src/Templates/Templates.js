@@ -107,7 +107,7 @@ class Templates extends Component {
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
             console.log(nameIsValid);
 
-        const fileTextLink = this.state.filetext, fileTextIsValid = fileTextLink && fileTextLink.indexOf( ' ' ) < 0;
+        const fileTextLink = this.state.filename, fileTextIsValid = fileTextLink && fileTextLink.indexOf( ' ' ) < 0;
         var complete = false;
         if (fileTextIsValid && nameIsValid){
             complete = true;
@@ -120,7 +120,7 @@ class Templates extends Component {
                     </div>
                     <div>
                         <FormGroup
-                            className=  { nameIsValid ? 'name-input' : 'name-input-error'}
+                            className=  { 'name-input' }
                             controlId="name"
                         >
                             <ControlLabel>Template Name</ControlLabel>
@@ -137,11 +137,11 @@ class Templates extends Component {
                     </div>
 
                     <div>
-                        <label className="label-textarea">Base Configuration File</label>
+                        <label className="label-textarea">Base Configuration File</label> <label className="asterisk">*</label>
                         <label className="label-param-table">Available Parameters</label>
                     </div>
                     <div>
-                    <textarea  className=  { fileTextIsValid ? 'file-input' : 'file-input-error'} value={this.state.filetext} onChange={this.handleTextChange} />
+                    <textarea  className=  {'file-input'} value={this.state.filetext} onChange={this.handleTextChange} />
 
                         <BootstrapTable className="table-template" data={List}    striped={true} hover={true} pagination>
                             <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>

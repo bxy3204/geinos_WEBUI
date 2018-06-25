@@ -109,7 +109,7 @@ class Users extends Component {
                 </div>
             <form className="form-createuser">
                 <FormGroupCreate
-                    className = { nameIsValid ? 'name-input' : 'name-input-error'}
+                    className = { 'name-input' }
                     controlId="name"
                     label="User Name"
                     value={this.state.name}
@@ -118,7 +118,7 @@ class Users extends Component {
                     type="text"
                 />
                 <FormGroupCreate
-                    className = { emailIsValid ? 'email-input' : 'email-input-error'}
+                    className = {'email-input'}
                     controlId="email"
                     label="Email"
                     value={this.state.email}
@@ -128,7 +128,7 @@ class Users extends Component {
                 />
                 <div className = 'error-placeholder'> { passwordIsValid && this.state.password !== this.state.passwordverify? "passwords don't match" : ''} </div>
                 <FormGroupCreate
-                    className = { passwordIsValid ? 'pass-input' : 'pass-input-error'}
+                    className = { 'pass-input' }
                     controlId="password"
                     label="Password"
                     validationState={this.getValidationState()}
@@ -138,7 +138,7 @@ class Users extends Component {
                     type="password"
                 />
                 <FormGroupCreate
-                    className = { passwordIsValid && verifyPasswordIsValid ? 'pass-verify-input' : 'pass-verify-input-error'}
+                    className = {'pass-verify-input'}
                     controlId="passwordverify"
                     label="Verify Password"
                     validationState={this.getVerifyPassword()}

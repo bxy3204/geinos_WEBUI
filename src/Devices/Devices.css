@@ -4,33 +4,38 @@
     display:block;
 
 }
-.container > .name-input-error{
+.devicename-input{
     width: 20%;
     padding-top: 3%;
     display:block;
-    border-bottom: 2px solid red;
 
 }
 .container > .model-input{
     width: 20%;
-    padding-top: 3%;
     display:block;
 
-}
-.container > .model-input-error{
-    border-bottom: 2px solid red;
-
-}
-
-.serial-input-error{
-    width: 40%;
-    padding-top: 3%;
-    display:block;
-    border-bottom: 2px solid red;
 }
 
 .serial-input{
     padding-top: 1%;
+    width: 20%;
+
+}
+.model-input{
+    width: 20%;
+
+}
+.asterisk {
+    content:"*";
+    color:red;
+}
+div.serial-input label.control-label:after {
+    content: " *";
+    color: red;
+}
+div.model-input label.control-label:after {
+    content: " *";
+    color: red;
 }
 .container > .Select{
 

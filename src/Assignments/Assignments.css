@@ -1,6 +1,6 @@
 .assignment-template-input{
-    padding-top: 3%;
     width: 20%;
+    padding-top: 0.0000001px;
 }
 
 .assignment-group-input{
@@ -39,4 +39,8 @@
 
 .label-group{
     padding-top: 1%;
+}
+.asterisk {
+    content:"*";
+    color:red;
 }

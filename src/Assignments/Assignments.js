@@ -138,19 +138,20 @@ class Assignments extends Component {
                     <h2>Assignments</h2>
                 </div>
 
-                <ControlLabel className="label-template">Template</ControlLabel>
+                <ControlLabel className="label-group">Template</ControlLabel> <ControlLabel className="asterisk">  * </ControlLabel>
                 <Select
-                    className={ templateIsValid ? 'assignment-template-input' : 'assignment-template-input-error'}
+                    className={ 'assignment-template-input'}
                     controlId="template"
+                    label = "TEMP"
                     value={this.state.template}
                     onChange={this.handleSelectTemplateChange}
                     options= {listOfTemplates}
                 />
 
 
-                <ControlLabel className="label-group">Group</ControlLabel>
+                <ControlLabel className="label-group">Group</ControlLabel> <ControlLabel className="asterisk"> * </ControlLabel>
                 <Select
-                    className={ groupIsValid ? 'assignment-group-input' : 'assignment-group-input-error'}
+                    className={'assignment-group-input'}
                     controlId="group"
                     value={this.state.group}
                     onChange={this.handleSelectChange}

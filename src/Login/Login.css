@@ -42,15 +42,9 @@
 }
 .pass-input{
     width: 20%;
-
+    padding-bottom: 3.3%;
 }
-.pass-verify-input{
-    position: relative;
-    width: 20%;
-    bottom: 75px;
-    left: 21.3%;
 
-}
 .pass-input-error{
     width: 20%;
     border-bottom: 2px solid red;
@@ -71,7 +65,7 @@
     background-color: #f0ad4e;
     border-color: #eea236;
     color: white;
-    margin-right:12px;
+    margin-right:auto;
 }
 
 .table-user{
@@ -80,4 +74,11 @@
     height: content-box;
     padding-bottom: 10%;
     text-align: left;
+}
+.form-createuse{
+    width: max-content;
+    position: relative;
+    height: content-box;
+    padding-bottom: 10%;
+    text-align: center;
 }

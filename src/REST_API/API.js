@@ -1,3 +1,4 @@
+
 export function get_route()
 {
     return 'http://' + window.location.hostname.toString() + ':5000';
@@ -5,6 +6,14 @@ export function get_route()
 
 export function get_creds()
 {
-    //return 'Basic '+btoa(localStorage.getItem("session"));
-    return 'Basic '+btoa('test:password');
+    console.log(btoa(localStorage.getItem("session")))
+    return 'Basic '+btoa(localStorage.getItem("session"));
+    //return 'Basic '+btoa('test:password');
+}
+
+export function get_status()
+{
+    console.log(btoa(localStorage.getItem("session")))
+    return 'Basic '+btoa(localStorage.getItem("session"));
+    //return 'Basic '+btoa('test:password');
 }
