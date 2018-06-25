@@ -84,11 +84,10 @@ class Devices extends Component {
     };
     render() {
         products = this.state.devices;
-        const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
         const modelLink = this.state.device_model, modelIsValid = modelLink;
         const serialLink = this.state.serial, serialIsValid = serialLink && serialLink.indexOf( ' ' ) < 0;
         var complete = false;
-        if (nameIsValid && modelIsValid && serialIsValid){
+        if (modelIsValid && serialIsValid){
             complete = true;
         }
 
@@ -98,7 +97,7 @@ class Devices extends Component {
                     <h2>Devices</h2>
                 </div>
             <FormGroup
-                className = { nameIsValid ? 'name-input' : 'name-input-error'}
+                className = {'devicename-input'}
                 controlId="name"
             >
                 <ControlLabel>Name</ControlLabel>
@@ -110,9 +109,9 @@ class Devices extends Component {
                     onChange={this.handleNameChange}
                 />
             </FormGroup>
-                <ControlLabel>Model</ControlLabel>
+                <ControlLabel>Model </ControlLabel><ControlLabel className="asterisk">   * </ControlLabel>
             <Select
-                className = { modelIsValid ? '' : 'model-input-error'}
+                className = {'model-input'}
                 name="form-field-name"
                 value={this.state.device_model}
                 onChange={this.handleChange}
@@ -120,7 +119,7 @@ class Devices extends Component {
             />
 
                 <FormGroup
-                    className = { serialIsValid ? 'serial-input' : 'serial-input-error'}
+                    className = {'serial-input'}
                     controlId="serial"
                 >
                     <ControlLabel>Serial</ControlLabel>

@@ -10,16 +10,9 @@ export function add_param(param){
     const paramdata = new FormData();
     paramdata.append('name', param.name);
     paramdata.append('type', param.type);
-    if (param.type !==  "IP-Range") {
-        paramdata.append('value', param.value);
-        jsondata['value'] = param.value;
-    }
-    else{
-        paramdata.append('range_start', param.range_start);
-        paramdata.append('range_end', param.range_end);
-        jsondata['range_start'] = param.range_start;
-        jsondata['range_end'] = param.range_end;
-    }
+    paramdata.append('value', param.value);
+    jsondata['value'] = param.value;
+
     console.log(jsondata);
     fetch(route + '/parameters', {
         method: 'put',
@@ -47,12 +40,14 @@ export function get_param() {
 export function delete_param(param_name){
     let route = get_route();
     let creds = get_creds();
-    const formdata = new FormData();
-    formdata.append('param_name', param_name);
+    const formdata = JSON.stringify({
+        "param_name" : param_name,
+    });
     fetch( route + '/parameters', {
         method: 'delete',
         body: formdata,
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'Content-Type': 'application/json'})
     });
 }

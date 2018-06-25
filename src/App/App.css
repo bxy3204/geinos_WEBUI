@@ -21,6 +21,16 @@
   font-weight: bold;
 }
 
+
+
+ul.header2 {
+  padding: 0;
+  width: 44%;
+  height: 100%;
+  margin: 10% 55% 0% 80%!important;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

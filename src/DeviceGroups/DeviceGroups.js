@@ -95,7 +95,7 @@ class DeviceGroups extends Component {
                     <h2>Device Groups</h2>
                 </div>
                 <FormGroupCreate
-                    className={ nameIsValid ? 'group-name-input' : 'group-name-input-error'}
+                    className={ 'group-name-input'}
                     controlId="name"
                     label="Group Name"
 
@@ -118,9 +118,9 @@ class DeviceGroups extends Component {
                 </FormGroup>
 
 
-                <ControlLabel>Value</ControlLabel>
+                <ControlLabel>Value</ControlLabel> <ControlLabel className="asterisk">  * </ControlLabel>
                 <Select
-                    className={ valueIsValid ? 'form-field-name' : 'form-field-name-error'}
+                    className={'form-field-name' }
                     value={this.state.device_model}
                     onChange={this.handleModelChange}
                     required="true"
