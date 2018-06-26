@@ -30,10 +30,11 @@ class Logs extends Component {
 
         return (
                 <BootstrapTable className="table-user" data={List}   striped={true} hover={true} pagination>
-                    <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>
-                    <TableHeaderColumn dataField="para"  width="200" dataSort >Value</TableHeaderColumn>
-                    <TableHeaderColumn dataField="modified"  width="150" dataSort >Last Modified</TableHeaderColumn>
+                    <TableHeaderColumn dataField="log_id" isKey={true}  width="150"  dataSort>ID</TableHeaderColumn>
+                    <TableHeaderColumn dataField="user"  width="150" dataSort>User</TableHeaderColumn>
+                    <TableHeaderColumn dataField="IP"  width="200" dataSort >IP</TableHeaderColumn>
+                    <TableHeaderColumn dataField="log_message"  width="150" dataSort >Message</TableHeaderColumn>
+                    <TableHeaderColumn dataField="date_created"  width="150" dataSort >Date Added</TableHeaderColumn>
                 </BootstrapTable>
         );
     }

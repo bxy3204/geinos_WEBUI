@@ -5,22 +5,45 @@ export function add_param(param){
     let creds = get_creds();
     const jsondata = {
         'name' : param.name,
-        'type' : param.type
+        'type' : param.type,
+        'value' : param.value
     };
-    const paramdata = new FormData();
-    paramdata.append('name', param.name);
-    paramdata.append('type', param.type);
-    if (param.type !==  "IP-Range") {
-        paramdata.append('value', param.value);
-        jsondata['value'] = param.value;
-    }
-    else{
-        paramdata.append('range_start', param.range_start);
-        paramdata.append('range_end', param.range_end);
-        jsondata['range_start'] = param.range_start;
-        jsondata['range_end'] = param.range_end;
-    }
-    console.log(jsondata);
+    fetch(route + '/parameters', {
+        method: 'put',
+        body: JSON.stringify(jsondata),
+        headers: new Headers({
+            'Authorization': creds,
+            'content-type': 'application/json'})
+    });
+}
+
+export function add_dynamic_param(param){
+    let route = get_route();
+    let creds = get_creds();
+    const jsondata = {
+        'name' : param.name,
+        'type' : param.type,
+        'value' : param.value,
+        'interface' : param.interface
+    };
+    fetch(route + '/parameters', {
+        method: 'put',
+        body: JSON.stringify(jsondata),
+        headers: new Headers({
+            'Authorization': creds,
+            'content-type': 'application/json'})
+    });
+}
+
+export function add_range_param(param){
+    let route = get_route();
+    let creds = get_creds();
+    const jsondata = {
+        'name' : param.name,
+        'type' : param.type,
+        'range_start' : param.range_start,
+        'range_end' : param.range_end
+    };
     fetch(route + '/parameters', {
         method: 'put',
         body: JSON.stringify(jsondata),

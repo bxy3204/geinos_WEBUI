@@ -4,7 +4,7 @@ export function get_logs() {
     let route = get_route();
     let creds = get_creds();
     console.log(route + '/logs');
-    return fetch( route + '/logs',
+    return fetch(route + '/logs',
         {
             method: 'get',
             headers: new Headers({

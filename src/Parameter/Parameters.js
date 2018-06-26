@@ -4,7 +4,7 @@ import Select from 'react-select'
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
-import {add_param, delete_param, get_param} from "../REST_API/Parameter_API";
+import {add_param, add_dynamic_param, add_range_param, delete_param, get_param} from "../REST_API/Parameter_API";
 
 let List = [];
 
@@ -39,14 +39,14 @@ class Parameters extends Component {
             range_start: '',
             range_end: '',
             params_list:[],
-            template:''
-
+            template:'',
+            interface:''
         }
 
     }
 
     componentWillMount() {
-        let param = ['IP-Range','Scalar','IP-List'];
+        let param = ['IP-Range','Scalar','IP-List', 'Dynamic'];
         let params = [];
         for(let i=0; i<param.length; i++){
             let param_type={
@@ -68,34 +68,106 @@ class Parameters extends Component {
 
     addParameter(){
         var newparam = null;
-        if (this.state.param_type.toString() == "IP-Range"){
+        if (this.state.param_type.localeCompare("IP-Range") == 0){
             var newparam={
                 name: this.state.name,
                 range_start: this.state.name.range_start,
                 range_end: this.state.name.range_end,
                 type: this.state.param_type
             };
-        } else{
+            return add_range_param(newparam);
+        }
+        else if (this.state.param_type.localeCompare("Dynamic") == 0)
+        {
+            var newparam={
+                name: this.state.name,
+                value: this.state.value,
+                type: this.state.param_type,
+                interface: this.state.interface
+            };
+            return add_dynamic_param(newparam);
+        }
+        else {
             var newparam={
                 name: this.state.name,
                 value: this.state.value,
                 type: this.state.param_type
             };
+            return add_param(newparam);
         }
-        console.log(newparam);
-        add_param(newparam);
-        //window.location.reload();
     }
 
 
 
     renderTypeField(){
-        if (this.state.param_type.toString() !== "IP-Range"){
+        if (this.state.param_type.localeCompare("IP-Range") == 0)
+        {
+            return <div className="range-div">
+                <FormGroup
+                    className="range-start-input"
+                    controlId="range_start"
+                >
+                    <ControlLabel>Start</ControlLabel>
+
+                    <FormControl
+                        type="text"
+                        value={this.state.range_start}
+                        placeholder="Enter Value"
+                        onChange={this.handleNameChange}
+                    />
+                </FormGroup>
+                <FormGroup
+                    className="range-end-input"
+                    controlId="range_end"
+                >
+                    <ControlLabel>End</ControlLabel>
+
+                    <FormControl
+                        type="text"
+                        value={this.state.range_end}
+                        placeholder="Enter Value"
+                        onChange={this.handleNameChange}
+                    />
+                </FormGroup>
+            </div>;
+        }
+        else if (this.state.param_type.localeCompare("Dynamic") == 0)
+        {
+            return <div className="range-div"> <FormGroup
+                className="value-input"
+                controlId="value"
+            >
+                <ControlLabel>Value</ControlLabel>
+
+                <FormControl
+                    type="text"
+                    value={this.state.value}
+                    placeholder="Enter Value"
+                    onChange={this.handleNameChange}
+                />
+            </FormGroup>
+            <FormGroup
+                className="range-end-input"
+            controlId="interface"
+                >
+                <ControlLabel>Interface</ControlLabel>
+
+            <FormControl
+                type="text"
+                value={this.state.interface}
+                placeholder="Enter Interface"
+                onChange={this.handleNameChange}
+            />
+            </FormGroup>;
+            </div>
+        }
+        else
+        {
             return <FormGroup
                 className="value-input"
                 controlId="value"
             >
-            <ControlLabel>Value</ControlLabel>
+                <ControlLabel>Value</ControlLabel>
 
                 <FormControl
                     type="text"
@@ -105,35 +177,6 @@ class Parameters extends Component {
                 />
             </FormGroup>;
         }
-        return <div className="range-div">
-            <FormGroup
-                className="range-start-input"
-                controlId="range_start"
-            >
-                <ControlLabel>Start</ControlLabel>
-
-                <FormControl
-                    type="text"
-                    value={this.state.range_start}
-                    placeholder="Enter Value"
-                    onChange={this.handleNameChange}
-                />
-            </FormGroup>
-            <FormGroup
-                className="range-end-input"
-                controlId="range_end"
-            >
-                <ControlLabel>End</ControlLabel>
-
-                <FormControl
-                    type="text"
-                    value={this.state.range_end}
-                    placeholder="Enter Value"
-                    onChange={this.handleNameChange}
-                />
-            </FormGroup>
-               </div>;
-
     }
 
     handleNameChange(e) {
