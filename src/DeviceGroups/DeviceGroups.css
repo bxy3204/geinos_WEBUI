@@ -3,8 +3,18 @@
     width: 20%;
     border-bottom: 2px solid red;
 }
-.form-field-name-error{
-    border-bottom: 2px solid red;
+
+div.group-name-input label.control-label:after {
+    content: " *";
+    color: red;
+}
+div.group-type-input label.control-label:after {
+    content: " *";
+    color: red;
+}
+.asterisk {
+    content:"*";
+    color:red;
 }
 .group-name-input{
     padding-top: 3%;

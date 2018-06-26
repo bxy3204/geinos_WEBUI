@@ -18,13 +18,15 @@ export function add_template(file){
     let route = get_route();
     let creds = get_creds();
 
-    let templateForm = new FormData();
-    templateForm.append('file',file);
+    const templateForm = JSON.stringify({
+        "file" : file,
+    });
     return fetch( route + '/templates',
         {
             method: 'post',
             body: templateForm,
             headers: new Headers({
-                'Authorization': creds}),
+                'Authorization': creds,
+                'Content-Type': 'application/json'})
         });
 }

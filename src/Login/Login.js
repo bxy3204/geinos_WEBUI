@@ -3,7 +3,8 @@ import './Login.css';
 import {Button} from 'react-bootstrap'
 import {login} from "../REST_API/Login_API";
 import {FormGroupCreate} from "../common/common";
-
+import {verify_token} from "../REST_API/Login_API";
+import {get_users} from "../REST_API/User_API";
 
 
 
@@ -18,6 +19,7 @@ class Login extends Component {
         this.state = {
             name: '',
             password: '',
+            status: '',
         };
     }
 
@@ -47,10 +49,19 @@ class Login extends Component {
 
         this.setState({ [e.target.id]: e.target.value});
     }
-
+    verify() {
+        verify_token().then((status) => {
+                this.setState({status: status});
+            }
+        );
+    }
 
     render() {
-
+        verify_token().then((status) => {
+                console.log("here" + status);
+            }
+        );
+        console.log(this.state.status);
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
         const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.length >= 6;
         var complete = false;
@@ -66,7 +77,7 @@ class Login extends Component {
                 </div>
             <form className="form-createuser">
                 <FormGroupCreate
-                    className = { nameIsValid ? 'name-input' : 'name-input-error'}
+                    className = {'name-input'}
                     controlId="name"
                     label="User Name"
                     value={this.state.name}
@@ -75,7 +86,7 @@ class Login extends Component {
                     type="text"
                 />
                 <FormGroupCreate
-                    className = { passwordIsValid ? 'pass-input' : 'pass-input-error'}
+                    className = {'pass-input'}
                     controlId="password"
                     label="password"
                     value={this.state.password}
