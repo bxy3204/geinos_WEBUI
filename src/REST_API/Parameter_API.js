@@ -22,7 +22,7 @@ export function add_dynamic_param(param){
     let creds = get_creds();
     const jsondata = {
         'name' : param.name,
-        'type' : param.type,
+        'type' : 'DYNAMIC',
         'value' : param.value,
         'interface' : param.interface
     };
@@ -40,9 +40,8 @@ export function add_range_param(param){
     let creds = get_creds();
     const jsondata = {
         'name' : param.name,
-        'type' : param.type,
-        'range_start' : param.range_start,
-        'range_end' : param.range_end
+        'type' : 'RANGE',
+        'value' : param.value
     };
     fetch(route + '/parameters', {
         method: 'put',

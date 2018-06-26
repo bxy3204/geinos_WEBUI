@@ -37,7 +37,6 @@ class Parameters extends Component {
             params: '',
             value: '',
             range_start: '',
-            range_end: '',
             params_list:[],
             template:'',
             interface:''
@@ -71,8 +70,7 @@ class Parameters extends Component {
         if (this.state.param_type.localeCompare("IP-Range") == 0){
             var newparam={
                 name: this.state.name,
-                range_start: this.state.name.range_start,
-                range_end: this.state.name.range_end,
+                value: this.state.range_start,
                 type: this.state.param_type
             };
             return add_range_param(newparam);
@@ -112,19 +110,6 @@ class Parameters extends Component {
                     <FormControl
                         type="text"
                         value={this.state.range_start}
-                        placeholder="Enter Value"
-                        onChange={this.handleNameChange}
-                    />
-                </FormGroup>
-                <FormGroup
-                    className="range-end-input"
-                    controlId="range_end"
-                >
-                    <ControlLabel>End</ControlLabel>
-
-                    <FormControl
-                        type="text"
-                        value={this.state.range_end}
                         placeholder="Enter Value"
                         onChange={this.handleNameChange}
                     />
@@ -218,7 +203,7 @@ class Parameters extends Component {
                         onChange={this.handleNameChange}
                     />
                 </FormGroup>
-                <ControlLabel>Type</ControlLabel>
+                    <ControlLabel>Type</ControlLabel>
                 <Select
                     className= { paramIsValid ? "form-field-name" : "form-field-name-error"}
                     id="param"

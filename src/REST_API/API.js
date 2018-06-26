@@ -7,8 +7,8 @@ export function get_route()
 export function get_creds()
 {
     console.log(btoa(localStorage.getItem("session")))
-    return 'Basic '+btoa(localStorage.getItem("session"));
-    //return 'Basic '+btoa('test:password');
+    //return 'Basic '+btoa(localStorage.getItem("session"));
+    return 'Basic '+btoa('test:password');
 }
 
 export function get_status()
