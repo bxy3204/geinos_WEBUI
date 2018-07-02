@@ -18,8 +18,8 @@ class Scep extends Component {
             name: '',
             password: '',
             server: '',
-            digest:'',
-            encrypt:'',
+            digest:'sha256',
+            encrypt:'3des_cbc',
             country:'',
             state: '',
             locale:'',
@@ -126,7 +126,7 @@ class Scep extends Component {
                     <ScepDigestDropdownFormGroupCreate
                         className="digest-input"
                         controlId="digest"
-                        value={this.state.encrypt}
+                        value={this.state.digest}
                         change={this.handleChange}
                     />
 
@@ -174,7 +174,7 @@ class Scep extends Component {
                         label="Organization"
                         value={this.state.organization}
                         change={this.handleChange}
-                        placeholder="Enter server"
+                        placeholder="Enter Organization"
                         type="text"
                     />
 
@@ -188,7 +188,7 @@ class Scep extends Component {
                         type="text"
                     />
                 </form>
-                <Button className="scep-button-submit" disabled = {!complete} onClick={this.addUser} >Update Scep</Button>
+                <Button className="scep-button-submit" disabled={!complete} onClick={this.addUser} >Update Scep</Button>
             </div>
         );
     }

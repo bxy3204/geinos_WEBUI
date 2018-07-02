@@ -40,7 +40,6 @@ export function ScepEncryptDropdownFormGroupCreate(props){
     >
         <ControlLabel>Encryption</ControlLabel>
         <FormControl componentClass="select" placeholder="select" onChange={props.change}>
-            des_cbc, 3des_cbc, aes128_cbc, aes192_cbc, aes256_cbc
             <option value="3des_cbc">3des_cbc</option>
             <option value="des_cbx">des_cbc</option>
             <option value="aes128_cbc">aes128_cbc</option>
