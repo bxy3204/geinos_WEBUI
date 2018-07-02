@@ -67,15 +67,16 @@ class Parameters extends Component {
 
     addParameter(){
         var newparam = null;
-        if (this.state.param_type.localeCompare("IP-Range") == 0){
+        if (this.state.param_type.localeCompare("IP-Range") === 0){
             var newparam={
                 name: this.state.name,
                 value: this.state.range_start,
                 type: this.state.param_type
             };
             return add_range_param(newparam);
+            window.location.reload();
         }
-        else if (this.state.param_type.localeCompare("Dynamic") == 0)
+        else if (this.state.param_type.localeCompare("Dynamic") === 0)
         {
             var newparam={
                 name: this.state.name,
