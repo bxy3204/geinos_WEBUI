@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Scep.css';
 import {Button} from 'react-bootstrap'
 import {add_scep} from "../REST_API/Scep_API";
-import {FormGroupCreate, create_user_list} from "../common/common";
+import {FormGroupCreate, create_user_list,ScepDigestDropdownFormGroupCreate,ScepEncryptDropdownFormGroupCreate} from "../common/common";
 
 let products = [];
 
@@ -20,6 +20,12 @@ class Scep extends Component {
             server: '',
             digest:'',
             encrypt:'',
+            country:'',
+            state: '',
+            locale:'',
+            organization:'',
+            org_unit:'',
+
         };
     }
 
@@ -31,7 +37,13 @@ class Scep extends Component {
             password: this.state.password,
             server: this.state.server,
             digest: this.state.digest,
-            encrypt: this.state.encrypt
+            encrypt: this.state.encrypt,
+            country: this.state.country,
+            state: this.state.state,
+            locale: this.state.locale,
+            organization: this.state.organization,
+            org_unit: this.state.org_unit
+
         };
         add_scep(newUser);
 
@@ -79,8 +91,8 @@ class Scep extends Component {
                 <div className="Home">
                     <h2>Scep</h2>
                 </div>
-                <form className="form-createuser">
 
+                <form className="form-createuser">
                     <FormGroupCreate
                         className = 'name-input'
                         controlId="name"
@@ -111,28 +123,72 @@ class Scep extends Component {
                         type="text"
                     />
 
-                    <FormGroupCreate
-                        className = { 'digest-input'}
+                    <ScepDigestDropdownFormGroupCreate
+                        className="digest-input"
                         controlId="digest"
-                        label="Digest"
-                        value={this.state.digest}
-                        change={this.handleChange}
-                        placeholder="Enter digest"
-                        type="text"
-                    />
-                    <FormGroupCreate
-                        className = {'encrypt-input'}
-                        controlId="encrypt"
-                        label="Encryption"
                         value={this.state.encrypt}
                         change={this.handleChange}
-                        placeholder="Enter encryption"
-                        type="text"
+                    />
+
+                    <ScepEncryptDropdownFormGroupCreate
+                        className="encrypt-input"
+                        controlId="encrypt"
+                        value={this.state.encrypt}
+                        change={this.handleChange}
                     />
 
 
-                    <Button className="button-submit" disabled = {!complete} onClick={this.addUser} >Update Scep</Button>
+                    <FormGroupCreate
+                        className = { 'country-input'}
+                        controlId="country"
+                        label="Country"
+                        value={this.state.country}
+                        change={this.handleChange}
+                        placeholder="Enter Country"
+                        type="text"
+                    />
+
+                    <FormGroupCreate
+                        className = { 'state-input'}
+                        controlId="state"
+                        label="State"
+                        value={this.state.state}
+                        change={this.handleChange}
+                        placeholder="Enter State"
+                        type="text"
+                    />
+
+                    <FormGroupCreate
+                        className = { 'locale-input'}
+                        controlId="locale"
+                        label="Locale"
+                        value={this.state.locale}
+                        change={this.handleChange}
+                        placeholder="Enter Locale"
+                        type="text"
+                    />
+
+                    <FormGroupCreate
+                        className = { 'organization-input'}
+                        controlId="organization"
+                        label="Organization"
+                        value={this.state.organization}
+                        change={this.handleChange}
+                        placeholder="Enter server"
+                        type="text"
+                    />
+
+                    <FormGroupCreate
+                        className = { 'org_unit-input'}
+                        controlId="org_unit"
+                        label="Org Unit"
+                        value={this.state.org_unit}
+                        change={this.handleChange}
+                        placeholder="Enter Org Unit"
+                        type="text"
+                    />
                 </form>
+                <Button className="scep-button-submit" disabled = {!complete} onClick={this.addUser} >Update Scep</Button>
             </div>
         );
     }

@@ -9,7 +9,12 @@ export function add_scep(user){
         password : user.password,
         server : user.server,
         digest : user.digest,
-        encrypt : user.encrypt
+        encrypt : user.encrypt,
+        country : user.country,
+        state : user.state,
+        locale : user.locale,
+        organization : user.organization,
+        org_unit : user.org_unit
     };
     fetch(route + '/scep', {
         method: 'put',

@@ -33,6 +33,38 @@ export function DropdownFormGroupCreate(props){
     </FormGroup>
 }
 
+export function ScepEncryptDropdownFormGroupCreate(props){
+    return <FormGroup
+        className={props.className}
+        controlId={props.controlId}
+    >
+        <ControlLabel>Encryption</ControlLabel>
+        <FormControl componentClass="select" placeholder="select" onChange={props.change}>
+            des_cbc, 3des_cbc, aes128_cbc, aes192_cbc, aes256_cbc
+            <option value="3des_cbc">3des_cbc</option>
+            <option value="des_cbx">des_cbc</option>
+            <option value="aes128_cbc">aes128_cbc</option>
+            <option value="aes192_cbc">aes192_cbc</option>
+            <option value="aes256_cbc">aes256_cbc</option>
+        </FormControl>
+    </FormGroup>
+}
+
+export function ScepDigestDropdownFormGroupCreate(props){
+    return <FormGroup
+        className={props.className}
+        controlId={props.controlId}
+    >
+        <ControlLabel>Digest</ControlLabel>
+        <FormControl componentClass="select" placeholder="select" onChange={props.change}>
+            <option value="sha256">sha256</option>
+            <option value="md5">md5</option>
+            <option value="sha1">sha1</option>
+            <option value="sha384">sha384</option>
+            <option value="sha512">sha512</option>
+        </FormControl>
+    </FormGroup>
+}
 
 
 export function DropdownTemplate(props){

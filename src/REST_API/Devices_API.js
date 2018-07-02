@@ -25,14 +25,16 @@ export function add_device(device){
         //TODO: fix location
         location: "none"
     };
-    fetch(route + '/devices', {
+   let response = fetch(route + '/devices', {
         method: 'put',
         body: JSON.stringify(jsondata),
         headers: new Headers({
             'Authorization': creds,
             'content-type': 'application/json'
             })
-    });
+    }).then(response => response.json());
+    response.then(message => alert(message.message));
+
 }
 
 export function delete_device(serial_num){

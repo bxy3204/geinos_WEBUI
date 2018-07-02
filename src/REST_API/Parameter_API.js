@@ -50,6 +50,7 @@ export function add_range_param(param){
             'Authorization': creds,
             'content-type': 'application/json'})
     });
+    window.location.reload();
 }
 
 export function get_param() {

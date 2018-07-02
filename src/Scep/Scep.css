@@ -8,11 +8,11 @@
 }
 .form{
     height: fit-content;
-    display:inline-block;
+    
 }
 .name-input{
      width: 20%;
-     display:inline-block;
+     
  }
 
 div.name-input label.control-label:after {
@@ -23,41 +23,48 @@ div.name-input label.control-label:after {
 .encrypt-input{
     position: relative;
     width: 20%;
-    bottom: 75px;
     right: 0.0%;
+    
 }
+.organization-input{
+    width: 20%;
+}
+
+.country-input{
+    width: 20%;
+}
+.org_unit-input{
+    width: 20%;
+}
+.state-input{
+    width: 20%;
+}
+.locale-input{
+    width: 20%;
+}
+
+
 div.encrypt-input label.control-label:after {
     content: " *";
     color: red;
 }
 .name-input-error{
     width: 20%;
-    display:inline-block;
+    
     border-bottom: 2px solid red;
 }
 .password-input{
     position: relative;
-    padding-top: 3%;
     width: 20%;
-    left: 1.3%;
-    display:inline-block;
+    
 }
 div.password-input label.control-label:after {
     content: " *";
     color: red;
 }
-.email-input-error{
-    position: relative;
-    padding-top: 3%;
-    width: 20%;
-    left: 1.3%;
-    display:inline-block;
-    border-bottom: 2px solid red;
-}
 
 .server-input{
     width: 20%;
-
 }
 div.server-input label.control-label:after {
     content: " *";
@@ -66,13 +73,11 @@ div.server-input label.control-label:after {
 .digest-input{
     position: relative;
     width: 20%;
-    bottom: 75px;
-    left: 21.3%;
-
 }
 div.digest-input label.control-label:after {
     content: " *";
     color: red;
+    
 }
 .pass-input-error{
     width: 20%;
@@ -82,24 +87,13 @@ div.digest-input label.control-label:after {
 .pass-verify-input-error{
     position: relative;
     width: 20%;
-    bottom: 75px;
-    left: 21.3%;
     border-bottom: 2px solid red;
 
 }
-.button-submit{
-    position: relative;
+
+.scep-button-submit{
     width: fit-content;
-    bottom: 75px;
     background-color: #f0ad4e;
     border-color: #eea236;
     color: white;
-}
-
-.table-user{
-    width: max-content;
-    position: relative;
-    height: content-box;
-    padding-bottom: 10%;
-    text-align: left;
 }
