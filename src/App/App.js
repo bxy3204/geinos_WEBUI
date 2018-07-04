@@ -46,7 +46,7 @@ class App extends Component {
               <li><NavLink to="/Assignments">Assignments</NavLink></li>
               <h1>Logging</h1>
               <li><NavLink to="/Logs">Event Logs</NavLink></li>
-              <li><NavLink to="/Deployments">Deployments</NavLink></li>
+              <li><NavLink to="/Deployments">Reports</NavLink></li>
               <h1>Settings</h1>
           </ul>
 
