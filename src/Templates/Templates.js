@@ -70,7 +70,7 @@ class Templates extends Component {
     addTemplate(){
         let newtemp = new File([this.state.filetext], this.state.name);
         add_template(newtemp);
-        window.location.reload();
+        //window.location.reload();
     }
 
 
@@ -165,7 +165,7 @@ class Templates extends Component {
                         </FormGroup>
                     </div>
                     <div>
-                        <Button className="button-templates-submit" disabled = {!complete} onClick={this.addTemplate}  >Submit</Button>
+                        <Button className="button-templates-submit" onClick={this.addTemplate}  >Submit</Button>
 
                     </div>
 

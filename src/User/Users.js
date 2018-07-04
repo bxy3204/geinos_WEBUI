@@ -68,7 +68,7 @@ class Users extends Component {
             console.log("added a user");
         }
         console.log("didn't add a user");
-        window.location.reload();
+        //window.location.reload();
     }
 
     handleChange(e) {

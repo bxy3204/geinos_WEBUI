@@ -74,7 +74,7 @@ class Parameters extends Component {
                 type: this.state.param_type
             };
             return add_range_param(newparam);
-            window.location.reload();
+            //window.location.reload();
         }
         else if (this.state.param_type.localeCompare("Dynamic") === 0)
         {

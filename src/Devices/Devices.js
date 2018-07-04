@@ -72,7 +72,7 @@ class Devices extends Component {
             serial: this.state.serial,
         };
         add_device(newDevice);
-        window.location.reload();
+        //window.location.reload();
     }
 
     handleNameChange(e) {

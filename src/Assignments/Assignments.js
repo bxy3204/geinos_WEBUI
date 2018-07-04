@@ -115,7 +115,7 @@ class Assignments extends Component {
                 }
             }
         );
-        window.location.reload();
+        //window.location.reload();
     }
 
 

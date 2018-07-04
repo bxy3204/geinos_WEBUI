@@ -47,7 +47,7 @@ class Scep extends Component {
         };
         add_scep(newUser);
 
-        window.location.reload();
+        //window.location.reload();
     }
 
     handleChange(e) {

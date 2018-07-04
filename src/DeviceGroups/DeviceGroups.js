@@ -70,7 +70,7 @@ class DeviceGroups extends Component {
             value: this.state.device_model.value
         };
         add_device_group(newGroup);
-        window.location.reload();
+        //window.location.reload();
     }
     componentDidMount() {
         get_device_groups().then((items) => {
