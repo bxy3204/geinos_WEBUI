@@ -218,7 +218,7 @@ class Parameters extends Component {
 
 
                 {this.renderTypeField()}
-                <Button className="button-param-submit" disabled = {!complete} onClick={this.addParameter} type="submit">Add Parameter</Button>
+                <Button className="button-param-submit" disabled = {!complete} onClick={this.addParameter} type="submit">Add</Button>
 
                 <BootstrapTable className="table-user" data={List} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>

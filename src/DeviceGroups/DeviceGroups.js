@@ -131,7 +131,7 @@ class DeviceGroups extends Component {
 
 
 
-                <Button className="button-group-submit" disabled = {!complete} type="submit" onClick={this.addGroup}>Add Device Group</Button>
+                <Button className="button-group-submit" disabled = {!complete} type="submit" onClick={this.addGroup}>Add</Button>
                 <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>

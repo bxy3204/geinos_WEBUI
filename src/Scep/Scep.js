@@ -188,7 +188,7 @@ class Scep extends Component {
                         type="text"
                     />
                 </form>
-                <Button className="scep-button-submit" disabled={!complete} onClick={this.addUser} >Update Scep</Button>
+                <Button className="scep-button-submit" disabled={!complete} onClick={this.addUser} >Update</Button>
             </div>
         );
     }

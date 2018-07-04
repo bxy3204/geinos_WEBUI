@@ -165,7 +165,7 @@ class Templates extends Component {
                         </FormGroup>
                     </div>
                     <div>
-                        <Button className="button-templates-submit" onClick={this.addTemplate}  >Submit</Button>
+                        <Button className="button-templates-submit" onClick={this.addTemplate}  >Add</Button>
 
                     </div>
 

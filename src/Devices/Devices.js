@@ -177,8 +177,8 @@ class Devices extends Component {
                 </FormGroup>
 
 
-                <Button className="button-add-submit" disabled = {!complete} onClick={this.addDevice} type="submit">Add Device</Button>
-                <Button className="button-import-submit" type="submit">Import from file</Button>
+                <Button className="button-add-submit" disabled = {!complete} onClick={this.addDevice} type="submit">Add</Button>
+                <Button className="button-import-submit" type="submit">Import</Button>
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="vendor_id"  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model_number"  width="150" dataSort>Model</TableHeaderColumn>
