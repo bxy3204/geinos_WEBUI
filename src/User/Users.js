@@ -69,6 +69,11 @@ class Users extends Component {
         }
         console.log("didn't add a user");
         //window.location.reload();
+        this.setState({name : ''});
+        this.setState({password: ''});
+        this.setState({passwordverify: ''});
+        this.setState({email:''});
+        this.componentDidMount()
     }
 
     handleChange(e) {

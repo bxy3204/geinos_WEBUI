@@ -94,6 +94,9 @@ class Parameters extends Component {
             };
             return add_param(newparam);
         }
+        this.setState({name: ''});
+        this.setState({value: ''});
+        this.componentDidMount();
     }
 
 

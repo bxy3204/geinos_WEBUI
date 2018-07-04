@@ -70,6 +70,8 @@ class DeviceGroups extends Component {
             value: this.state.device_model.value
         };
         add_device_group(newGroup);
+        this.setState({name: ''});
+        this.componentDidMount();
         //window.location.reload();
     }
     componentDidMount() {

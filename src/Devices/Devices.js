@@ -75,7 +75,10 @@ class Devices extends Component {
         };
         add_device(newDevice);
         //window.location.reload();
-        this.forceUpdate();
+        this.setState({name : ''});
+        this.setState({serial : ''});
+        this.setState({location : ''});
+        this.componentDidMount();
     }
 
     handleNameChange(e) {

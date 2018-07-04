@@ -34,7 +34,6 @@ export function add_device(device){
             })
     }).then(response => response.json());
     response.then(message => alert(message.message));
-
 }
 
 export function delete_device(serial_num){

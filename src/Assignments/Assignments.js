@@ -59,7 +59,9 @@ class Assignments extends Component {
             group_name: this.state.group.label,
         };
         assign(newAssign);
-
+        this.setState({ template:'' });
+        this.setState({ group:'' });
+        this.componentDidMount();
     }
 
     componentDidMount() {
@@ -104,14 +106,17 @@ class Assignments extends Component {
                 this.setState({group_list: []});
                 //this.state.group_list = [];
                 let listOfGroups = items.data;
-                for (let i=0; i<listOfGroups.length; i++)
+                if (undefined !== listOfGroups)
                 {
-                    // grps.push(listOfGroups[i]["device_group_name"]);
-                    let newGroup ={
-                                value: [i],
-                                label:listOfGroups[i]["device_group_name"]
-                            };
-                    this.state.group_list.push(newGroup);
+                    for (let i=0; i<listOfGroups.length; i++)
+                    {
+                        // grps.push(listOfGroups[i]["device_group_name"]);
+                        let newGroup ={
+                            value: [i],
+                            label:listOfGroups[i]["device_group_name"]
+                        };
+                        this.state.group_list.push(newGroup);
+                    }
                 }
             }
         );
