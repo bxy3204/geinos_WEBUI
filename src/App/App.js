@@ -36,7 +36,7 @@ class App extends Component {
               <li><NavLink to="/Login">Login</NavLink></li>
               <li><NavLink exact to="/Users">Users</NavLink></li>
               <li><NavLink exact to="/UserAuthentication">User Authentication</NavLink></li>
-              <li><NavLink exact to="/DeviceEnrollment">Device Enrollment</NavLink></li>
+              <li><NavLink to="/Scep">Scep</NavLink></li>
               <h1>Device Inventory</h1>
               <li><NavLink to="/Devices">Devices</NavLink></li>
               <li><NavLink to="/DeviceGroups">Device Groups</NavLink></li>
@@ -44,11 +44,10 @@ class App extends Component {
               <li><NavLink to="/Parameters">Parameters</NavLink></li>
               <li><NavLink to="/Templates">Templates</NavLink></li>
               <li><NavLink to="/Assignments">Assignments</NavLink></li>
-              <h1>Reports</h1>
+              <h1>Logging</h1>
+              <li><NavLink to="/Logs">Event Logs</NavLink></li>
               <li><NavLink to="/Deployments">Deployments</NavLink></li>
-              <li><NavLink to="/Logs">Logs</NavLink></li>
               <h1>Settings</h1>
-              <li><NavLink to="/Scep">Scep</NavLink></li>
           </ul>
 
           <div className="content">
