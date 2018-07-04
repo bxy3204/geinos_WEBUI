@@ -24,6 +24,7 @@ export function add_device(device){
         model_num: device.model,
         //TODO: fix location
         location: device.location,
+        scep: device.scep,
     };
    let response = fetch(route + '/devices', {
         method: 'put',

@@ -34,6 +34,7 @@ class Devices extends Component {
     constructor(props,context) {
         super(props,context);
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.addDevice = this.addDevice.bind(this);
         this.state = {
             device_model: '',
@@ -41,6 +42,7 @@ class Devices extends Component {
             serial:'',
             deviceList:'',
             location:'',
+            scep:'False',
             device_models: [],
             devices: [],
         }
@@ -72,12 +74,15 @@ class Devices extends Component {
             model: this.state.device_model.value,
             serial: this.state.serial,
             location: this.state.location,
+            scep: this.state.scep,
+
         };
         add_device(newDevice);
         //window.location.reload();
         this.setState({name : ''});
         this.setState({serial : ''});
         this.setState({location : ''});
+        this.setState({scep : ''});
         this.componentDidMount();
     }
 
@@ -87,7 +92,12 @@ class Devices extends Component {
 
     handleChange = (device_model) => {
         this.setState({ device_model });
-    };
+    }
+
+    handleCheckboxChange(e) {
+        this.setState({scep:  e.target.checked ? 'TRUE' : 'FALSE'});
+    }
+
     render() {
         products = this.state.devices;
         const modelLink = this.state.device_model, modelIsValid = modelLink;
@@ -151,6 +161,18 @@ class Devices extends Component {
                         value={this.state.location}
                         placeholder="Enter Location"
                         onChange={this.handleNameChange}
+                    />
+                </FormGroup>
+
+                <FormGroup
+                    controlId="scep"
+                >
+                    <ControlLabel>SCEP</ControlLabel>
+
+                    <FormControl
+                        type="checkbox"
+                        value={this.state.scep}
+                        onChange={this.handleCheckboxChange}
                     />
                 </FormGroup>
 
