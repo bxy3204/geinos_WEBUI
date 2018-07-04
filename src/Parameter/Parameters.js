@@ -45,7 +45,7 @@ class Parameters extends Component {
     }
 
     componentWillMount() {
-        let param = ['IP-Range','Scalar','IP-List', 'Dynamic'];
+        let param = ['IP-Range','Scalar','IP-List', 'Dynamic-IP-Range'];
         let params = [];
         for(let i=0; i<param.length; i++){
             let param_type={
@@ -76,12 +76,12 @@ class Parameters extends Component {
             return add_range_param(newparam);
             //window.location.reload();
         }
-        else if (this.state.param_type.localeCompare("Dynamic") === 0)
+        else if (this.state.param_type.localeCompare("Dynamic-IP-Range") === 0)
         {
             var newparam={
                 name: this.state.name,
                 value: this.state.value,
-                type: this.state.param_type,
+                type: "Dynamic",
                 interface: this.state.interface
             };
             return add_dynamic_param(newparam);
@@ -120,7 +120,7 @@ class Parameters extends Component {
                 </FormGroup>
             </div>;
         }
-        else if (this.state.param_type.localeCompare("Dynamic") == 0)
+        else if (this.state.param_type.localeCompare("Dynamic-IP-Range") == 0)
         {
             return <div className="range-div"> <FormGroup
                 className="value-input"
