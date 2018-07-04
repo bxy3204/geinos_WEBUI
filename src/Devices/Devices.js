@@ -40,6 +40,7 @@ class Devices extends Component {
             name: '',
             serial:'',
             deviceList:'',
+            location:'',
             device_models: [],
             devices: [],
         }
@@ -70,9 +71,11 @@ class Devices extends Component {
             name: this.state.name,
             model: this.state.device_model.value,
             serial: this.state.serial,
+            location: this.state.location,
         };
         add_device(newDevice);
         //window.location.reload();
+        this.forceUpdate();
     }
 
     handleNameChange(e) {
@@ -96,6 +99,7 @@ class Devices extends Component {
                 <div className="Home">
                     <h2>Devices</h2>
                 </div>
+
             <FormGroup
                 className = {'devicename-input'}
                 controlId="name"
@@ -109,6 +113,7 @@ class Devices extends Component {
                     onChange={this.handleNameChange}
                 />
             </FormGroup>
+
                 <ControlLabel>Model </ControlLabel><ControlLabel className="asterisk">   * </ControlLabel>
             <Select
                 className = {'model-input'}
@@ -131,6 +136,22 @@ class Devices extends Component {
                         onChange={this.handleNameChange}
                     />
                 </FormGroup>
+
+                <FormGroup
+                    className = {'serial-input'}
+                    controlId="location"
+                >
+                    <ControlLabel>Location</ControlLabel>
+
+                    <FormControl
+                        type="text"
+                        value={this.state.location}
+                        placeholder="Enter Location"
+                        onChange={this.handleNameChange}
+                    />
+                </FormGroup>
+
+
                 <Button className="button-add-submit" disabled = {!complete} onClick={this.addDevice} type="submit">Add Device</Button>
                 <Button className="button-import-submit" type="submit">Import from file</Button>
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>

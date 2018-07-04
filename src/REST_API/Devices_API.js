@@ -23,7 +23,7 @@ export function add_device(device){
         serial_num: device.serial,
         model_num: device.model,
         //TODO: fix location
-        location: "none"
+        location: device.location,
     };
    let response = fetch(route + '/devices', {
         method: 'put',
