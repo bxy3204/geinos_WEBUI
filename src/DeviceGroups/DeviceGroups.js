@@ -41,7 +41,7 @@ class DeviceGroups extends Component {
 
     }
     componentWillMount(){
-        let device_models = ['MDS Orbit ECR','MDS Orbit MCR'];
+        let device_models = ['MDS Orbit ECR', 'MDS Orbit MCR-4E2S', 'MDS Orbit MCR-2E1S', 'MDS Orbit MCR-1E2S'];
         let devicetypes = [];
         for(let i=0; i<device_models.length; i++){
             let dev={
