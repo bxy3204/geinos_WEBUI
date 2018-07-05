@@ -73,7 +73,7 @@ class Parameters extends Component {
                 value: this.state.range_start,
                 type: this.state.param_type
             };
-            return add_range_param(newparam);
+            add_range_param(newparam);
             //window.location.reload();
         }
         else if (this.state.param_type.localeCompare("Dynamic-IP-Range") === 0)
@@ -84,7 +84,7 @@ class Parameters extends Component {
                 type: "Dynamic",
                 interface: this.state.interface
             };
-            return add_dynamic_param(newparam);
+            add_dynamic_param(newparam);
         }
         else {
             var newparam={
@@ -92,7 +92,7 @@ class Parameters extends Component {
                 value: this.state.value,
                 type: this.state.param_type
             };
-            return add_param(newparam);
+            add_param(newparam);
         }
         this.setState({name: ''});
         this.setState({value: ''});
