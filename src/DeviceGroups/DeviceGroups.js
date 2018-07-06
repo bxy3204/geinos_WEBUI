@@ -55,7 +55,6 @@ class DeviceGroups extends Component {
 
 
     handleChange(e) {
-
         this.setState({ [e.target.id]: e.target.value});
     }
 
@@ -63,12 +62,55 @@ class DeviceGroups extends Component {
         this.setState({ device_model });
     };
 
+    renderTypeField() {
+        if (this.state.filterType.localeCompare("model") == 0)
+        {
+            return <div>
+                <ControlLabel>Value</ControlLabel> <ControlLabel className="asterisk">  * </ControlLabel>
+                <Select
+                    className={'form-field-name' }
+                    value={this.state.device_model}
+                    onChange={this.handleModelChange}
+                    required="true"
+                    options={this.state.device_models}
+                />
+            </div>
+        }
+        else
+        {
+            return <div>
+                <FormGroupCreate
+                    className={ 'group-name-input'}
+                    controlId="device_model"
+                    label="Value"
+
+                    value={this.state.device_model}
+                    change={this.handleChange}
+                    placeholder="Enter value"
+                    type="text"
+                    required="true"
+                />
+            </div>
+        }
+    }
+
     addGroup(){
         const newGroup={
             name: this.state.name,
             attribute: 'model',
-            value: this.state.device_model.value
         };
+
+        if (this.state.filterType.localeCompare("model") == 0)
+        {
+            newGroup.attribute = 'model';
+            newGroup.value = this.state.device_model.value
+        }
+        else
+        {
+            newGroup.attribute = 'other';
+            newGroup.value = this.state.device_model
+        }
+
         add_device_group(newGroup);
         this.setState({name: ''});
         this.componentDidMount();
@@ -87,7 +129,7 @@ class DeviceGroups extends Component {
         const valueLink = this.state.device_model.value, valueIsValid = valueLink && valueLink !== "";
 
         var complete = false;
-        if (nameIsValid && valueIsValid){
+        if (nameIsValid){
             complete = true;
         }
 
@@ -114,22 +156,12 @@ class DeviceGroups extends Component {
                 >
                     <ControlLabel>Group By</ControlLabel>
                     <FormControl componentClass="select" placeholder="select" onChange={this.handleChange}>
-
                         <option value="model">Model</option>
+                        <option value="other">Other</option>
                     </FormControl>
                 </FormGroup>
 
-
-                <ControlLabel>Value</ControlLabel> <ControlLabel className="asterisk">  * </ControlLabel>
-                <Select
-                    className={'form-field-name' }
-                    value={this.state.device_model}
-                    onChange={this.handleModelChange}
-                    required="true"
-                    options={this.state.device_models}
-                />
-
-
+                {this.renderTypeField()}
 
                 <Button className="button-group-submit" disabled = {!complete} type="submit" onClick={this.addGroup}>Add</Button>
                 <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
