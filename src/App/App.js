@@ -17,6 +17,7 @@ import Deployments from "../Reports/Deployments"
 import Login from "../Login/Login";
 import Logs from "../Reports/Logs"
 import Scep from "../Scep/Scep"
+import Users_Authentication from "../User_Authentication/Users_Authentication"
 import {verify_token} from "../REST_API/Login_API";
 
 class App extends Component {
@@ -52,6 +53,7 @@ class App extends Component {
 
           <div className="content">
               <Route exact path="/Users" component={Users}/>
+              <Route exact path="/UserAuthentication" component={Users_Authentication}/>
               <Route path="/Devices" component={Devices}/>
               <Route exact path="/DeviceGroups" component={DeviceGroups}/>
               <Route path="/Templates" component={Templates}/>

@@ -1,0 +1,99 @@
+.container{
+    width: 100%;
+    margin: 0 0 0 0;
+    height: 100%;
+    padding-bottom: 100px;
+    position: relative;
+    overflow: auto;
+}
+.form{
+    height: fit-content;
+
+}
+.name-input{
+    width: 20%;
+
+}
+
+div.name-input label.control-label:after {
+    content: " *";
+    color: red;
+}
+
+.encrypt-input{
+    position: relative;
+    width: 20%;
+    right: 0.0%;
+
+}
+.organization-input{
+    width: 20%;
+}
+
+.country-input{
+    width: 20%;
+}
+.org_unit-input{
+    width: 20%;
+}
+.state-input{
+    width: 20%;
+}
+.locale-input{
+    width: 20%;
+}
+
+
+div.encrypt-input label.control-label:after {
+    content: " *";
+    color: red;
+}
+.name-input-error{
+    width: 20%;
+
+    border-bottom: 2px solid red;
+}
+.password-input{
+    position: relative;
+    width: 20%;
+
+}
+div.password-input label.control-label:after {
+    content: " *";
+    color: red;
+}
+
+.server-input{
+    width: 20%;
+}
+div.server-input label.control-label:after {
+    content: " *";
+    color: red;
+}
+.digest-input{
+    position: relative;
+    width: 20%;
+}
+div.digest-input label.control-label:after {
+    content: " *";
+    color: red;
+
+}
+.pass-input-error{
+    width: 20%;
+    border-bottom: 2px solid red;
+
+}
+.pass-verify-input-error{
+    position: relative;
+    width: 20%;
+    border-bottom: 2px solid red;
+
+}
+
+.scep-button-submit{
+    width: fit-content;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    color: white;
+}
