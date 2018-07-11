@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users,delete_user,add_user} from "../REST_API/User_API";
 import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from "../common/common";
+import {verify_token} from "../REST_API/Login_API";
 const emailRe = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 let products = [];
@@ -36,7 +37,9 @@ class Users extends Component {
             passwordverify: '',
             email:'',
             role:'Operator',
-            items: []
+            items: [],
+            status: '',
+            message: ''
         };
     }
 
@@ -64,10 +67,31 @@ class Users extends Component {
             role: this.state.role
         };
         if(this.getVerifyPassword() && this.getValidationState()){
-            add_user(newUser);
-            console.log("added a user");
+            add_user(newUser).then((fetched) => {
+                fetched.json().then((data) => {
+                    this.setState({message:data.message})
+                    /*
+                    Status codes between 400 and 500 are being forced to 400 because
+                    they map to a specific CSS style class labeled with that status code.
+                    The style name is used in render().
+                     */
+                    if(data.status >= 400 && data.status < 500){
+                        this.setState({status:400})
+                    }
+                    else if(data.status >= 200 && data.status < 300){
+                        this.setState({status:200})
+                    } else {
+                        //any other status than success or error will be treated as 102, informational
+                        // this reflects in the css file to ensure proper message notification
+                        this.setState({status:102})
+                    }
+                });
+            });
         }
-        console.log("didn't add a user");
+        /*
+    .catch((error) => {
+            console.log("Error:" + error);
+        })*/
         //window.location.reload();
         this.setState({name : ''});
         this.setState({password: ''});
@@ -92,11 +116,8 @@ class Users extends Component {
         let new_list={
             items:this.state.items,
         };
-        console.log(this.state.items);
-        console.log("AAAAAAAA")
         products = create_user_list(new_list);
         products = this.state.items;
-        console.log(products);
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
         const emailLink = this.state.email, emailIsValid = emailLink;
         const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.length >= 6;
@@ -112,7 +133,10 @@ class Users extends Component {
                 <div className="Home">
                     <h2>Users</h2>
                 </div>
-            <form className="form-createuser">
+                <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
+                </div>
+
+                <form className="form-createuser">
                 <FormGroupCreate
                     className = { 'name-input' }
                     controlId="name"

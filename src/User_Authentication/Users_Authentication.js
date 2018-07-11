@@ -12,7 +12,9 @@ class Users_Authentication extends Component {
         this.state = {
             host: '',
             port: '',
-            secret: ''
+            secret: '',
+            status: '',
+            message: '',
         };
     }
 
@@ -28,7 +30,28 @@ class Users_Authentication extends Component {
             secret: this.state.secret
 
         };
-        update_radius(newRadius);
+        update_radius(newRadius).then((fetched) => {
+
+            fetched.json().then((data) => {
+                console.log(data);
+                this.setState({message:data.message});
+                /*
+                Status codes between 400 and 500 are being forced to 400 because
+                they map to a specific CSS style class labeled with that status code.
+                The style name is used in render().
+                 */
+                if(data.status >= 400 && data.status < 500){
+                    this.setState({status:400});
+                }
+                else if(data.status >= 200 && data.status < 300){
+                    this.setState({status:200});
+                } else {
+                    //any other status than success or error will be treated as 102, informational
+                    // this reflects in the css file to ensure proper message notification
+                    this.setState({status:102});
+                }
+            });
+        });
     }
 
     componentDidMount() {
@@ -47,7 +70,7 @@ class Users_Authentication extends Component {
                 <div className="Home">
                     <h2>Radius</h2>
                 </div>
-
+                <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}</div>
                 <form className="form-createuser">
                     <FormGroupCreate
                         className = 'name-input'

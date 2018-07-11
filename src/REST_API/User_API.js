@@ -43,11 +43,12 @@ export function add_user(user){
         email : user.email,
         role : user.role
     };
-    fetch(route + '/users', {
+    return fetch(route + '/users', {
         method: 'put',
         body: JSON.stringify(jsondata),
         headers: new Headers({
             'Authorization': creds,
             'content-type': 'application/json'})
     });
+
 }

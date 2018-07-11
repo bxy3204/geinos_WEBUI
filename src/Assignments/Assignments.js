@@ -38,7 +38,9 @@ class Assignments extends Component {
             template_list:[],
             group_list:[],
             assignments:[],
-            deviceGroups: ''
+            deviceGroups: '',
+            status: '',
+            message: '',
         }
     }
     handleChange(e) {
@@ -58,7 +60,27 @@ class Assignments extends Component {
             temp_name: this.state.template.label,
             group_name: this.state.group.label,
         };
-        assign(newAssign);
+        assign(newAssign).then((fetched) => {
+            fetched.json().then((data) => {
+                console.log(data);
+                this.setState({message:data.message});
+                /*
+                Status codes between 400 and 500 are being forced to 400 because
+                they map to a specific CSS style class labeled with that status code.
+                The style name is used in render().
+                 */
+                if(data.status >= 400 && data.status < 500){
+                    this.setState({status:400});
+                }
+                else if(data.status >= 200 && data.status < 300){
+                    this.setState({status:200});
+                } else {
+                    //any other status than success or error will be treated as 102, informational
+                    // this reflects in the css file to ensure proper message notification
+                    this.setState({status:102});
+                }
+            });
+        });
         this.setState({ template:'' });
         this.setState({ group:'' });
         this.componentDidMount();
@@ -143,7 +165,8 @@ class Assignments extends Component {
                 <div className="Home">
                     <h2>Assignments</h2>
                 </div>
-
+                <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
+                </div>
                 <ControlLabel className="label-group">Template</ControlLabel> <ControlLabel className="asterisk">  * </ControlLabel>
                 <Select
                     className={ 'assignment-template-input'}

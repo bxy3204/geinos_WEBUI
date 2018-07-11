@@ -23,7 +23,7 @@ export function add_device_group(group) {
         value : group.value
     };
 
-    fetch( route + '/device_groups',
+    return fetch( route + '/device_groups',
         {
             method: 'post',
             body: JSON.stringify(jsondata),
@@ -39,7 +39,7 @@ export function delete_group(group_name){
     let jsondata = {
         group_name: group_name,
     };
-    fetch( route + '/device_groups', {
+    return fetch( route + '/device_groups', {
         method: 'delete',
         body: JSON.stringify(jsondata),
         headers: new Headers({

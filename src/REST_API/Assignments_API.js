@@ -13,7 +13,7 @@ export function assign(assign_data){
 
     };
 
-    fetch(route + '/assign', {
+    return fetch(route + '/assign', {
         method: 'post',
         body: JSON.stringify(jsondata),
         headers: new Headers({

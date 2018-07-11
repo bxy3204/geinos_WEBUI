@@ -10,7 +10,27 @@ let List = [];
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys);
-    delete_param(rowKeys[0])
+    delete_param(rowKeys[0]).then((fetched) => {
+        fetched.json().then((data) => {
+            console.log(data);
+            this.setState({message:data.message});
+            /*
+            Status codes between 400 and 500 are being forced to 400 because
+            they map to a specific CSS style class labeled with that status code.
+            The style name is used in render().
+             */
+            if(data.status >= 400 && data.status < 500){
+                this.setState({status:400});
+            }
+            else if(data.status >= 200 && data.status < 300){
+                this.setState({status:200});
+            } else {
+                //any other status than success or error will be treated as 102, informational
+                // this reflects in the css file to ensure proper message notification
+                this.setState({status:102});
+            }
+        });
+    });
 }
 
 const options = {
@@ -39,7 +59,9 @@ class Parameters extends Component {
             range_start: '',
             params_list:[],
             template:'',
-            interface:''
+            interface:'',
+            status: '',
+            message: '',
         }
 
     }
@@ -73,7 +95,27 @@ class Parameters extends Component {
                 value: this.state.range_start,
                 type: this.state.param_type
             };
-            add_range_param(newparam);
+            add_range_param(newparam).then((fetched) => {
+                fetched.json().then((data) => {
+                    console.log(data);
+                    this.setState({message:data.message});
+                    /*
+                    Status codes between 400 and 500 are being forced to 400 because
+                    they map to a specific CSS style class labeled with that status code.
+                    The style name is used in render().
+                     */
+                    if(data.status >= 400 && data.status < 500){
+                        this.setState({status:400});
+                    }
+                    else if(data.status >= 200 && data.status < 300){
+                        this.setState({status:200});
+                    } else {
+                        //any other status than success or error will be treated as 102, informational
+                        // this reflects in the css file to ensure proper message notification
+                        this.setState({status:102});
+                    }
+                });
+            });
             //window.location.reload();
         }
         else if (this.state.param_type.localeCompare("Dynamic-IP-Range") === 0)
@@ -84,7 +126,27 @@ class Parameters extends Component {
                 type: "Dynamic",
                 interface: this.state.interface
             };
-            add_dynamic_param(newparam);
+            add_dynamic_param(newparam).then((fetched) => {
+                fetched.json().then((data) => {
+                    console.log(data);
+                    this.setState({message:data.message});
+                    /*
+                    Status codes between 400 and 500 are being forced to 400 because
+                    they map to a specific CSS style class labeled with that status code.
+                    The style name is used in render().
+                     */
+                    if(data.status >= 400 && data.status < 500){
+                        this.setState({status:400});
+                    }
+                    else if(data.status >= 200 && data.status < 300){
+                        this.setState({status:200});
+                    } else {
+                        //any other status than success or error will be treated as 102, informational
+                        // this reflects in the css file to ensure proper message notification
+                        this.setState({status:102});
+                    }
+                });
+            });
         }
         else {
             var newparam={
@@ -92,7 +154,27 @@ class Parameters extends Component {
                 value: this.state.value,
                 type: this.state.param_type
             };
-            add_param(newparam);
+            add_param(newparam).then((fetched) => {
+                fetched.json().then((data) => {
+                    console.log(data);
+                    this.setState({message:data.message});
+                    /*
+                    Status codes between 400 and 500 are being forced to 400 because
+                    they map to a specific CSS style class labeled with that status code.
+                    The style name is used in render().
+                     */
+                    if(data.status >= 400 && data.status < 500){
+                        this.setState({status:400});
+                    }
+                    else if(data.status >= 200 && data.status < 300){
+                        this.setState({status:200});
+                    } else {
+                        //any other status than success or error will be treated as 102, informational
+                        // this reflects in the css file to ensure proper message notification
+                        this.setState({status:102});
+                    }
+                });
+            });
         }
         this.setState({name: ''});
         this.setState({value: ''});
@@ -193,9 +275,10 @@ class Parameters extends Component {
                 <div className="Home">
                     <h2>Parameters</h2>
                 </div>
-
+                <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
+                </div>
                 <FormGroup
-                    className={ nameIsValid ? "name-input" : "name-input-error"}
+                    className={"name-input"}
                     controlId="name"
                 >
                     <ControlLabel>Name</ControlLabel>
@@ -207,9 +290,9 @@ class Parameters extends Component {
                         onChange={this.handleNameChange}
                     />
                 </FormGroup>
-                    <ControlLabel>Type</ControlLabel>
+                    <ControlLabel>Type</ControlLabel> <ControlLabel className="asterisk">   * </ControlLabel>
                 <Select
-                    className= { paramIsValid ? "form-field-name" : "form-field-name-error"}
+                    className= {"form-field-name"}
                     id="param"
                     value={this.state.param_type}
                     onChange={this.handleChange}

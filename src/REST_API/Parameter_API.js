@@ -8,7 +8,7 @@ export function add_param(param){
         'type' : param.type,
         'value' : param.value
     };
-    fetch(route + '/parameters', {
+    return fetch(route + '/parameters', {
         method: 'put',
         body: JSON.stringify(jsondata),
         headers: new Headers({
@@ -26,7 +26,7 @@ export function add_dynamic_param(param){
         'value' : param.value,
         'interface' : param.interface
     };
-    fetch(route + '/parameters', {
+    return fetch(route + '/parameters', {
         method: 'put',
         body: JSON.stringify(jsondata),
         headers: new Headers({
@@ -43,7 +43,7 @@ export function add_range_param(param){
         'type' : 'RANGE',
         'value' : param.value
     };
-    fetch(route + '/parameters', {
+    return fetch(route + '/parameters', {
         method: 'put',
         body: JSON.stringify(jsondata),
         headers: new Headers({
@@ -72,7 +72,7 @@ export function delete_param(param_name){
     let creds = get_creds();
     const formdata = new FormData();
     formdata.append('param_name', param_name);
-    fetch( route + '/parameters', {
+    return fetch( route + '/parameters', {
         method: 'delete',
         body: formdata,
         headers: new Headers({

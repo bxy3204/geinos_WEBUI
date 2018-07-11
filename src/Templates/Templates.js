@@ -25,7 +25,9 @@ class Templates extends Component {
             value: '',
             filetext: '',
             filename: '',
-            params_list: []
+            params_list: [],
+            status: '',
+            message: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -69,7 +71,27 @@ class Templates extends Component {
 
     addTemplate(){
         let newtemp = new File([this.state.filetext], this.state.name);
-        add_template(newtemp);
+        add_template(newtemp).then((fetched) => {
+            fetched.json().then((data) => {
+                console.log(data);
+                this.setState({message:data.message});
+                /*
+                Status codes between 400 and 500 are being forced to 400 because
+                they map to a specific CSS style class labeled with that status code.
+                The style name is used in render().
+                 */
+                if(data.status >= 400 && data.status < 500){
+                    this.setState({status:400});
+                }
+                else if(data.status >= 200 && data.status < 300){
+                    this.setState({status:200});
+                } else {
+                    //any other status than success or error will be treated as 102, informational
+                    // this reflects in the css file to ensure proper message notification
+                    this.setState({status:102});
+                }
+            });
+        });
         //window.location.reload();
     }
 
@@ -119,6 +141,8 @@ class Templates extends Component {
                         <h2>Templates</h2>
                     </div>
                     <div>
+                        <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
+                        </div>
                         <FormGroup
                             className=  { 'name-input' }
                             controlId="name"
@@ -165,7 +189,7 @@ class Templates extends Component {
                         </FormGroup>
                     </div>
                     <div>
-                        <Button className="button-templates-submit" onClick={this.addTemplate}  >Add</Button>
+                        <Button className="button-templates-submit" disabled = {!complete} onClick={this.addTemplate}  >Add</Button>
 
                     </div>
 

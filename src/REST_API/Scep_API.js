@@ -16,7 +16,7 @@ export function add_scep(user){
         organization : user.organization,
         org_unit : user.org_unit
     };
-    fetch(route + '/scep', {
+    return fetch(route + '/scep', {
         method: 'put',
         body: JSON.stringify(jsondata),
         headers: new Headers({

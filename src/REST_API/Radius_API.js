@@ -8,7 +8,7 @@ export function update_radius(newRadius) {
         'port' : newRadius.port,
         'secret' : newRadius.secret
     };
-    fetch(route + '/radius', {
+    return fetch(route + '/radius', {
         method: 'put',
         body: JSON.stringify(jsondata),
         headers: new Headers({
