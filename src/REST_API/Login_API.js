@@ -5,15 +5,6 @@ export function login(user) {
     let route = get_route();
     let creds = get_creds();
     creds = 'Basic ' + btoa(user.name + ':' + user.password);
-    /*
-    const formdata = new FormData();
-    formdata.append('usr', user.name);
-    formdata.append('password', user.password);
-    formdata.append('retypepassword', user.retypepassword);
-    formdata.append('email', user.email);
-    formdata.append('role', user.role);
-    */
-    console.log(creds);
 
     return fetch(route + '/login', {
         method: 'post',
@@ -26,15 +17,6 @@ export function login(user) {
     export function verify_token(){
         let route = get_route();
         let creds = get_creds();
-        console.log("in verify")
-        /*
-        const formdata = new FormData();
-        formdata.append('usr', user.name);
-        formdata.append('password', user.password);
-        formdata.append('retypepassword', user.retypepassword);
-        formdata.append('email', user.email);
-        formdata.append('role', user.role);
-        */
 
         return fetch(route + '/verify_token', {
             method: 'get',
@@ -52,7 +34,6 @@ export function login(user) {
                 } else if (data.message == "User logged in.") {
                     return true;
                 }
-                console.log(data.message);
                 throw "API Response not recognized";
             })
             .catch((error) => {

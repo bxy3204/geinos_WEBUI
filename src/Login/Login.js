@@ -37,12 +37,10 @@ class Login extends Component {
             password: this.state.password,
         };
         login(newUser).then(result=> result.json()).then((items) => {
-                console.log(items);
-                this.setState({items: items.data})
-                this.saveItem("session" , items["auth_token"])
-            }
-        );
-       // console.log(this.items);
+            console.log(items);
+            this.setState({items: items.data})
+            this.saveItem("session" ,  items["auth_token"])
+        });
     }
 
     handleChange(e) {
@@ -57,10 +55,7 @@ class Login extends Component {
     }
 
     render() {
-        verify_token().then((status) => {
-                console.log("here" + status);
-            }
-        );
+
         console.log(this.state.status);
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
         const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.length >= 6;
