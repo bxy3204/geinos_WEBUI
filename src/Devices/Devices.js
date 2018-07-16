@@ -4,8 +4,13 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import './Devices.css';
+import {Link} from 'react-router-dom'
+import {fileDownload} from 'react-file-download'
+import {Popup} from 'react-popup';
 import {add_device, get_devices,delete_device} from "../REST_API/Devices_API";
+import {get_config} from "../REST_API/Configs_API";
 import {create_device_list} from "../common/common";
+import Logs from "../Reports/Logs";
 
 
 
@@ -16,10 +21,16 @@ function onDeleteRow(rowKeys) {
     delete_device(rowKeys[0])
 }
 
+function onRowDoubleClick(rowKeys) {
+    console.log(rowKeys);
+    window.open(window.location.toString() + "/Device_config");
+    //alert(rowKeys.serial_number);
+}
 
 
 const options = {
-    afterDeleteRow: onDeleteRow
+    afterDeleteRow: onDeleteRow,
+    onRowDoubleClick: onRowDoubleClick
 };
 
 const selectRowProp = {
@@ -27,7 +38,12 @@ const selectRowProp = {
     clickToSelect: true,
 };
 
-
+function downloadFile(filePath){
+    var link=document.createElement('a');
+    link.href = filePath;
+    link.download = filePath.substr(filePath.lastIndexOf('/') + 1);
+    link.click();
+}
 
 
 class Devices extends Component {
@@ -36,6 +52,8 @@ class Devices extends Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.addDevice = this.addDevice.bind(this);
+        this.priceFormatter = this.priceFormatter.bind(this);
+        this.get_config_file = this.get_config_file.bind(this);
         this.state = {
             device_model: '',
             name: '',
@@ -69,6 +87,26 @@ class Devices extends Component {
             }
         );
     }
+
+    get_config_file(device){
+        let x =get_config(device)
+
+    }
+
+
+    priceFormatter(cell, row, enumObject, rowIndex) {
+        if (rowIndex <3){
+        return (
+            <button
+                type="button"
+                onClick={() =>
+                    this.get_config_file(cell)}
+            >
+               { cell }
+            </button>
+        )}
+        return cell
+    };
 
     addDevice(){
         const newDevice={
@@ -188,6 +226,7 @@ class Devices extends Component {
                 </FormGroup>
 
                 <FormGroup
+                    className = {'scep-input'}
                     controlId="scep"
                 >
                     <ControlLabel>SCEP</ControlLabel>
@@ -205,7 +244,7 @@ class Devices extends Component {
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="vendor_id"  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model_number"  width="150" dataSort>Model</TableHeaderColumn>
-                    <TableHeaderColumn dataField="serial_number"  isKey={true}  width="200" dataSort >Serial-Number</TableHeaderColumn>
+                    <TableHeaderColumn dataField="serial_number"  isKey={true}  width="200" dataSort dataFormat={ this.priceFormatter } >Serial-Number</TableHeaderColumn>
                 </BootstrapTable>
 
             </div>

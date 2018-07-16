@@ -98,3 +98,8 @@ div.model-input label.control-label:after {
 .n400 { background: #ffecec; border-color: #fad9d7; }
 .n200 { background: #e9ffd9; border-color: #D1FAB6; }
 .n { background: #e9ffd9; border-color: #D1FAB6; display: none; }
+
+.scep-input{
+    width: 20px;
+    height: fit-content;
+}

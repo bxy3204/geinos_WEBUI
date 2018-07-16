@@ -50,22 +50,22 @@ div.role-input label.control-label:after {
 }
 .pass-input{
     width: 20%;
-
+    margin: 0px;
 }
 div.pass-input label.control-label:after {
     content: " *";
     color: red;
+    display:inline-block;
 }
 .pass-verify-input{
     position: relative;
     width: 20%;
-    bottom: 75px;
     left: 21.3%;
-
 }
 div.pass-verify-input label.control-label:after {
     content: " *";
     color: red;
+
 }
 .pass-input-error{
     width: 20%;

@@ -27,6 +27,7 @@ class Scep extends Component {
             org_unit:'',
             status: '',
             message: '',
+            sys_server: ""
 
         };
     }
@@ -44,7 +45,8 @@ class Scep extends Component {
             state: this.state.state,
             locale: this.state.locale,
             organization: this.state.organization,
-            org_unit: this.state.org_unit
+            org_unit: this.state.org_unit,
+            sys_server: this.state.sys_server
 
         };
         add_scep(newUser).then((fetched) => {
@@ -89,12 +91,13 @@ class Scep extends Component {
         const usrLink = this.state.name, usrIsValid = usrLink && usrLink.indexOf( ' ' ) < 0;
         const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.indexOf( ' ' ) < 0;
         const serverLink = this.state.server, serverIsValid = serverLink && serverLink.indexOf( ' ' ) < 0;
+        const sys_serverLink = this.state.sys_server, sys_serverIsValid = sys_serverLink && sys_serverLink.indexOf( ' ' ) < 0;
         const digestLink = this.state.digest, digestIsValid = digestLink && digestLink.indexOf( ' ' ) < 0;
         const encryptionLink = this.state.encrypt, encryptionIsValid = encryptionLink && encryptionLink.indexOf( ' ' ) < 0;
 
         var complete = false;
         console.log("tesdst");
-        if (usrIsValid && passwordIsValid && serverIsValid && digestIsValid && encryptionIsValid){
+        if (usrIsValid && passwordIsValid && serverIsValid && digestIsValid && encryptionIsValid && sys_serverIsValid){
             complete = true;
         } else{
             complete = false;
@@ -113,6 +116,10 @@ class Scep extends Component {
                 <div className="Home">
                     <h2>Scep</h2>
                 </div>
+                <div className="System _Header_div">
+                    <h2 className="System_Header">System Settings</h2>
+                </div>
+
                 <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
                 </div>
                 <form className="form-createuser">
@@ -136,6 +143,18 @@ class Scep extends Component {
                         placeholder="Enter password"
                         type="password"
                     />
+                    <FormGroupCreate
+                        className = {'sys-server-input'}
+                        controlId="sys_server"
+                        label="System Server"
+                        value={this.state.sys_server}
+                        change={this.handleChange}
+                        placeholder="Enter System Server"
+                        type="text"
+                    />
+                    <div className="System _Header_div">
+                        <h2 className="System_Header">Device Settings</h2>
+                    </div>
                     <FormGroupCreate
                         className = { 'server-input'}
                         controlId="server"

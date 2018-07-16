@@ -32,7 +32,7 @@ function onDeleteRow(rowKeys) {
                 this.setState({status:102});
             }
         });
-    });;
+    });
 
 }
 const options = {
@@ -124,7 +124,7 @@ class DeviceGroups extends Component {
 
         if (this.state.filterType.localeCompare("model") == 0)
         {
-            newGroup.attribute = 'model';
+            newGroup.attribute = 'model_number';
             newGroup.value = this.state.device_model.value
         }
         else
@@ -155,7 +155,6 @@ class DeviceGroups extends Component {
             });
         });
         this.setState({name: ''});
-        this.componentDidMount();
         //window.location.reload();
     }
     componentDidMount() {
