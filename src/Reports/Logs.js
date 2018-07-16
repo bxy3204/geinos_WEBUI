@@ -26,16 +26,22 @@ class Logs extends Component {
     }
 
     render() {
+        const options = {
+            defaultSortName: 'date_created',
+            defaultSortOrder: 'desc'
+        };
     	let List = this.state.logs;
 
         return (
-                <BootstrapTable className="table-user" data={this.state.logs}   striped={true} hover={true} pagination>
+                <div className="container">
+                <BootstrapTable className="table-logs" data={this.state.logs} options={options}   striped={true} hover={true} pagination>
                     <TableHeaderColumn dataField="user" isKey={true}  width="150"  dataSort>User</TableHeaderColumn>
                     <TableHeaderColumn dataField="IP"  width="150" dataSort>IP</TableHeaderColumn>
-                    <TableHeaderColumn dataField="log_message"  width="200" dataSort >Event</TableHeaderColumn>
-                    <TableHeaderColumn dataField="event_type"  width="200" dataSort >Event Type</TableHeaderColumn>
+                    <TableHeaderColumn dataField="log_message"  width="300" dataSort >Event</TableHeaderColumn>
+                    <TableHeaderColumn dataField="event_type"  width="300" dataSort >Event Type</TableHeaderColumn>
                     <TableHeaderColumn dataField="date_created"  width="150" dataSort >Last Modified</TableHeaderColumn>
                 </BootstrapTable>
+                </div>
         );
     }
 }

@@ -14,7 +14,8 @@ export function add_scep(user){
         state : user.state,
         locale : user.locale,
         organization : user.organization,
-        org_unit : user.org_unit
+        org_unit : user.org_unit,
+        sys_server: user.sys_server
     };
     return fetch(route + '/scep', {
         method: 'put',

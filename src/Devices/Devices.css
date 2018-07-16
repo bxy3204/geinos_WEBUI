@@ -99,8 +99,6 @@ div.model-input label.control-label:after {
 .n200 { background: #e9ffd9; border-color: #D1FAB6; }
 .n { background: #e9ffd9; border-color: #D1FAB6; display: none; }
 
-
-
 .modal {
     font-size: 12px;
 }
@@ -133,4 +131,8 @@ div.model-input label.control-label:after {
     background: #ffffff;
     border-radius: 18px;
     border: 1px solid #cfcece;
+}
+.scep-input{
+    width: 20px;
+    height: fit-content;
 }

@@ -155,7 +155,7 @@ class Users extends Component {
                     placeholder="Enter email"
                     type="text"
                 />
-                <div className = 'error-placeholder'> { passwordIsValid && this.state.password !== this.state.passwordverify? "passwords don't match" : ''} </div>
+                <div className = 'error-placeholder'> { passwordIsValid && this.state.password !== this.state.passwordverify? "passwords don't match" : ''}
                 <FormGroupCreate
                     className = { 'pass-input' }
                     controlId="password"
@@ -176,6 +176,7 @@ class Users extends Component {
                     placeholder="Re-Enter password"
                     type="password"
                 />
+                </div>
                 <div>
 
                 <DropdownFormGroupCreate

@@ -221,6 +221,7 @@ class Devices extends Component {
                 </FormGroup>
 
                 <FormGroup
+                    className = {'scep-input'}
                     controlId="scep"
                 >
                     <ControlLabel>SCEP</ControlLabel>
