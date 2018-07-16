@@ -54,7 +54,7 @@ class DeviceGroups extends Component {
             name: '',
             filter:'',
             deviceGroups: '',
-            filterType: '',
+            filterType: 'model',
             device_model: '',
             device_models: [],
             status: '',
