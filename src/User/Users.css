@@ -41,7 +41,7 @@ div.email-input label.control-label:after {
 .role-input{
     width: max-content;
     position: relative;
-    bottom: 80px;
+    bottom: 90px;
 
 }
 div.role-input label.control-label:after {
@@ -60,26 +60,20 @@ div.pass-input label.control-label:after {
 .pass-verify-input{
     position: relative;
     width: 20%;
+    bottom: 109px;
     left: 21.3%;
+
 }
 div.pass-verify-input label.control-label:after {
     content: " *";
     color: red;
-
 }
 .pass-input-error{
     width: 20%;
     border-bottom: 2px solid red;
 
 }
-.pass-verify-input-error{
-    position: relative;
-    width: 20%;
-    bottom: 75px;
-    left: 21.3%;
-    border-bottom: 2px solid red;
 
-}
 .button-submit{
     position: relative;
     width: fit-content;

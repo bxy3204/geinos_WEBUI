@@ -36,6 +36,22 @@ export function add_device(device){
     });
 }
 
+export function retrieve_config(device_sn){
+    let route = get_route();
+    let creds = get_creds();
+    console.log("looking up " + device_sn);
+    let jsondata = {
+        device_sn : device_sn,
+    };
+    return fetch(route + '/configs', {
+        method: 'post',
+        body: JSON.stringify(jsondata),
+        headers: new Headers({
+            'Authorization': creds,
+            'content-type': 'application/json',
+        })
+    });
+}
 export function delete_device(serial_num){
     let route = get_route();
     let creds = get_creds();
@@ -47,6 +63,6 @@ export function delete_device(serial_num){
         body: JSON.stringify(jsondata),
         headers: new Headers({
             'Authorization': creds,
-            'content-type': 'application/json'})
+            'content-type': 'application/json'}),
     });
 }

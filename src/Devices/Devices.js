@@ -4,13 +4,8 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import './Devices.css';
-import {Link} from 'react-router-dom'
-import {fileDownload} from 'react-file-download'
-import {Popup} from 'react-popup';
-import {add_device, get_devices,delete_device} from "../REST_API/Devices_API";
-import {get_config} from "../REST_API/Configs_API";
-import {create_device_list} from "../common/common";
-import Logs from "../Reports/Logs";
+import {add_device, get_devices,delete_device, retrieve_config} from "../REST_API/Devices_API";
+import SkyLight from 'react-skylight';
 
 
 
@@ -21,16 +16,10 @@ function onDeleteRow(rowKeys) {
     delete_device(rowKeys[0])
 }
 
-function onRowDoubleClick(rowKeys) {
-    console.log(rowKeys);
-    window.open(window.location.toString() + "/Device_config");
-    //alert(rowKeys.serial_number);
-}
 
 
 const options = {
-    afterDeleteRow: onDeleteRow,
-    onRowDoubleClick: onRowDoubleClick
+    afterDeleteRow: onDeleteRow
 };
 
 const selectRowProp = {
@@ -38,12 +27,7 @@ const selectRowProp = {
     clickToSelect: true,
 };
 
-function downloadFile(filePath){
-    var link=document.createElement('a');
-    link.href = filePath;
-    link.download = filePath.substr(filePath.lastIndexOf('/') + 1);
-    link.click();
-}
+
 
 
 class Devices extends Component {
@@ -52,8 +36,6 @@ class Devices extends Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.addDevice = this.addDevice.bind(this);
-        this.priceFormatter = this.priceFormatter.bind(this);
-        this.get_config_file = this.get_config_file.bind(this);
         this.state = {
             device_model: '',
             name: '',
@@ -65,6 +47,7 @@ class Devices extends Component {
             devices: [],
             status: '',
             message: '',
+            content: '',
         }
 
     }
@@ -83,30 +66,15 @@ class Devices extends Component {
 
     componentDidMount() {
         get_devices().then((items) => {
+
+                for (var i = 0; i < items.data.length; i++) {
+                    console.log("thing" + items.data[i]["serial_number"]);
+                }
                 this.setState({devices: items.data});
+                console.log(items.data);
             }
         );
     }
-
-    get_config_file(device){
-        let x =get_config(device)
-
-    }
-
-
-    priceFormatter(cell, row, enumObject, rowIndex) {
-        if (rowIndex <3){
-        return (
-            <button
-                type="button"
-                onClick={() =>
-                    this.get_config_file(cell)}
-            >
-               { cell }
-            </button>
-        )}
-        return cell
-    };
 
     addDevice(){
         const newDevice={
@@ -119,8 +87,8 @@ class Devices extends Component {
         };
         add_device(newDevice).then((fetched) => {
             fetched.json().then((data) => {
-                console.log(data);
-                this.setState({message:data.message});
+                console.log("data" + data);
+               // this.setState({message:data.message});
                 /*
                 Status codes between 400 and 500 are being forced to 400 because
                 they map to a specific CSS style class labeled with that status code.
@@ -158,6 +126,31 @@ class Devices extends Component {
         this.setState({scep:  e.target.checked ? 'TRUE' : 'FALSE'});
     }
 
+    faxformat(cell, row){
+        this.simpleDialog.show();
+        this.setState({content:"Loading..."});
+        console.log(row);
+        retrieve_config(row["serial_number"]).then((fetched) => {
+            fetched.json().then((data) => {
+                console.log(data)
+                console.log("data" + data.data);
+                this.setState({content:data.data});
+
+            });
+        }).catch((error) => {
+            console.log('error: ' + error);
+        });
+    }
+    cellButton(cell, row, enumObject, rowIndex) {
+        return       <div>
+            <section>
+                <button onClick={() => this.faxformat(cell, row)}>Open</button>
+            </section>
+            <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Config File">
+                {this.state.content}
+            </SkyLight>
+        </div>;
+    }
     render() {
         products = this.state.devices;
         const modelLink = this.state.device_model, modelIsValid = modelLink;
@@ -166,7 +159,6 @@ class Devices extends Component {
         if (modelIsValid && serialIsValid){
             complete = true;
         }
-
         return (
             <div className="container">
                 <div className="Home">
@@ -244,7 +236,8 @@ class Devices extends Component {
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
                     <TableHeaderColumn dataField="vendor_id"  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model_number"  width="150" dataSort>Model</TableHeaderColumn>
-                    <TableHeaderColumn dataField="serial_number"  isKey={true}  width="200" dataSort dataFormat={ this.priceFormatter } >Serial-Number</TableHeaderColumn>
+                    <TableHeaderColumn dataField="serial_number"  isKey={true}  width="200" dataSort >Serial-Number</TableHeaderColumn>
+                    <TableHeaderColumn dataFormat={this.cellButton.bind(this)} width="150" >Config File</TableHeaderColumn>
                 </BootstrapTable>
 
             </div>
