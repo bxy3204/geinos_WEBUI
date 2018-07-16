@@ -73,7 +73,9 @@ class Devices extends Component {
                 this.setState({devices: items.data});
                 console.log(items.data);
             }
-        );
+        ).catch(err => {
+            console.log(err);
+        });
     }
 
     addDevice(){
@@ -94,6 +96,7 @@ class Devices extends Component {
                 they map to a specific CSS style class labeled with that status code.
                 The style name is used in render().
                  */
+                this.setState({message:data.message});
                 if(data.status >= 400 && data.status < 500){
                     this.setState({status:400});
                 }

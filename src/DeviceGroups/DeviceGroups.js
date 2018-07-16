@@ -124,7 +124,7 @@ class DeviceGroups extends Component {
 
         if (this.state.filterType.localeCompare("model") == 0)
         {
-            newGroup.attribute = 'model';
+            newGroup.attribute = 'model_number';
             newGroup.value = this.state.device_model.value
         }
         else

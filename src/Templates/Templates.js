@@ -5,6 +5,7 @@ import './Templates.css';
 import {add_template} from "../REST_API/Templates_API";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_param} from "../REST_API/Parameter_API";
+import SkyLight from 'react-skylight';
 
 let List = [];
 export function uploadFail(error) {
@@ -65,7 +66,6 @@ class Templates extends Component {
     };
 
     handleSubmit(event) {
-        alert('An essay was submitted: ' + this.state.value);
         event.preventDefault();
     };
 
@@ -131,7 +131,7 @@ class Templates extends Component {
 
         const fileTextLink = this.state.filename, fileTextIsValid = fileTextLink && fileTextLink.indexOf( ' ' ) < 0;
         var complete = false;
-        if (fileTextIsValid && nameIsValid){
+        if (nameIsValid){
             complete = true;
         }
         return (
@@ -162,16 +162,22 @@ class Templates extends Component {
 
                     <div>
                         <label className="label-textarea">Base Configuration File</label> <label className="asterisk">*</label>
-                        <label className="label-param-table">Available Parameters</label>
                     </div>
                     <div>
                     <textarea  className=  {'file-input'} value={this.state.filetext} onChange={this.handleTextChange} />
+                        <div>
+                            <section>
+                                <button onClick={() => this.simpleDialog.show()}>Show Parameters</button>
+                            </section>
+                            <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Config File">
+                                <BootstrapTable className="table-template" data={List}    striped={true} hover={true} pagination>
+                                    <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
+                                    <TableHeaderColumn dataField="param_type"  width="150" dataSort>Type</TableHeaderColumn>
+                                    <TableHeaderColumn dataField="start_value"  width="200" dataSort >Value</TableHeaderColumn>
+                                </BootstrapTable>
+                            </SkyLight>
+                        </div>
 
-                        <BootstrapTable className="table-template" data={List}    striped={true} hover={true} pagination>
-                            <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
-                            <TableHeaderColumn dataField="param_type"  width="150" dataSort>Type</TableHeaderColumn>
-                            <TableHeaderColumn dataField="start_value"  width="200" dataSort >Value</TableHeaderColumn>
-                        </BootstrapTable>
                     </div>
 
                     <div>
