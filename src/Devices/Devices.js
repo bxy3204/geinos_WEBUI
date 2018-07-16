@@ -4,8 +4,8 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import './Devices.css';
-import {add_device, get_devices,delete_device} from "../REST_API/Devices_API";
-import {create_device_list} from "../common/common";
+import {add_device, get_devices,delete_device, retrieve_config} from "../REST_API/Devices_API";
+import SkyLight from 'react-skylight';
 
 
 
@@ -47,6 +47,7 @@ class Devices extends Component {
             devices: [],
             status: '',
             message: '',
+            content: '',
         }
 
     }
@@ -65,7 +66,12 @@ class Devices extends Component {
 
     componentDidMount() {
         get_devices().then((items) => {
+
+                for (var i = 0; i < items.data.length; i++) {
+                    console.log("thing" + items.data[i]["serial_number"]);
+                }
                 this.setState({devices: items.data});
+                console.log(items.data);
             }
         );
     }
@@ -81,8 +87,8 @@ class Devices extends Component {
         };
         add_device(newDevice).then((fetched) => {
             fetched.json().then((data) => {
-                console.log(data);
-                this.setState({message:data.message});
+                console.log("data" + data);
+               // this.setState({message:data.message});
                 /*
                 Status codes between 400 and 500 are being forced to 400 because
                 they map to a specific CSS style class labeled with that status code.
@@ -120,6 +126,31 @@ class Devices extends Component {
         this.setState({scep:  e.target.checked ? 'TRUE' : 'FALSE'});
     }
 
+    faxformat(cell, row){
+        this.simpleDialog.show();
+        this.setState({content:"Loading..."});
+        console.log(row);
+        retrieve_config(row["serial_number"]).then((fetched) => {
+            fetched.json().then((data) => {
+                console.log(data)
+                console.log("data" + data.data);
+                this.setState({content:data.data});
+
+            });
+        }).catch((error) => {
+            console.log('error: ' + error);
+        });
+    }
+    cellButton(cell, row, enumObject, rowIndex) {
+        return       <div>
+            <section>
+                <button onClick={() => this.faxformat(cell, row)}>Open</button>
+            </section>
+            <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Config File">
+                {this.state.content}
+            </SkyLight>
+        </div>;
+    }
     render() {
         products = this.state.devices;
         const modelLink = this.state.device_model, modelIsValid = modelLink;
@@ -128,7 +159,6 @@ class Devices extends Component {
         if (modelIsValid && serialIsValid){
             complete = true;
         }
-
         return (
             <div className="container">
                 <div className="Home">
@@ -206,6 +236,7 @@ class Devices extends Component {
                     <TableHeaderColumn dataField="vendor_id"  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model_number"  width="150" dataSort>Model</TableHeaderColumn>
                     <TableHeaderColumn dataField="serial_number"  isKey={true}  width="200" dataSort >Serial-Number</TableHeaderColumn>
+                    <TableHeaderColumn dataFormat={this.cellButton.bind(this)} width="150" >Config File</TableHeaderColumn>
                 </BootstrapTable>
 
             </div>
