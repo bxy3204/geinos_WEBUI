@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Scep.css';
 import {Button} from 'react-bootstrap'
-import {add_scep} from "../REST_API/Scep_API";
+import {add_scep, get_scep} from "../REST_API/Scep_API";
 import {FormGroupCreate, create_user_list,ScepDigestDropdownFormGroupCreate,ScepEncryptDropdownFormGroupCreate} from "../common/common";
+import {get_devices} from "../REST_API/Devices_API";
 
 let products = [];
 
@@ -74,6 +75,26 @@ class Scep extends Component {
         });
     }
 
+    componentDidMount() {
+        get_scep().then((items) => {
+                console.log(items.data[0]['country']);
+                this.setState({name:items.data[0]['username']});
+                this.setState({password:items.data[0]['password']});
+                this.setState({server:items.data[0]['server']});
+                this.setState({digest:items.data[0]['digestalgo']});
+                this.setState({encrypt:items.data[0]['encryptalgo']});
+                this.setState({country:items.data[0]['country']});
+                this.setState({state:items.data[0]['state']});
+                this.setState({locale:items.data[0]['locale']});
+                this.setState({organization:items.data[0]['organization']});
+                this.setState({org_unit:items.data[0]['org_unit']});
+                this.setState({sys_server:items.data[0]['sys_server']});
+            }
+        ).catch(err => {
+            console.log(err);
+        });
+    }
+
     handleChange(e) {
 
         this.setState({ [e.target.id]: e.target.value});
@@ -84,10 +105,8 @@ class Scep extends Component {
         let new_list={
             items:this.state.items,
         };
-        console.log(this.state.items);
         products = create_user_list(new_list);
         products = this.state.items;
-        console.log(products);
         const usrLink = this.state.name, usrIsValid = usrLink && usrLink.indexOf( ' ' ) < 0;
         const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.indexOf( ' ' ) < 0;
         const serverLink = this.state.server, serverIsValid = serverLink && serverLink.indexOf( ' ' ) < 0;
@@ -96,18 +115,10 @@ class Scep extends Component {
         const encryptionLink = this.state.encrypt, encryptionIsValid = encryptionLink && encryptionLink.indexOf( ' ' ) < 0;
 
         var complete = false;
-        console.log("tesdst");
         if (usrIsValid && passwordIsValid && serverIsValid && digestIsValid && encryptionIsValid && sys_serverIsValid){
             complete = true;
         } else{
             complete = false;
-            console.log("start")
-            console.log(usrIsValid)
-            console.log(passwordIsValid)
-            console.log(serverIsValid)
-            console.log(digestIsValid)
-            console.log(encryptionIsValid)
-            console.log("end")
         }
 
         return (

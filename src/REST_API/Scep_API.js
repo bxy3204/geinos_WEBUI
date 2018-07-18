@@ -25,3 +25,22 @@ export function add_scep(user){
             'content-type': 'application/json'})
     });
 }
+
+
+
+
+
+export function get_scep() {
+
+    let route = get_route();
+    let creds = get_creds();
+    return fetch( route + '/scep',
+        {
+            method: 'get',
+            headers: new Headers({
+                'Authorization': creds}),
+
+        }).then(function(response) {
+        return response.json();
+    });
+}
