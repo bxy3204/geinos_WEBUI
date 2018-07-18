@@ -12,54 +12,18 @@
     height: fit-content;
     display:inline-block;
 }
-.name-input{
-     width: 20%;
+.login-name-input{
+     width: 30%;
      display:inline-block;
  }
-.name-input-error{
-    width: 20%;
-    display:inline-block;
-    border-bottom: 2px solid red;
-}
-.email-input{
-    position: relative;
-    padding-top: 3%;
-    width: 20%;
-    left: 1.3%;
-    display:inline-block;
-}
-.email-input-error{
-    position: relative;
-    padding-top: 3%;
-    width: 20%;
-    left: 1.3%;
-    display:inline-block;
-    border-bottom: 2px solid red;
-}
-.role-input{
-    width: max-content;
-    position: relative;
-    bottom: 80px;
 
-}
+
 .pass-input-login{
-    width: 20%;
+    width: 30%;
+    width: 30%;
     padding-bottom: 3.3%;
 }
 
-.pass-input-error{
-    width: 20%;
-    border-bottom: 2px solid red;
-
-}
-.pass-verify-input-error{
-    position: relative;
-    width: 20%;
-    bottom: 75px;
-    left: 21.3%;
-    border-bottom: 2px solid red;
-
-}
 .button-submit{
     position: relative;
     width: fit-content;
@@ -68,19 +32,4 @@
     border-color: #eea236;
     color: white;
     margin-right:auto;
-}
-
-.table-user{
-    width: max-content;
-    position: relative;
-    height: content-box;
-    padding-bottom: 10%;
-    text-align: left;
-}
-.form-createuse{
-    width: max-content;
-    position: relative;
-    height: content-box;
-    padding-bottom: 10%;
-    text-align: center;
 }

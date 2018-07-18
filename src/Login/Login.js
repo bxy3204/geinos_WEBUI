@@ -72,7 +72,7 @@ class Login extends Component {
                 </div>
             <form className="form-login_user">
                 <FormGroupCreate
-                    className = {'name-input'}
+                    className = {'login-name-input'}
                     controlId="name"
                     label="User Name"
                     value={this.state.name}
