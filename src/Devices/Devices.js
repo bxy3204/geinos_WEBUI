@@ -107,6 +107,7 @@ class Devices extends Component {
                     // this reflects in the css file to ensure proper message notification
                     this.setState({status:102});
                 }
+                this.componentDidMount();
             });
         });
         //window.location.reload();
@@ -114,7 +115,6 @@ class Devices extends Component {
         this.setState({serial : ''});
         this.setState({location : ''});
         this.setState({scep : ''});
-        this.componentDidMount();
     }
 
     handleNameChange(e) {

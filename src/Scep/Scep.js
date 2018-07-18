@@ -67,11 +67,11 @@ class Scep extends Component {
                     //any other status than success or error will be treated as 102, informational
                     // this reflects in the css file to ensure proper message notification
                     this.setState({status:102});
+
                 }
+                this.componentDidMount()
             });
         });
-
-        //window.location.reload();
     }
 
     handleChange(e) {

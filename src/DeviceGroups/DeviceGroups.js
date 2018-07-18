@@ -152,11 +152,12 @@ class DeviceGroups extends Component {
                     // this reflects in the css file to ensure proper message notification
                     this.setState({status:102});
                 }
+                this.componentDidMount()
             });
         });
         this.setState({name: ''});
-        //window.location.reload();
     }
+
     componentDidMount() {
         get_device_groups().then((items) => {
                 this.setState({deviceGroups: items.data});

@@ -79,11 +79,11 @@ class Assignments extends Component {
                     // this reflects in the css file to ensure proper message notification
                     this.setState({status:102});
                 }
+                this.componentDidMount();
             });
         });
         this.setState({ template:'' });
         this.setState({ group:'' });
-        this.componentDidMount();
     }
 
     componentDidMount() {

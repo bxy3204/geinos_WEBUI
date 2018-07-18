@@ -85,6 +85,7 @@ class Users extends Component {
                         // this reflects in the css file to ensure proper message notification
                         this.setState({status:102})
                     }
+                    this.componentDidMount();
                 });
             });
         }

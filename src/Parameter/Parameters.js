@@ -114,9 +114,9 @@ class Parameters extends Component {
                         // this reflects in the css file to ensure proper message notification
                         this.setState({status:102});
                     }
+                    this.componentDidMount();
                 });
             });
-            //window.location.reload();
         }
         else if (this.state.param_type.localeCompare("Dynamic-IP-Range") === 0)
         {
@@ -145,6 +145,7 @@ class Parameters extends Component {
                         // this reflects in the css file to ensure proper message notification
                         this.setState({status:102});
                     }
+                    this.componentDidMount();
                 });
             });
         }
@@ -173,12 +174,13 @@ class Parameters extends Component {
                         // this reflects in the css file to ensure proper message notification
                         this.setState({status:102});
                     }
+                    this.componentDidMount();
                 });
             });
         }
         this.setState({name: ''});
         this.setState({value: ''});
-        this.componentDidMount();
+
     }
 
 
