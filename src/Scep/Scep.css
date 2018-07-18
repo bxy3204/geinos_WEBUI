@@ -22,6 +22,7 @@ div.name-input label.control-label:after {
 div.sys-server-input label.control-label:after {
     content: " *";
     color: red;
+
 }
 
 .encrypt-input{
@@ -47,6 +48,7 @@ div.sys-server-input label.control-label:after {
     width: 20%;
 }
 .sys-server-input{
+    display:inline-block;
     width: 20%
 }
 
@@ -70,6 +72,7 @@ div.password-input label.control-label:after {
 }
 
 .server-input{
+    display:inline-block;
     width: 20%;
 }
 div.server-input label.control-label:after {
@@ -138,3 +141,15 @@ div.digest-input label.control-label:after {
 .n400 { background: #ffecec; border-color: #fad9d7; }
 .n200 { background: #e9ffd9; border-color: #D1FAB6; }
 .n { background: #e9ffd9; border-color: #D1FAB6; display: none; }
+
+div.sys_link{
+    display:inline-block;
+    color: black;
+    font-size: large;
+}
+
+div.serv_link{
+    display:inline-block;
+    color: black;
+    font-size: large;
+}

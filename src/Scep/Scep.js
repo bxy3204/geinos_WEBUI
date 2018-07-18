@@ -151,7 +151,9 @@ class Scep extends Component {
                         change={this.handleChange}
                         placeholder="Enter System Server"
                         type="text"
+
                     />
+                    <div className="sys_link">/certsrv/mscep_admin/</div>
                     <div className="System _Header_div">
                         <h2 className="System_Header">Device Settings</h2>
                     </div>
@@ -164,6 +166,7 @@ class Scep extends Component {
                         placeholder="Enter server"
                         type="text"
                     />
+                    <div className="serv_link">/certsrv/mscep/mscep.dll</div>
 
                     <ScepDigestDropdownFormGroupCreate
                         className="digest-input"

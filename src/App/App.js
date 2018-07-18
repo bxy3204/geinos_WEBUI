@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Devices from "../Devices/Devices";
 import DeviceGroups from "../DeviceGroups/DeviceGroups";
+import DeviceStatus from "../DeviceStatus/DeviceStatus";
 import Templates from "../Templates/Templates";
 import Parameters from "../Parameter/Parameters";
 import Assignments from "../Assignments/Assignments";
@@ -46,6 +47,7 @@ class App extends Component {
                             <h1>Device Inventory</h1>
                             <li><NavLink to="/Devices">Devices</NavLink></li>
                             <li><NavLink to="/DeviceGroups">Device Groups</NavLink></li>
+                            <li><NavLink to="/DeviceStatus">Device Status</NavLink></li>
                             <h1>Template Inventory</h1>
                             <li><NavLink to="/Parameters">Parameters</NavLink></li>
                             <li><NavLink to="/Templates">Templates</NavLink></li>
@@ -60,6 +62,7 @@ class App extends Component {
                             <Route exact path="/UserAuthentication" component={Users_Authentication}/>
                             <Route path="/Devices" component={Devices}/>
                             <Route exact path="/DeviceGroups" component={DeviceGroups}/>
+                            <Route exact path="/DeviceStatus" component={DeviceStatus}/>
                             <Route path="/Templates" component={Templates}/>
                             <Route path="/Parameters" component={Parameters}/>
                             <Route path="/Assignments" component={Assignments}/>
@@ -83,6 +86,7 @@ class App extends Component {
                                 <Route exact path="/UserAuthentication" component={Users_Authentication}/>
                                 <Route path="/Devices" component={Devices}/>
                                 <Route exact path="/DeviceGroups" component={DeviceGroups}/>
+                                <Route exact path="/DeviceStatus" component={DeviceStatus}/>
                                 <Route path="/Templates" component={Templates}/>
                                 <Route path="/Parameters" component={Parameters}/>
                                 <Route path="/Assignments" component={Assignments}/>
@@ -102,6 +106,7 @@ class App extends Component {
                     .bind(this),
                 1000
             );
+
 
             }
         );
