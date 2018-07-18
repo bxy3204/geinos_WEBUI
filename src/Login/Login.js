@@ -66,7 +66,7 @@ class Login extends Component {
 
         return (
 
-            <div className="container">
+            <div className="login-container">
                 <div className="Home">
                     <h2>Login</h2>
                 </div>
