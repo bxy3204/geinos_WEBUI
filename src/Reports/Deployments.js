@@ -16,7 +16,7 @@ class Deployments extends Component {
 
         render() {
         return (
-                <BootstrapTable className="table-user" data={List}   striped={true} hover={true} pagination>
+                <BootstrapTable className="table-user" data={List}   striped={true} hover={true} pagination search>
                     <TableHeaderColumn dataField="name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="type"  width="150" dataSort>Type</TableHeaderColumn>
                     <TableHeaderColumn dataField="para"  width="200" dataSort >Value</TableHeaderColumn>

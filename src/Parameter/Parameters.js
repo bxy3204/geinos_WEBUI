@@ -7,7 +7,7 @@ import 'react-select/dist/react-select.css';
 import {add_param, add_dynamic_param, add_range_param, delete_param, get_param} from "../REST_API/Parameter_API";
 import {verify_token} from "../REST_API/Login_API";
 
-let List = [];
+
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys);
@@ -96,7 +96,7 @@ class Parameters extends Component {
     addParameter(){
         var newparam = null;
         if (this.state.param_type.localeCompare("IP-Range") === 0){
-            var newparam={
+             newparam={
                 name: this.state.name,
                 value: this.state.range_start,
                 type: this.state.param_type
@@ -126,7 +126,7 @@ class Parameters extends Component {
         }
         else if (this.state.param_type.localeCompare("Dynamic-IP-Range") === 0)
         {
-            var newparam={
+             newparam={
                 name: this.state.name,
                 value: this.state.value,
                 type: "Dynamic",
@@ -156,7 +156,7 @@ class Parameters extends Component {
             });
         }
         else {
-            var newparam={
+            newparam={
                 name: this.state.name,
                 value: this.state.value,
                 type: this.state.param_type
@@ -192,7 +192,7 @@ class Parameters extends Component {
 
 
     renderTypeField(){
-        if (this.state.param_type.localeCompare("IP-Range") == 0)
+        if (this.state.param_type.localeCompare("IP-Range") === 0)
         {
             return <div className="range-div">
                 <FormGroup
@@ -210,7 +210,7 @@ class Parameters extends Component {
                 </FormGroup>
             </div>;
         }
-        else if (this.state.param_type.localeCompare("Dynamic-IP-Range") == 0)
+        else if (this.state.param_type.localeCompare("Dynamic-IP-Range") === 0)
         {
             return <div className="range-div"> <FormGroup
                 className="value-input"
@@ -270,7 +270,6 @@ class Parameters extends Component {
         let List = this.state.params_list;
 
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink !== "";
-        const valueLink = this.state.value, valueIsValid = valueLink && valueLink !== "";
         const paramLink = this.state.param_type, paramIsValid = paramLink && paramLink !== "";
 
         var complete = false;
@@ -311,7 +310,7 @@ class Parameters extends Component {
                 {this.renderTypeField()}
                 <Button className="button-param-submit" disabled = {!complete} onClick={this.addParameter} type="submit">Add</Button>
 
-                <BootstrapTable className="table-user" data={List} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
+                <BootstrapTable className="table-user" data={List} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
                     <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="param_type"  width="150" dataSort>Type</TableHeaderColumn>
                     <TableHeaderColumn dataField="start_value"  width="200" dataSort >Value</TableHeaderColumn>

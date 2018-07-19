@@ -8,7 +8,6 @@ import {get_param} from "../REST_API/Parameter_API";
 import SkyLight from 'react-skylight';
 import {verify_token} from "../REST_API/Login_API";
 
-let List = [];
 export function uploadFail(error) {
     return {
         type: 'UPLOAD_DOCUMENT_FAIL',
@@ -130,12 +129,10 @@ class Templates extends Component {
             devices.push(user);
         }
 
-        let List = this.state.params_list;
 
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink.indexOf( ' ' ) < 0;
             console.log(nameIsValid);
 
-        const fileTextLink = this.state.filename, fileTextIsValid = fileTextLink && fileTextLink.indexOf( ' ' ) < 0;
         var complete = false;
         if (nameIsValid){
             complete = true;
@@ -176,7 +173,7 @@ class Templates extends Component {
                                 <button onClick={() => this.simpleDialog.show()}>Show Parameters</button>
                             </section>
                             <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Config File">
-                                <BootstrapTable className="table-template" data={List}    striped={true} hover={true} pagination>
+                                <BootstrapTable className="table-template" data={this.state.params_list}    striped={true} hover={true} pagination search>
                                     <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                                     <TableHeaderColumn dataField="param_type"  width="150" dataSort>Type</TableHeaderColumn>
                                     <TableHeaderColumn dataField="start_value"  width="200" dataSort >Value</TableHeaderColumn>

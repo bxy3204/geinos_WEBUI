@@ -35,11 +35,10 @@ class Logs extends Component {
             defaultSortName: 'date_created',
             defaultSortOrder: 'desc'
         };
-    	let List = this.state.logs;
 
         return (
                 <div className="container">
-                <BootstrapTable className="table-logs" data={this.state.logs} options={options}   striped={true} hover={true} pagination>
+                <BootstrapTable className="table-logs" data={this.state.logs} options={options}   striped={true} hover={true} pagination search>
                     <TableHeaderColumn dataField="user" isKey={true}  width="150"  dataSort>User</TableHeaderColumn>
                     <TableHeaderColumn dataField="IP"  width="150" dataSort>IP</TableHeaderColumn>
                     <TableHeaderColumn dataField="log_message"  width="300" dataSort >Event</TableHeaderColumn>

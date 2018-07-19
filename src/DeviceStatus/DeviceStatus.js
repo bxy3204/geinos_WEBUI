@@ -41,7 +41,7 @@ class DeviceStatus extends Component {
 
         return (
             <div className="container-tasks">
-                <BootstrapTable className="table-tasks" data={this.state.tasks} options={options}   striped={true} hover={true} pagination>
+                <BootstrapTable className="table-tasks" data={this.state.tasks} options={options}   striped={true} hover={true} pagination search>
                     <TableHeaderColumn dataField="serial_number" isKey={true}  width="150"  dataSort>Device</TableHeaderColumn>
                     <TableHeaderColumn dataField="status"  width="150" dataSort>Status</TableHeaderColumn>
                 </BootstrapTable>

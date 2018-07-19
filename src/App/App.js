@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import {get_route, get_creds} from "../REST_API/API";
-
 import './App.css'
 import {
     Route,
     NavLink,
-    HashRouter,
     BrowserRouter as Router,
 } from "react-router-dom";
 import Devices from "../Devices/Devices";

@@ -4,10 +4,6 @@ import {Button} from 'react-bootstrap'
 import {login} from "../REST_API/Login_API";
 import {FormGroupCreate} from "../common/common";
 import {verify_token} from "../REST_API/Login_API";
-import {get_users} from "../REST_API/User_API";
-
-
-
 
 
 class Login extends Component {
@@ -38,8 +34,8 @@ class Login extends Component {
         };
         login(newUser).then(result=> result.json()).then((items) => {
             console.log(items);
-            this.setState({items: items.data})
-            this.saveItem("session" ,  items["auth_token"])
+            this.setState({items: items.data});
+            this.saveItem("session" ,  items["auth_token"]);
             window.location.replace(window.location.origin.toString());
         });
     }

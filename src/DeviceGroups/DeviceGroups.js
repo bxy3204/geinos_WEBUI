@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './DeviceGroups.css';
-import {create_devicegroup_list, FormGroupCreate} from "../common/common";
+import {FormGroupCreate} from "../common/common";
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {add_device_group, get_device_groups,delete_group} from "../REST_API/DeviceGroups_API";
@@ -86,7 +86,7 @@ class DeviceGroups extends Component {
     };
 
     renderTypeField() {
-        if (this.state.filterType.localeCompare("model") == 0)
+        if (this.state.filterType.localeCompare("model") === 0)
         {
             return <div>
                 <ControlLabel>Value</ControlLabel> <ControlLabel className="asterisk">  * </ControlLabel>
@@ -123,7 +123,7 @@ class DeviceGroups extends Component {
             attribute: 'model',
         };
 
-        if (this.state.filterType.localeCompare("model") == 0)
+        if (this.state.filterType.localeCompare("model") === 0)
         {
             newGroup.attribute = 'model_number';
             newGroup.value = this.state.device_model.value
@@ -174,7 +174,6 @@ class DeviceGroups extends Component {
     render() {
         products = this.state.deviceGroups;
         const nameLink = this.state.name, nameIsValid = nameLink && nameLink !== "";
-        const valueLink = this.state.device_model.value, valueIsValid = valueLink && valueLink !== "";
 
         var complete = false;
         if (nameIsValid){
@@ -214,7 +213,7 @@ class DeviceGroups extends Component {
                 {this.renderTypeField()}
 
                 <Button className="button-group-submit" disabled = {!complete} type="submit" onClick={this.addGroup}>Add</Button>
-                <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
+                <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
                     <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
                     <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>

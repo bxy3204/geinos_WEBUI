@@ -6,7 +6,6 @@
     position: relative;
     left: 35%;
     top: 20%;
-    overflow: auto;
 }
 .form{
     height: fit-content;

@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import './Scep.css';
 import {Button} from 'react-bootstrap'
 import {add_scep, get_scep} from "../REST_API/Scep_API";
-import {FormGroupCreate, create_user_list,ScepDigestDropdownFormGroupCreate,ScepEncryptDropdownFormGroupCreate} from "../common/common";
-import {get_devices} from "../REST_API/Devices_API";
+import {FormGroupCreate,ScepDigestDropdownFormGroupCreate,ScepEncryptDropdownFormGroupCreate} from "../common/common";
 import {verify_token} from "../REST_API/Login_API";
-
-let products = [];
-
 
 
 class Scep extends Component {
@@ -108,11 +104,6 @@ class Scep extends Component {
 
 
     render() {
-        let new_list={
-            items:this.state.items,
-        };
-        products = create_user_list(new_list);
-        products = this.state.items;
         const usrLink = this.state.name, usrIsValid = usrLink && usrLink.indexOf( ' ' ) < 0;
         const passwordLink = this.state.password, passwordIsValid = passwordLink && passwordLink.indexOf( ' ' ) < 0;
         const serverLink = this.state.server, serverIsValid = serverLink && serverLink.indexOf( ' ' ) < 0;

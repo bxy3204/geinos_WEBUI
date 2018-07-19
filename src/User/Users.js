@@ -5,7 +5,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users,delete_user,add_user} from "../REST_API/User_API";
 import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from "../common/common";
 import {verify_token} from "../REST_API/Login_API";
-const emailRe = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+//const emailRe = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 let products = [];
 
@@ -196,7 +196,7 @@ class Users extends Component {
 
                     <Button className="button-submit" disabled = {!complete} onClick={this.addUser} >Add</Button>
             </form>
-            <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
+            <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
                <TableHeaderColumn dataField="username" isKey={true}  width="150"  dataSort>User Name</TableHeaderColumn>
                <TableHeaderColumn dataField="role_type"  width="150" dataSort>Role</TableHeaderColumn>
                <TableHeaderColumn dataField="email"  width="200" dataSort >Email</TableHeaderColumn>

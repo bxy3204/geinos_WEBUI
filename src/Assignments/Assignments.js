@@ -6,7 +6,6 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {assign, get_assignments} from "../REST_API/Assignments_API";
 import {get_device_groups} from "../REST_API/DeviceGroups_API";
 import {get_templates} from "../REST_API/Templates_API";
-import {create_devicegroup_list} from "../common/common";
 import {verify_token} from "../REST_API/Login_API";
 
 
@@ -192,7 +191,7 @@ class Assignments extends Component {
                     options= {listOfGroups}
                 />
                 <Button className="button-assign-submit" disabled = {!complete} type="submit" onClick={this.assign_template}>Assign</Button>
-                <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination>
+                <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
                     <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Device Group</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
                     <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
