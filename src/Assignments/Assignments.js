@@ -7,6 +7,7 @@ import {assign, get_assignments} from "../REST_API/Assignments_API";
 import {get_device_groups} from "../REST_API/DeviceGroups_API";
 import {get_templates} from "../REST_API/Templates_API";
 import {create_devicegroup_list} from "../common/common";
+import {verify_token} from "../REST_API/Login_API";
 
 
 let products = [];
@@ -62,7 +63,6 @@ class Assignments extends Component {
         };
         assign(newAssign).then((fetched) => {
             fetched.json().then((data) => {
-                console.log(data);
                 this.setState({message:data.message});
                 /*
                 Status codes between 400 and 500 are being forced to 400 because
@@ -86,7 +86,14 @@ class Assignments extends Component {
         this.setState({ group:'' });
     }
 
+
+
     componentDidMount() {
+        verify_token().then((status) =>{
+            if(!status){
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_assignments().then((items) => {
                 this.setState({assignments: items.data});
             }
@@ -142,15 +149,13 @@ class Assignments extends Component {
                 }
             }
         );
-        //window.location.reload();
+        //window.location.replace(window.location.origin.toString());
     }
 
 
     render() {
         let listOfGroups = this.state.group_list;
-        console.log("aaaaaa");
-        console.log(this.state.group_list);
-        console.log(this.state.template_list);
+
         let listOfTemplates = this.state.template_list;
 
         products = this.state.assignments;

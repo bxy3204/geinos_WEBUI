@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap'
 import {add_scep, get_scep} from "../REST_API/Scep_API";
 import {FormGroupCreate, create_user_list,ScepDigestDropdownFormGroupCreate,ScepEncryptDropdownFormGroupCreate} from "../common/common";
 import {get_devices} from "../REST_API/Devices_API";
+import {verify_token} from "../REST_API/Login_API";
 
 let products = [];
 
@@ -76,6 +77,11 @@ class Scep extends Component {
     }
 
     componentDidMount() {
+        verify_token().then((status) => {
+            if (!status) {
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_scep().then((items) => {
                 console.log(items.data[0]['country']);
                 this.setState({name:items.data[0]['username']});

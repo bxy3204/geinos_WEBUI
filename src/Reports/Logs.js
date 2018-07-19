@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import {get_logs} from "../REST_API/Logs_API";
+import {verify_token} from "../REST_API/Login_API";
 
 class Logs extends Component {
     constructor(props,context) {
@@ -18,7 +19,11 @@ class Logs extends Component {
     }
 
     componentDidMount() {
-    	console.log("AA!!!!!!!");
+        verify_token().then((status) =>{
+            if(!status){
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_logs().then((items) => {
                 this.setState({logs: items.data});
             }

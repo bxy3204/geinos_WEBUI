@@ -6,6 +6,7 @@ import 'react-select/dist/react-select.css';
 import './Devices.css';
 import {add_device, get_devices,delete_device, retrieve_config} from "../REST_API/Devices_API";
 import SkyLight from 'react-skylight';
+import {verify_token} from "../REST_API/Login_API";
 
 
 
@@ -65,6 +66,11 @@ class Devices extends Component {
     }
 
     componentDidMount() {
+        verify_token().then((status) =>{
+            if(!status){
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_devices().then((items) => {
 
                 for (var i = 0; i < items.data.length; i++) {
@@ -110,7 +116,7 @@ class Devices extends Component {
                 this.componentDidMount();
             });
         });
-        //window.location.reload();
+        //window.location.replace(window.location.origin.toString());;
         this.setState({name : ''});
         this.setState({serial : ''});
         this.setState({location : ''});

@@ -93,7 +93,7 @@ class Users extends Component {
     .catch((error) => {
             console.log("Error:" + error);
         })*/
-        //window.location.reload();
+        //window.location.replace(window.location.origin.toString());
         this.setState({name : ''});
         this.setState({password: ''});
         this.setState({passwordverify: ''});
@@ -107,6 +107,11 @@ class Users extends Component {
     }
 
     componentDidMount() {
+        verify_token().then((status) => {
+            if (!status) {
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_users().then((items) => {
                 this.setState({items: items.data});
             }

@@ -3,6 +3,7 @@ import './Users_Authentication.css';
 import {Button} from 'react-bootstrap'
 import {update_radius, get_radius} from "../REST_API/Radius_API";
 import {FormGroupCreate} from "../common/common";
+import {verify_token} from "../REST_API/Login_API";
 
 class Users_Authentication extends Component {
     constructor(props, context) {
@@ -56,6 +57,11 @@ class Users_Authentication extends Component {
     }
 
     componentDidMount() {
+        verify_token().then((status) => {
+            if (!status) {
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_radius().then((items) => {
                 this.setState({
                     host: items.host,

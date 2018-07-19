@@ -34,12 +34,9 @@ class App extends Component {
 
     componentDidMount(){
         verify_token().then((status) =>{
-
             this.setState({auth:status});
-            console.log(window.location.origin.toString() + "/Login");
             if(!status && window.location.pathname.toString() !== "/Login"){
                 window.location.replace(window.location.origin.toString() + "/Login");
-                console.log(window.location)
             }
         })
     }
@@ -75,7 +72,7 @@ class App extends Component {
                     </ul>
 
                     <div className="content">
-                        <Route exact path="/Users" component={Users}/>
+                        <Route exact path="/Users" component={Users} />
                         <Route exact path="/UserAuthentication" component={Users_Authentication}/>
                         <Route path="/Devices" component={Devices}/>
                         <Route exact path="/DeviceGroups" component={DeviceGroups}/>

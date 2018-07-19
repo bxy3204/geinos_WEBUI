@@ -5,6 +5,7 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import {add_param, add_dynamic_param, add_range_param, delete_param, get_param} from "../REST_API/Parameter_API";
+import {verify_token} from "../REST_API/Login_API";
 
 let List = [];
 
@@ -81,6 +82,11 @@ class Parameters extends Component {
     }
 
     componentDidMount() {
+        verify_token().then((status) =>{
+            if(!status){
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_param().then((items) => {
                 this.setState({params_list: items.data});
             }

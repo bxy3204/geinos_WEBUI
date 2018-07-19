@@ -3,6 +3,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import {get_tasks} from "../REST_API/DeviceStatus_API";
 import './DeviceStatus.css';
+import {verify_token} from "../REST_API/Login_API";
 
 
 class DeviceStatus extends Component {
@@ -20,7 +21,11 @@ class DeviceStatus extends Component {
     }
 
     componentDidMount() {
-        console.log("AA!!!!!!!");
+        verify_token().then((status) =>{
+            if(!status){
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_tasks().then((items) => {
                 console.log(items.data);
                 this.setState({tasks: items.data});

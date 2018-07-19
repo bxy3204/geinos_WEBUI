@@ -6,6 +6,7 @@ import {add_template} from "../REST_API/Templates_API";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_param} from "../REST_API/Parameter_API";
 import SkyLight from 'react-skylight';
+import {verify_token} from "../REST_API/Login_API";
 
 let List = [];
 export function uploadFail(error) {
@@ -40,6 +41,11 @@ class Templates extends Component {
     }
 
     componentDidMount() {
+        verify_token().then((status) => {
+            if (!status) {
+                window.location.replace(window.location.origin.toString());
+            }
+        });
         get_param().then((items) => {
                 this.setState({params_list: items.data});
             }
@@ -92,7 +98,7 @@ class Templates extends Component {
                 }
             });
         });
-        //window.location.reload();
+        //window.location.replace(window.location.origin.toString());
     }
 
 
