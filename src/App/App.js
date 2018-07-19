@@ -32,7 +32,7 @@ class App extends Component {
 
     }
 
-    componentWillMount(){
+    componentDidMount(){
         verify_token().then((status) =>{
 
             this.setState({auth:status});

@@ -40,6 +40,7 @@ class Login extends Component {
             console.log(items);
             this.setState({items: items.data})
             this.saveItem("session" ,  items["auth_token"])
+            window.location.replace(window.location.origin.toString());
         });
     }
 
