@@ -156,7 +156,7 @@ class Users extends Component {
                     placeholder="Enter email"
                     type="text"
                 />
-                <div className = 'error-placeholder'> { passwordIsValid && this.state.password !== this.state.passwordverify? "passwords don't match" : ''}
+                <div className = 'error-placeholder'> { passwordIsValid && this.state.password !== this.state.passwordverify? "" : ''}
                 <FormGroupCreate
                     className = { 'pass-input' }
                     controlId="password"

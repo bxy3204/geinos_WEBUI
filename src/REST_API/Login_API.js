@@ -25,14 +25,17 @@ export function login(user) {
                 'Authorization': creds,
                 'content-type': 'application/json'})
         }).then(function(response)  {
+
             if(!response.ok) throw new Error(response.status);
             else return response.json();
         })
             .then((data) => {
+                console.log(data.status);
 
-                if(data.messsage == "User not logged in."){
+                if(data.status === 403){
+                    console.log(data.status);
                     return false;
-                } else if (data.message == "User logged in.") {
+                } else if (data.message === "User logged in.") {
                     return true;
                 }
                 throw "API Response not recognized";
