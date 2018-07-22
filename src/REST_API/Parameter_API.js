@@ -67,15 +67,18 @@ export function get_param() {
         });
 }
 
-export function delete_param(param_name){
+export function delete_param(param_names){
     let route = get_route();
     let creds = get_creds();
-    const formdata = new FormData();
-    formdata.append('param_name', param_name);
-    return fetch( route + '/parameters', {
+    const jsondata = {
+        param_names : param_names
+    };
+    console.log(jsondata)
+    fetch( route + '/parameters', {
         method: 'delete',
-        body: formdata,
+        body: JSON.stringify(jsondata),
         headers: new Headers({
-            'Authorization': creds})
+            'Authorization': creds,
+            'content-type': 'application/json'}),
     });
 }

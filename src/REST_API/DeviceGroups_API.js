@@ -37,7 +37,7 @@ export function delete_group(group_names){
     let route = get_route();
     let creds = get_creds();
     let jsondata = {
-        group_name: group_names,
+        group_names: group_names,
     };
     return fetch( route + '/device_groups', {
         method: 'delete',

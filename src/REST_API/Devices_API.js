@@ -56,7 +56,7 @@ export function delete_device(serial_nums){
     let route = get_route();
     let creds = get_creds();
     let jsondata = {
-        serial_num : serial_nums
+        serial_nums : serial_nums
     };
     fetch( route + '/devices', {
         method: 'delete',

@@ -11,7 +11,7 @@ import {verify_token} from "../REST_API/Login_API";
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys);
-    delete_param(rowKeys[0]).then((fetched) => {
+    delete_param(rowKeys).then((fetched) => {
         fetched.json().then((data) => {
             console.log(data);
             this.setState({message:data.message});
