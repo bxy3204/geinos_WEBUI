@@ -63,6 +63,7 @@ class Parameters extends Component {
             interface:'',
             status: '',
             message: '',
+            hyphen : '',
         }
 
     }
@@ -277,10 +278,18 @@ class Parameters extends Component {
         if (nameIsValid && paramIsValid){
             complete = true;
         }
+        var hyphen = "";
+        if (this.state.name.indexOf('-') > -1){
+            complete = false;
+            console.log("here");
+            var hyphen = "400";
+        }
         return (
             <div className="container">
                 <div className="Home">
                     <h2>Parameters</h2>
+                </div>
+                <div className={"notify n" + hyphen} ><span className={"symbol icon-"+ hyphen}  ></span> {"Parameter names cannot contain hyphens."}
                 </div>
                 <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
                 </div>
