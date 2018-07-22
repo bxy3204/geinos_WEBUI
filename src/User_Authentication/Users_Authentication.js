@@ -64,11 +64,13 @@ class Users_Authentication extends Component {
         });
         get_radius().then((items) => {
                 this.setState({
-                    host: items.host,
-                    port: items.port,
-                    secret: items.secret});
+                    host: items.data[0]['host'],
+                    port: items.data[0]['port'],
+                    secret: items.data[0]['secret']});
             }
-        );
+        ).catch(err => {
+            console.log(err);
+        });
     }
 
     render() {
