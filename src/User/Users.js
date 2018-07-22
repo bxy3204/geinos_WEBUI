@@ -10,8 +10,10 @@ import {verify_token} from "../REST_API/Login_API";
 let products = [];
 
 function onDeleteRow(rowKeys) {
+    console.log("DELE");
+    console.log(rowKeys);
     alert('You deleted: ' + rowKeys);
-    delete_user(rowKeys[0]);
+    delete_user(rowKeys);
 }
 
 

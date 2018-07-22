@@ -14,7 +14,7 @@ let products = [];
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys);
-    delete_device(rowKeys[0])
+    delete_device(rowKeys)
 }
 
 

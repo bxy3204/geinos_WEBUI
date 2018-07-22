@@ -52,11 +52,11 @@ export function retrieve_config(device_sn){
         })
     });
 }
-export function delete_device(serial_num){
+export function delete_device(serial_nums){
     let route = get_route();
     let creds = get_creds();
     let jsondata = {
-        serial_num : serial_num
+        serial_num : serial_nums
     };
     fetch( route + '/devices', {
         method: 'delete',

@@ -18,13 +18,13 @@ export function get_users() {
 
 
 
-export function delete_user(user){
+export function delete_user(users){
     let route = get_route();
     let creds = get_creds();
     let jsondata = {
-        rmusr : user
+        rmusr : users
     };
-    fetch( route + '/devices', {
+    fetch( route + '/users', {
         method: 'delete',
         body: JSON.stringify(jsondata),
         headers: new Headers({

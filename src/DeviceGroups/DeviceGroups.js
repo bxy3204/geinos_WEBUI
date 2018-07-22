@@ -13,7 +13,7 @@ let products = [];
 
 function onDeleteRow(rowKeys) {
     alert('You deleted: ' + rowKeys);
-    delete_group(rowKeys[0]).then((fetched) => {
+    delete_group(rowKeys).then((fetched) => {
         fetched.json().then((data) => {
             console.log(data);
             this.setState({message:data.message});
