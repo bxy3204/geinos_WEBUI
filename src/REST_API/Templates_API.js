@@ -14,6 +14,20 @@ export function get_templates() {
         });
 }
 
+export function get_template(name) {
+    let route = get_route();
+    let creds = get_creds();
+    return fetch( route + '/templates/' + name,
+        {
+            method: 'get',
+            headers: new Headers({
+                'Authorization': creds}),
+
+        }).then(function(response) {
+        return response.json();
+    });
+}
+
 export function add_template(file){
     let route = get_route();
     let creds = get_creds();

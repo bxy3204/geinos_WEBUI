@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
-import {add_template} from "../REST_API/Templates_API";
+import {add_template, get_template} from "../REST_API/Templates_API";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_param} from "../REST_API/Parameter_API";
 import SkyLight from 'react-skylight';
@@ -37,6 +37,7 @@ class Templates extends Component {
         this.onFilesChange = this.onFilesChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
         this.addTemplate = this.addTemplate.bind(this);
+		this.getTemplate = this.getTemplate.bind(this);
     }
 
     componentDidMount() {
@@ -99,6 +100,13 @@ class Templates extends Component {
         });
         //window.location.replace(window.location.origin.toString());
     }
+	
+	getTemplate(){
+        get_template(this.state.name).then((items) => {
+                this.setState({filetext: items.data});
+            }
+        );
+    }
 
 
     onFilesChange(event) {
@@ -160,7 +168,7 @@ class Templates extends Component {
                             />
                             <FormControl.Feedback />
                         </FormGroup>
-
+						<Button className="button-templates-submit" onClick={this.getTemplate}  >Import</Button>
                     </div>
 
                     <div>
