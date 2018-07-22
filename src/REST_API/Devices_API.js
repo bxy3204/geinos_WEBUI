@@ -52,6 +52,20 @@ export function retrieve_config(device_sn){
         })
     });
 }
+
+export function import_devices(file){
+    let route = get_route();
+    let creds = get_creds();
+    const formData = new FormData();
+    formData.append('file',file);
+    fetch( route + '/devices', {
+        method: 'put',
+        body: formData,
+        headers: new Headers({
+            'Authorization': creds}),
+    });
+}
+
 export function delete_device(serial_nums){
     let route = get_route();
     let creds = get_creds();

@@ -4,7 +4,7 @@ import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
 import './Devices.css';
-import {add_device, get_devices,delete_device, retrieve_config} from "../REST_API/Devices_API";
+import {add_device, get_devices,delete_device, import_devices, retrieve_config} from "../REST_API/Devices_API";
 import SkyLight from 'react-skylight';
 import {verify_token} from "../REST_API/Login_API";
 
@@ -37,6 +37,7 @@ class Devices extends Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.addDevice = this.addDevice.bind(this);
+        this.uploadImportFile = this.uploadImportFile.bind(this);
         this.state = {
             device_model: '',
             name: '',
@@ -46,6 +47,7 @@ class Devices extends Component {
             scep:'False',
             device_models: [],
             devices: [],
+            importFile : null,
             status: '',
             message: '',
             content: '',
@@ -85,6 +87,9 @@ class Devices extends Component {
     }
 
     addDevice(){
+        if (this.state.importFile !== null){
+            return import_devices(this.state.importFile);
+        }
         const newDevice={
             name: this.state.name,
             model: this.state.device_model.value,
@@ -131,6 +136,10 @@ class Devices extends Component {
         this.setState({ device_model });
     }
 
+    uploadImportFile(e) {
+        this.setState({importFile:e.target.files[0]})
+    }
+
     handleCheckboxChange(e) {
         this.setState({scep:  e.target.checked ? 'TRUE' : 'FALSE'});
     }
@@ -165,9 +174,10 @@ class Devices extends Component {
         const modelLink = this.state.device_model, modelIsValid = modelLink;
         const serialLink = this.state.serial, serialIsValid = serialLink && serialLink.indexOf( ' ' ) < 0;
         var complete = false;
-        if (modelIsValid && serialIsValid){
+        if ((modelIsValid && serialIsValid) || (this.state.importFile !== null)){
             complete = true;
         }
+
         return (
             <div className="container">
                 <div className="Home">
@@ -241,14 +251,13 @@ class Devices extends Component {
 
 
                 <Button className="button-add-submit" disabled = {!complete} onClick={this.addDevice} type="submit">Add</Button>
-                <Button className="button-import-submit" type="submit">Import</Button>
+                <input className="button-import-submit" type="file" onChange={this.uploadImportFile} />
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
                     <TableHeaderColumn dataField="vendor_id"  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model_number"  width="150" dataSort>Model</TableHeaderColumn>
                     <TableHeaderColumn dataField="serial_number"  isKey={true}  width="200" dataSort >Serial-Number</TableHeaderColumn>
                     <TableHeaderColumn dataFormat={this.cellButton.bind(this)} width="150" >Config File</TableHeaderColumn>
                 </BootstrapTable>
-
             </div>
 
         );
