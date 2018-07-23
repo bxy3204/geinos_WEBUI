@@ -217,8 +217,6 @@ class DeviceGroups extends Component {
                     <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
                     <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
-                    <TableHeaderColumn dataField="staged"  width="200" dataSort >Staged</TableHeaderColumn>
-                    <TableHeaderColumn dataField="provisioned"  width="200" dataSort >Provisioned</TableHeaderColumn>
                 </BootstrapTable>
             </div>
         );
