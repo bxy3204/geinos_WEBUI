@@ -198,6 +198,10 @@ class Assignments extends Component {
                 <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
                     <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Device Group</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
+                    <TableHeaderColumn dataField="Added"  width="200" dataSort >Staged</TableHeaderColumn>
+                    <TableHeaderColumn dataField="Authorized"  width="200" dataSort >Provisioned</TableHeaderColumn>
+                    <TableHeaderColumn dataField="Connected"  width="200" dataSort >Staged</TableHeaderColumn>
+                    <TableHeaderColumn dataField="Configured"  width="200" dataSort >Provisioned</TableHeaderColumn>
                     <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
                 </BootstrapTable>
             </div>
