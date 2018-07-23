@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
-import {add_template, get_template} from "../REST_API/Templates_API";
+import {add_template, get_template, get_templates} from "../REST_API/Templates_API";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_param} from "../REST_API/Parameter_API";
 import SkyLight from 'react-skylight';
@@ -15,6 +15,7 @@ export function uploadFail(error) {
     };
 }
 
+let products = [];
 
 class Templates extends Component {
 
@@ -27,8 +28,10 @@ class Templates extends Component {
             filetext: '',
             filename: '',
             params_list: [],
+            templates: [],
             status: '',
             message: '',
+            content: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -50,8 +53,12 @@ class Templates extends Component {
                 this.setState({params_list: items.data});
             }
         );
+        get_templates().then((items) => {
+                this.setState({templates: items.data});
+                console.log(this.state.templates);
+            }
+        );
     }
-
 
     handleChange(event) {
         this.setState({value: event.target.value},);
@@ -123,10 +130,50 @@ class Templates extends Component {
 
     }
 
+    faxformat(cell, row, view=true){
+        if (view)
+        {
+            this.simpleDialog.show();
+            this.setState({content:"Loading..."});
+        }
+        console.log(row);
+        get_template(row["name"]).then((data) => {
+            console.log(data)
+            console.log("data" + data.data);
+            if (view)
+            {
+                this.setState({content:data.data});
+            }
+            else
+            {
+                this.setState({filetext: data.data});
+            }
+        }).catch((error) => {
+            console.log('error: ' + error);
+        });
+    }
 
+    cellButton(cell, row, enumObject, rowIndex) {
+        return       <div>
+            <section>
+                <button onClick={() => this.faxformat(cell, row)}>View</button>
+            </section>
+            <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Template File">
+                {this.state.content}
+            </SkyLight>
+        </div>;
+    }
 
+    importCellButton(cell, row, enumObject, rowIndex) {
+        return       <div>
+            <section>
+                <button onClick={() => this.faxformat(cell, row, false)}>Import</button>
+            </section>
+        </div>;
+    }
 
     render() {
+        products = this.state.templates;
         let device = ['MDS Orbit ECR','MDS Orbit MCR'];
         let devices = [];
         for(var i=0; i<device.length; i++){
@@ -209,6 +256,13 @@ class Templates extends Component {
                         <Button className="button-templates-submit" disabled = {!complete} onClick={this.addTemplate}  >Add</Button>
 
                     </div>
+
+            <BootstrapTable className="table-user" data={products} striped={true} hover={true} deleteRow pagination search>
+                <TableHeaderColumn dataField="name"  width="150"  dataSort>Name</TableHeaderColumn>
+                <TableHeaderColumn dataFormat={this.cellButton.bind(this)} width="150" >View</TableHeaderColumn>
+                <TableHeaderColumn dataFormat={this.importCellButton.bind(this)} width="150" >Import</TableHeaderColumn>
+                <TableHeaderColumn dataField="date_created"  isKey={true}  width="200" dataSort >Date Created</TableHeaderColumn>
+            </BootstrapTable>
 
                 </div>
             </form>
