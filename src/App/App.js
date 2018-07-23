@@ -86,7 +86,6 @@ class App extends Component {
         <Router>
 
           <div className="App">
-
             <div className="panel-heading panel-heading-custom">
               <h1>Device Provisioning</h1>
             </div>
@@ -106,6 +105,7 @@ class App extends Component {
               <h1>Logging</h1>
               <li><NavLink onClick={() => this.verify()} to="/Logs">Event Logs</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Deployments">Reports</NavLink></li>
+              <li><NavLink to="/DeviceStatus">Device Status</NavLink></li>
               <h1>Settings</h1>
             </ul>
 
@@ -121,8 +121,8 @@ class App extends Component {
               <Route path="/Login" component={Users}/>
               <Route path="/Logs" component={Logs}/>
               <Route path="/Scep" component={Scep}/>
+              <Route exact path="/DeviceStatus" component={DeviceStatus}/>
             </div>
-
           </div>
         </Router>
       )
