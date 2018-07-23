@@ -38,10 +38,10 @@ export function verify_token(){
                 } else if (data.message === "User logged in.") {
                     return true;
                 }
-                throw "API Response not recognized";
+                throw new Error("API Response not recognized");
             })
-            .catch((error) => {
-                console.log('error: ' + error);
+            .catch((e) => {
+                console.log("Error: "+e.message)
             })
 
 }

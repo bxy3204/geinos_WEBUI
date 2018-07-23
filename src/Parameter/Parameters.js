@@ -278,11 +278,11 @@ class Parameters extends Component {
         if (nameIsValid && paramIsValid){
             complete = true;
         }
-        var hyphen = "";
+        let hyphen = "";
         if (this.state.name.indexOf('-') > -1){
             complete = false;
             console.log("here");
-            var hyphen = "400";
+            hyphen = "400";
         }
         return (
             <div className="container">
