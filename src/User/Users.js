@@ -195,9 +195,9 @@ class Users extends Component {
                 />
 
                 </div>
-
                     <Button className="button-submit" disabled = {!complete} onClick={this.addUser} >Add</Button>
             </form>
+
             <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
                <TableHeaderColumn dataField="username" isKey={true}  width="150"  dataSort>User Name</TableHeaderColumn>
                <TableHeaderColumn dataField="role_type"  width="150" dataSort>Role</TableHeaderColumn>

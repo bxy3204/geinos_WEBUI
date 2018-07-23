@@ -65,6 +65,7 @@ class App extends Component {
                         <h1>Logging</h1>
                         <li><NavLink to="/Logs">Event Logs</NavLink></li>
                         <li><NavLink to="/Deployments">Reports</NavLink></li>
+                        <li><NavLink to="/DeviceStatus">Device Status</NavLink></li>
                         <h1>Settings</h1>
                     </ul>
 
@@ -73,6 +74,7 @@ class App extends Component {
                         <Route exact path="/UserAuthentication" component={Users_Authentication}/>
                         <Route path="/Devices" component={Devices}/>
                         <Route exact path="/DeviceGroups" component={DeviceGroups}/>
+                        <Route exact path="/DeviceStatus" component={DeviceStatus}/>
                         <Route path="/Templates" component={Templates}/>
                         <Route path="/Parameters" component={Parameters}/>
                         <Route path="/Assignments" component={Assignments}/>
