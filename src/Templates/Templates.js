@@ -215,7 +215,6 @@ class Templates extends Component {
                             />
                             <FormControl.Feedback />
                         </FormGroup>
-						<Button className="button-templates-submit" onClick={this.getTemplate}  >Import</Button>
                     </div>
 
                     <div>

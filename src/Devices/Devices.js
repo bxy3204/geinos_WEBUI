@@ -125,7 +125,7 @@ class Devices extends Component {
         this.setState({name : ''});
         this.setState({serial : ''});
         this.setState({location : ''});
-        this.setState({scep : ''});
+        this.setState({scep : 'False'});
     }
 
     handleNameChange(e) {
