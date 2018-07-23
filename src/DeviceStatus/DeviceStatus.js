@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import 'react-select/dist/react-select.css';
-import {get_tasks} from "../REST_API/DeviceStatus_API";
-import './DeviceStatus.css';
-import {verify_token} from "../REST_API/Login_API";
-
+import 'react-select/dist/react-select.css'
+import {get_tasks} from '../REST_API/DeviceStatus_API'
+import './DeviceStatus.css'
+import {verify_token} from '../REST_API/Login_API'
 
 class DeviceStatus extends Component {
-    constructor(props,context) {
-        super(props,context);
-        this.state = {
-            tasks:[]
-        }
+  constructor (props, context) {
+    super(props, context)
+    this.state = {
+      tasks: []
     }
+  }
 
-    componentWillMount() {
-        console.log("BBBB!!!");
-        let tasks = [];
-        this.setState({tasks:tasks});
-    }
+  componentWillMount () {
+    console.log('BBBB!!!')
+    let tasks = []
+    this.setState({tasks: tasks})
+  }
 
     componentDidMount() {
         verify_token().then((status) =>{
@@ -40,7 +39,7 @@ class DeviceStatus extends Component {
 
         return (
             <div className="container-tasks">
-                <BootstrapTable className="table-tasks" data={this.state.tasks} options={options}   striped={true} hover={true} pagination>
+                <BootstrapTable className="table-tasks" data={this.state.tasks} options={options}   striped={true} hover={true} pagination search>
                     <TableHeaderColumn dataField="serial_number" isKey={true}  width="150"  dataSort>Device</TableHeaderColumn>
                     <TableHeaderColumn dataField="status"  width="150" dataSort>Status</TableHeaderColumn>
                 </BootstrapTable>

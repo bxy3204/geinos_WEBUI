@@ -1,50 +1,53 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import './App.css'
 import {
-    Route,
-    NavLink,
-    BrowserRouter as Router,
-} from "react-router-dom";
-import Devices from "../Devices/Devices";
-import DeviceGroups from "../DeviceGroups/DeviceGroups";
-import DeviceStatus from "../DeviceStatus/DeviceStatus";
-import Templates from "../Templates/Templates";
-import Parameters from "../Parameter/Parameters";
-import Assignments from "../Assignments/Assignments";
-import Users from "../User/Users";
-import Deployments from "../Reports/Deployments"
-import Login from "../Login/Login";
-import Logs from "../Reports/Logs"
-import Scep from "../Scep/Scep"
-import Users_Authentication from "../User_Authentication/Users_Authentication"
-import {verify_token} from "../REST_API/Login_API";
+  Route,
+  NavLink,
+  BrowserRouter as Router
+} from 'react-router-dom'
+import Devices from '../Devices/Devices'
+import DeviceGroups from '../DeviceGroups/DeviceGroups'
+import DeviceStatus from '../DeviceStatus/DeviceStatus'
+import Templates from '../Templates/Templates'
+import Parameters from '../Parameter/Parameters'
+import Assignments from '../Assignments/Assignments'
+import Users from '../User/Users'
+import Deployments from '../Reports/Deployments'
+import Login from '../Login/Login'
+import Logs from '../Reports/Logs'
+import Scep from '../Scep/Scep'
+import Users_Authentication from '../User_Authentication/Users_Authentication'
+import {verify_token} from '../REST_API/Login_API'
 
 class App extends Component {
-
-    constructor(props,context) {
-        super(props,context);
-        this.state = {
-            auth: false,
-        }
-
+  constructor (props, context) {
+    super(props, context)
+    this.state = {
+      auth: false
     }
+  }
 
-    componentDidMount(){
-        verify_token().then((status) =>{
-            this.setState({auth:status});
-            if(!status && window.location.pathname.toString() !== "/Login"){
-                window.location.replace(window.location.origin.toString() + "/Login");
-            }
-        })
-    }
+  componentDidMount () {
+    verify_token().then((status) => {
+      this.setState({auth: status})
+      if (!status && window.location.pathname.toString() !== '/Login') {
+        window.location.replace(window.location.origin.toString() + '/Login')
+      }
+    })
+  }
 
-    render() {
-        if(this.state.auth){
-        return (
+  render () {
+    if (this.state.auth) {
+        window.onbeforeunload = function() {
+            localStorage.removeItem("session");
+            return '';
+        };
+        window.onbeforeunload = null;
+      return (
 
-            <Router>
+        <Router>
 
-                <div className="App">
+          <div className="App">
 
                     <div className="panel-heading panel-heading-custom">
                         <h1>Device Provisioning</h1>
@@ -84,39 +87,39 @@ class App extends Component {
                         <Route path="/Scep" component={Scep}/>
                     </div>
 
-                </div>
-            </Router>
-        );}
-        else{
-            return(
-                <Router>
-                <div className="App">
-                    <div className="panel-heading panel-heading-custom">
-                        <h1> Device Provisioning</h1>
-                    </div>;
-                    <ul className="header1">
-                    </ul>
-                    <div className="content">
-                        <Route exact path="/Users" component={Users}/>
-                        <Route exact path="/UserAuthentication" component={Users_Authentication}/>
-                        <Route path="/Devices" component={Devices}/>
-                        <Route exact path="/DeviceGroups" component={DeviceGroups}/>
-                        <Route exact path="/DeviceStatus" component={DeviceStatus}/>
-                        <Route path="/Templates" component={Templates}/>
-                        <Route path="/Parameters" component={Parameters}/>
-                        <Route path="/Assignments" component={Assignments}/>
-                        <Route path="/Deployments" component={Deployments}/>
-                        <Route path="/Login" component={Login}/>
-                        <Route path="/Logs" component={Logs}/>
-                        <Route path="/Scep" component={Scep}/>
+          </div>
+        </Router>
+      )
+    } else {
+      return (
+        <Router>
+          <div className="App">
+            <div className="panel-heading panel-heading-custom">
+              <h1> Device Provisioning</h1>
+            </div>;
+            <ul className="header1">
+            </ul>
+            <div className="content">
+              <Route exact path="/Users" component={Users}/>
+              <Route exact path="/UserAuthentication" component={Users_Authentication}/>
+              <Route path="/Devices" component={Devices}/>
+              <Route exact path="/DeviceGroups" component={DeviceGroups}/>
+              <Route exact path="/DeviceStatus" component={DeviceStatus}/>
+              <Route path="/Templates" component={Templates}/>
+              <Route path="/Parameters" component={Parameters}/>
+              <Route path="/Assignments" component={Assignments}/>
+              <Route path="/Deployments" component={Deployments}/>
+              <Route path="/Login" component={Login}/>
+              <Route path="/Logs" component={Logs}/>
+              <Route path="/Scep" component={Scep}/>
 
-                    </div>
+            </div>
 
-                </div>
-                </Router>
+          </div>
+        </Router>
 
-            )
-        }
+      )
     }
+  }
 }
-export default App;
+export default App
