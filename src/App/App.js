@@ -38,6 +38,11 @@ class App extends Component {
 
   render () {
     if (this.state.auth) {
+        window.onbeforeunload = function() {
+            localStorage.removeItem("session");
+            return '';
+        };
+        window.onbeforeunload = null;
       return (
 
         <Router>
