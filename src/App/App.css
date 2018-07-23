@@ -101,3 +101,38 @@ ul.header li a {
 .table{
   margin-bottom: 0;
 }
+
+.login-container{
+  width: 45%;
+  margin: 0 0 0 0;
+  height: 50%;
+  padding-bottom: 100px;
+  position: relative;
+  left: 35%;
+  top: 20%;
+}
+.form{
+  height: fit-content;
+  display:inline-block;
+}
+.login-name-input{
+  width: 30%;
+  display:inline-block;
+}
+
+
+.pass-input-login{
+  width: 30%;
+  width: 30%;
+  padding-bottom: 3.3%;
+}
+
+.button-submit{
+  position: relative;
+  width: fit-content;
+  bottom: 40px;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  color: white;
+  margin-right:auto;
+}
