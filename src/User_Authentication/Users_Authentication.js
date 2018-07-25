@@ -103,7 +103,7 @@ class Users_Authentication extends Component {
             value={this.state.secret}
             change={this.handleChange}
             placeholder="Enter secret..."
-            type="text"
+            type="password"
           />
         </form>
         <Button className="scep-button-submit" onClick={this.addRadius} >Update</Button>
