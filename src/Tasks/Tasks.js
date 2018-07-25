@@ -35,7 +35,7 @@ class Tasks extends Component {
   render () {
     const options = {
       defaultSortName: 'status',
-      defaultSortOrder: 'desc'
+      defaultSortOrder: 'asc'
     }
 
     return (

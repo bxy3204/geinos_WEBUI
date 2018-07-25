@@ -16,7 +16,9 @@ function onDeleteRow(rowKeys) {
 
 }
 const options = {
-    afterDeleteRow: onDeleteRow
+    afterDeleteRow: onDeleteRow,
+    defaultSortName: 'device_group_name',
+    defaultSortOrder: 'asc'
 };
 
 const selectRowProp = {
@@ -157,6 +159,7 @@ class Assignments extends Component {
 
 
     render() {
+
         let listOfGroups = this.state.group_list;
 
         let listOfTemplates = this.state.template_list;
@@ -167,7 +170,9 @@ class Assignments extends Component {
         var complete = false;
         if (templateIsValid && groupIsValid){
             complete = true;
+
         }
+
         return (
             <div className="container">
                 <div className="Home">
@@ -199,8 +204,8 @@ class Assignments extends Component {
                     <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Device Group</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
                     <TableHeaderColumn dataField="Added"  width="200" dataSort >Added</TableHeaderColumn>
+                    <TableHeaderColumn dataField="Connected"  width="200" dataSort >Registered</TableHeaderColumn>
                     <TableHeaderColumn dataField="Authorized"  width="200" dataSort >SCEP Enrolled</TableHeaderColumn>
-                    <TableHeaderColumn dataField="Connected"  width="200" dataSort >Connected</TableHeaderColumn>
                     <TableHeaderColumn dataField="Configured"  width="200" dataSort >Configured</TableHeaderColumn>
                     <TableHeaderColumn dataField="last_modified"  width="200" dataSort >Last Modified</TableHeaderColumn>
                 </BootstrapTable>

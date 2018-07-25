@@ -17,7 +17,9 @@ function onDeleteRow (rowKeys) {
 }
 
 const options = {
-  afterDeleteRow: onDeleteRow
+  afterDeleteRow: onDeleteRow,
+  defaultSortName: 'username',
+  defaultSortOrder: 'asc'
 }
 
 const selectRowProp = {

@@ -174,6 +174,10 @@ class Templates extends Component {
     }
 
     render() {
+        const options = {
+            defaultSortName: 'status',
+            defaultSortOrder: 'asc'
+        }
         products = this.state.templates;
         let device = ['MDS Orbit ECR','MDS Orbit MCR'];
         let devices = [];
@@ -257,7 +261,7 @@ class Templates extends Component {
 
                     </div>
 
-            <BootstrapTable className="table-user" data={products} striped={true} hover={true} deleteRow pagination search>
+            <BootstrapTable className="table-user" data={products} striped={true} hover={true} deleteRow pagination search options={options}>
                 <TableHeaderColumn dataField="name"  width="150"  dataSort>Name</TableHeaderColumn>
                 <TableHeaderColumn dataFormat={this.cellButton.bind(this)} width="150" >View</TableHeaderColumn>
                 <TableHeaderColumn dataFormat={this.importCellButton.bind(this)} width="150" >Clone</TableHeaderColumn>
