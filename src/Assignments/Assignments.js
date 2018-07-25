@@ -195,7 +195,7 @@ class Assignments extends Component {
                     options= {listOfGroups}
                 />
                 <Button className="button-assign-submit" disabled = {!complete} type="submit" onClick={this.assign_template}>Assign</Button>
-                <BootstrapTable className="table-assign" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
+                <BootstrapTable className="table-assign" data={products} options={options}   striped={true} hover={true} deleteRow pagination search>
                     <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Device Group</TableHeaderColumn>
                     <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
                     <TableHeaderColumn dataField="Added"  width="200" dataSort >Added</TableHeaderColumn>

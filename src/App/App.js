@@ -18,7 +18,7 @@ import Users_Authentication from '../User_Authentication/Users_Authentication'
 import {verify_token, login} from '../REST_API/Login_API'
 import {Button} from 'react-bootstrap'
 import {FormGroupCreate} from '../common/common'
-import DeviceStatus from "../DeviceStatus/DeviceStatus";
+import Tasks from "../Tasks/Tasks";
 
 class App extends Component {
   constructor (props, context) {
@@ -104,9 +104,10 @@ class App extends Component {
               <li><NavLink onClick={() => this.verify()} to="/Templates">Templates</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Assignments">Assignments</NavLink></li>
               <h1>Status</h1>
+              <li><NavLink to="/Tasks">Tasks</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Logs">Event Logs</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Deployments">Reports</NavLink></li>
-              <li><NavLink to="/DeviceStatus">Device Status</NavLink></li>
+
             </ul>
 
             <div className="content">
@@ -114,7 +115,7 @@ class App extends Component {
               <Route exact path="/UserAuthentication" component={Users_Authentication}/>
               <Route path="/Devices" component={Devices}/>
               <Route exact path="/DeviceGroups" component={DeviceGroups}/>
-                <Route exact path="/DeviceGroups" component={DeviceStatus}/>
+                <Route exact path="/DeviceGroups" component={Tasks}/>
               <Route path="/Templates" component={Templates}/>
               <Route path="/Parameters" component={Parameters}/>
               <Route path="/Assignments" component={Assignments}/>

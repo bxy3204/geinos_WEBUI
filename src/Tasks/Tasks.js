@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css'
-import {get_tasks} from '../REST_API/DeviceStatus_API'
-import './DeviceStatus.css'
+import {get_tasks} from '../REST_API/Tasks_API'
+import './Tasks.css'
 import {verify_token} from '../REST_API/Login_API'
 
-class DeviceStatus extends Component {
+class Tasks extends Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
@@ -49,4 +49,4 @@ class DeviceStatus extends Component {
   }
 }
 
-export default DeviceStatus
+export default Tasks
