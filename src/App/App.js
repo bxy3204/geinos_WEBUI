@@ -18,13 +18,14 @@ import Users_Authentication from '../User_Authentication/Users_Authentication'
 import {verify_token, login} from '../REST_API/Login_API'
 import {Button} from 'react-bootstrap'
 import {FormGroupCreate} from '../common/common'
+import DeviceStatus from "../DeviceStatus/DeviceStatus";
 
 class App extends Component {
   constructor (props, context) {
 
-    super(props, context)
-    this.handleChange = this.handleChange.bind(this)
-    this.log_in = this.log_in.bind(this)
+    super(props, context);
+    this.handleChange = this.handleChange.bind(this);
+    this.log_in = this.log_in.bind(this);
     this.state = {
       auth: false,
       name: '',
@@ -102,11 +103,10 @@ class App extends Component {
               <li><NavLink onClick={() => this.verify()} to="/Parameters">Parameters</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Templates">Templates</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Assignments">Assignments</NavLink></li>
-              <h1>Logging</h1>
+              <h1>Status</h1>
               <li><NavLink onClick={() => this.verify()} to="/Logs">Event Logs</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Deployments">Reports</NavLink></li>
               <li><NavLink to="/DeviceStatus">Device Status</NavLink></li>
-              <h1>Settings</h1>
             </ul>
 
             <div className="content">
@@ -114,6 +114,7 @@ class App extends Component {
               <Route exact path="/UserAuthentication" component={Users_Authentication}/>
               <Route path="/Devices" component={Devices}/>
               <Route exact path="/DeviceGroups" component={DeviceGroups}/>
+                <Route exact path="/DeviceGroups" component={DeviceStatus}/>
               <Route path="/Templates" component={Templates}/>
               <Route path="/Parameters" component={Parameters}/>
               <Route path="/Assignments" component={Assignments}/>
@@ -121,7 +122,6 @@ class App extends Component {
               <Route path="/Login" component={Users}/>
               <Route path="/Logs" component={Logs}/>
               <Route path="/Scep" component={Scep}/>
-              <Route exact path="/DeviceStatus" component={DeviceStatus}/>
             </div>
           </div>
         </Router>
@@ -170,8 +170,6 @@ class App extends Component {
                         <div>
 
                         </div>
-                        <br></br>
-                        <br></br>
                         <Button className="button-submit" disabled = {!complete} onClick={this.log_in} >Login</Button>
                     </form>
                 </div>
