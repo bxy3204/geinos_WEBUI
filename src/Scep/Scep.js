@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap'
 import {add_scep, get_scep} from '../REST_API/Scep_API'
 import {FormGroupCreate, ScepDigestDropdownFormGroupCreate, ScepEncryptDropdownFormGroupCreate} from '../common/common'
 import {verify_token} from '../REST_API/Login_API'
+import ReactDOM from "react-dom";
 
 class Scep extends Component {
   constructor (props, context) {
@@ -90,6 +91,7 @@ class Scep extends Component {
     ).catch(err => {
       console.log(err)
     })
+      ReactDOM.findDOMNode(this).scrollTop = 0
   }
 
   handleChange (e) {
@@ -153,7 +155,6 @@ class Scep extends Component {
             type="text"
 
           />
-          <div className="sys_link">/certsrv/mscep_admin/</div>
           <div className="System _Header_div">
             <h2 className="System_Header">Device Settings</h2>
           </div>
@@ -166,7 +167,6 @@ class Scep extends Component {
             placeholder="Enter server"
             type="text"
           />
-          <div className="serv_link">/certsrv/mscep/mscep.dll</div>
 
           <ScepDigestDropdownFormGroupCreate
             className="digest-input"

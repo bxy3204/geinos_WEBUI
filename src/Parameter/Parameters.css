@@ -25,14 +25,10 @@
 }
 .range-end-input{
     width: 20%;
-    padding-top: 1%;
-    position: relative;
     left: 22%;
     bottom: 84px;
 }
-.range-div{
-    height: 15%;
-}
+
 .container > .Select{
     width: 20%;
 }
@@ -47,7 +43,7 @@
 }
 
 .button-param-submit{
-    position: relative;
+
     display: block;
     margin-bottom: 15px;
     background-color: #f0ad4e;

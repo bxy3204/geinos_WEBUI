@@ -7,6 +7,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_param} from "../REST_API/Parameter_API";
 import SkyLight from 'react-skylight';
 import {verify_token} from "../REST_API/Login_API";
+import ReactDOM from 'react-dom'
 
 export function uploadFail(error) {
     return {
@@ -47,6 +48,7 @@ class Templates extends Component {
         verify_token().then((status) => {
             if (!status) {
                 window.location.replace(window.location.origin.toString());
+
             }
         });
         get_param().then((items) => {
@@ -58,6 +60,7 @@ class Templates extends Component {
                 console.log(this.state.templates);
             }
         );
+        ReactDOM.findDOMNode(this).scrollTop = 0
     }
 
     handleChange(event) {
@@ -104,6 +107,7 @@ class Templates extends Component {
                     this.setState({status:102});
                 }
                 this.componentDidMount();
+
             });
         });
         //window.location.replace(window.location.origin.toString());
@@ -175,7 +179,7 @@ class Templates extends Component {
 
     render() {
         const options = {
-            defaultSortName: 'status',
+            defaultSortName: 'name',
             defaultSortOrder: 'asc'
         }
         products = this.state.templates;
@@ -249,6 +253,7 @@ class Templates extends Component {
                         >
                             <FormControl
                                 type="file"
+                                multiple
                                 label="File"
                                 value={this.state.filename}
                                 onChange={this.onFilesChange}

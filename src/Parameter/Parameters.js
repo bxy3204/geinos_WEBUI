@@ -6,6 +6,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css'
 import {add_param, add_dynamic_param, add_range_param, delete_param, get_param} from '../REST_API/Parameter_API'
 import {verify_token} from '../REST_API/Login_API'
+import ReactDOM from "react-dom";
 
 function onDeleteRow (rowKeys) {
   alert('You deleted: ' + rowKeys)
@@ -88,6 +89,7 @@ class Parameters extends Component {
       this.setState({params_list: items.data})
     }
     )
+      ReactDOM.findDOMNode(this).scrollTop = 0
   }
 
   addParameter () {
@@ -222,7 +224,7 @@ class Parameters extends Component {
           placeholder="Enter Interface"
           onChange={this.handleNameChange}
         />
-      </FormGroup>;
+      </FormGroup>
       </div>
     } else {
       return <FormGroup
@@ -298,7 +300,7 @@ class Parameters extends Component {
         />
 
         {this.renderTypeField()}
-        <Button className="button-param-submit" disabled = {!complete} onClick={this.addParameter} type="submit">Add</Button>
+          <Button className="button-param-submit" disabled = {!complete} onClick={this.addParameter} type="submit">Add</Button>
 
         <BootstrapTable className="table-user" data={List} selectRow={selectRowProp} options={options} striped={true} hover={true} deleteRow pagination search>
           <TableHeaderColumn dataField="param_name" isKey={true} width="150" dataSort>Name</TableHeaderColumn>

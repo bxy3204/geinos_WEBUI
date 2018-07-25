@@ -7,6 +7,7 @@ import {add_device_group, get_device_groups,delete_group} from "../REST_API/Devi
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import Select from 'react-select';
 import {verify_token} from "../REST_API/Login_API";
+import ReactDOM from "react-dom";
 
 
 let products = [];
@@ -171,6 +172,7 @@ class DeviceGroups extends Component {
                 this.setState({deviceGroups: items.data});
             }
         );
+        ReactDOM.findDOMNode(this).scrollTop = 0
     }
 
     render() {

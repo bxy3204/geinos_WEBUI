@@ -5,6 +5,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_users, delete_user, add_user} from '../REST_API/User_API'
 import {FormGroupCreate, DropdownFormGroupCreate, create_user_list} from '../common/common'
 import {verify_token} from '../REST_API/Login_API'
+import ReactDOM from "react-dom";
 // const emailRe = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 let products = []
@@ -116,6 +117,7 @@ class Users extends Component {
       this.setState({items: items.data})
     }
     )
+      ReactDOM.findDOMNode(this).scrollTop = 0
   }
 
   render () {

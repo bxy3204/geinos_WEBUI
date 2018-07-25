@@ -7,6 +7,7 @@ import './Devices.css';
 import {add_device, get_devices,delete_device, import_devices, retrieve_config} from "../REST_API/Devices_API";
 import SkyLight from 'react-skylight';
 import {verify_token} from "../REST_API/Login_API";
+import ReactDOM from "react-dom";
 
 
 
@@ -86,6 +87,7 @@ class Devices extends Component {
         ).catch(err => {
             console.log(err);
         });
+        ReactDOM.findDOMNode(this).scrollTop = 0
     }
 
     addDevice(){

@@ -84,7 +84,7 @@ class App extends Component {
         window.onbeforeunload = null;
       return (
 
-        <Router>
+        <Router onUpdate={() => window.scrollTo(0, 0)}>
 
           <div className="App">
             <div className="panel-heading panel-heading-custom">

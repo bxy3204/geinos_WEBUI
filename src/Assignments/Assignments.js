@@ -7,6 +7,7 @@ import {assign, get_assignments} from "../REST_API/Assignments_API";
 import {get_device_groups} from "../REST_API/DeviceGroups_API";
 import {get_templates} from "../REST_API/Templates_API";
 import {verify_token} from "../REST_API/Login_API";
+import * as ReactDOM from "react-dom";
 
 
 let products = [];
@@ -154,7 +155,7 @@ class Assignments extends Component {
                 }
             }
         );
-        //window.location.replace(window.location.origin.toString());
+        ReactDOM.findDOMNode(this).scrollTop = 0
     }
 
 
