@@ -168,7 +168,7 @@ class Templates extends Component {
     importCellButton(cell, row, enumObject, rowIndex) {
         return       <div>
             <section>
-                <button onClick={() => this.faxformat(cell, row, false)}>Import</button>
+                <button onClick={() => this.faxformat(cell, row, false)}>Clone</button>
             </section>
         </div>;
     }
@@ -260,7 +260,7 @@ class Templates extends Component {
             <BootstrapTable className="table-user" data={products} striped={true} hover={true} deleteRow pagination search>
                 <TableHeaderColumn dataField="name"  width="150"  dataSort>Name</TableHeaderColumn>
                 <TableHeaderColumn dataFormat={this.cellButton.bind(this)} width="150" >View</TableHeaderColumn>
-                <TableHeaderColumn dataFormat={this.importCellButton.bind(this)} width="150" >Import</TableHeaderColumn>
+                <TableHeaderColumn dataFormat={this.importCellButton.bind(this)} width="150" >Clone</TableHeaderColumn>
                 <TableHeaderColumn dataField="date_created"  isKey={true}  width="200" dataSort >Date Created</TableHeaderColumn>
             </BootstrapTable>
 
