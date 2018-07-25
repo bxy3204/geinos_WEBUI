@@ -106,7 +106,6 @@ class App extends Component {
               <h1>Status</h1>
               <li><NavLink to="/Tasks">Tasks</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Logs">Event Logs</NavLink></li>
-              <li><NavLink onClick={() => this.verify()} to="/Deployments">Reports</NavLink></li>
 
             </ul>
 
