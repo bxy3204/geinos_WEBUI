@@ -157,8 +157,30 @@ class Templates extends Component {
             console.log('error: ' + error);
         });
     }
-
+    viewformat(cell, row, view=true){
+        if (view)
+        {
+            this.anotherDialog.show()
+            this.setState({content:"Loading..."});
+        }
+        console.log(row);
+        get_template(row["name"]).then((data) => {
+            console.log(data)
+            console.log("data" + data.data);
+            this.setState({content:data.data});
+        }).catch((error) => {
+            console.log('error: ' + error);
+        });
+    }
     cellButton(cell, row, enumObject, rowIndex) {
+        return       <div>
+            <section>
+                <button onClick={() => this.viewformat(cell, row)}>View</button>
+            </section>
+            <SkyLight className = {'skymodal'} hideOnOverlayClicked ref={ref => this.anotherDialog = ref} title="Template File">
+                {this.state.content}
+            </SkyLight>
+        </div>;
     }
 
     importCellButton(cell, row, enumObject, rowIndex) {
@@ -227,7 +249,7 @@ class Templates extends Component {
                             <section>
                                 <button onClick={() => this.simpleDialog.show()}>Show Parameters</button>
                             </section>
-                            <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Config File">
+                            <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Parameters">
                                 <BootstrapTable className="table-template" data={this.state.params_list}    striped={true} hover={true} pagination search>
                                     <TableHeaderColumn dataField="param_name" isKey={true}  width="150"  dataSort>Name</TableHeaderColumn>
                                     <TableHeaderColumn dataField="param_type"  width="150" dataSort>Type</TableHeaderColumn>
