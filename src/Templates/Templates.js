@@ -159,14 +159,6 @@ class Templates extends Component {
     }
 
     cellButton(cell, row, enumObject, rowIndex) {
-        return       <div>
-            <section>
-                <button onClick={() => this.faxformat(cell, row)}>View</button>
-            </section>
-            <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Template File">
-                {this.state.content}
-            </SkyLight>
-        </div>;
     }
 
     importCellButton(cell, row, enumObject, rowIndex) {

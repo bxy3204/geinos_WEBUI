@@ -161,14 +161,16 @@ class Devices extends Component {
             });
         }).catch((error) => {
             console.log('error: ' + error);
+            this.setState({content:"Failed retrieving config file."});
         });
     }
     cellButton(cell, row, enumObject, rowIndex) {
+
         return       <div>
             <section>
                 <button onClick={() => this.faxformat(cell, row)}>Open</button>
             </section>
-            <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Config File">
+            <SkyLight className = {'skymodal'}  hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Config File">
                 {this.state.content}
             </SkyLight>
         </div>;

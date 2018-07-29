@@ -136,3 +136,7 @@ div.model-input label.control-label:after {
     width: 20px;
     height: fit-content;
 }
+
+.skymodal{
+    white-space: pre;
+}
