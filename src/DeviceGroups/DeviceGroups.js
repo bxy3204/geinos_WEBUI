@@ -63,6 +63,7 @@ class DeviceGroups extends Component {
             device_models: [],
             status: '',
             message: '',
+            filters: [{ parm:'' ,name: '' }],
         }
 
     }
@@ -123,20 +124,14 @@ class DeviceGroups extends Component {
     addGroup(){
         const newGroup={
             name: this.state.name,
-            attribute: 'model',
+            filters : this.state.filters
         };
-
-        if (this.state.filterType.localeCompare("model") === 0)
-        {
-            newGroup.attribute = 'model_number';
-            newGroup.value = this.state.device_model.value
-        }
-        else
-        {
-            newGroup.attribute = 'other';
-            newGroup.value = this.state.device_model
-        }
-
+        var filtersformated = "";
+        newGroup.filters.forEach(function(entry) {
+            filtersformated = filtersformated + entry['parm'] + "=" + entry["name"]  +","
+            console.log("in for loop")
+        });
+        newGroup.filters = filtersformated.slice(0, -1); //the slice is to remove the last comma
         add_device_group(newGroup).then((fetched) => {
             fetched.json().then((data) => {
                 console.log(data);
@@ -160,6 +155,8 @@ class DeviceGroups extends Component {
             });
         });
         this.setState({name: ''});
+        this.setState({filters: [{ parm:'' ,name: '' }]});
+
     }
 
     componentDidMount() {
@@ -173,6 +170,39 @@ class DeviceGroups extends Component {
             }
         );
         ReactDOM.findDOMNode(this).scrollTop = 0
+    }
+    handleShareholderNameChange = (idx) => (evt) => {
+        const newfilters = this.state.filters.map((shareholder, sidx) => {
+            if (idx !== sidx) return shareholder;
+            return { ...shareholder, name: evt.target.value };
+        });
+        console.log(this.state.filters);
+        this.setState({ filters: newfilters });
+    }
+
+    handleShareholderParmChange = (idx) => (evt) => {
+        const newfilters = this.state.filters.map((shareholder, sidx) => {
+            if (idx !== sidx) return shareholder;
+            return { ...shareholder, parm: evt.target.value };
+        });
+        console.log(this.state.filters);
+        this.setState({ filters: newfilters });
+    }
+    handleSubmit = (evt) => {
+        const { name, filters } = this.state;
+        alert(`Incorporated: ${name} with ${filters.length} filters`);
+    }
+
+    handleAddShareholder = () => {
+        this.setState({
+            filters: this.state.filters.concat([{ name: '' }])
+        });
+    }
+
+    handleRemoveShareholder = (idx) => () => {
+        this.setState({
+            filters: this.state.filters.filter((s, sidx) => idx !== sidx)
+        });
     }
 
     render() {
@@ -203,18 +233,24 @@ class DeviceGroups extends Component {
                     required="true"
                 />
 
-                <FormGroup
-                    className="group-type-input"
-                    controlId="filterType"
-                >
-                    <ControlLabel>Group By</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select" onChange={this.handleChange}>
-                        <option value="model">Model</option>
-                        <option value="other">Other</option>
-                    </FormControl>
-                </FormGroup>
-
-                {this.renderTypeField()}
+                {this.state.filters.map((shareholder, idx) => (
+                    <div className="shareholder">
+                        <input
+                            type="text"
+                            placeholder={`Filter #${idx + 1}`}
+                            value={shareholder.parm}
+                            onChange={this.handleShareholderParmChange(idx)}
+                        />
+                        <input
+                            type="text"
+                            placeholder={`Value #${idx + 1}`}
+                            value={shareholder.name}
+                            onChange={this.handleShareholderNameChange(idx)}
+                        />
+                        <button type="button" onClick={this.handleRemoveShareholder(idx)} className="small">-</button>
+                    </div>
+                ))}
+                <button type="button" onClick={this.handleAddShareholder} className="small">Add Filter</button>
 
                 <Button className="button-group-submit" disabled = {!complete} type="submit" onClick={this.addGroup}>Add</Button>
                 <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>

@@ -20,7 +20,7 @@ export function add_device_group (group) {
   let jsondata = {
     group_name: group.name,
     attribute: group.attribute,
-    value: group.value
+    value: group.filters
   }
 
   return fetch(route + '/device_groups',
