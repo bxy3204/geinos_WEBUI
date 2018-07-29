@@ -39,7 +39,7 @@ function onDeleteRow(rowKeys) {
 }
 const options = {
     afterDeleteRow: onDeleteRow,
-    defaultSortName: 'status',
+    defaultSortName: 'device_group_name',
     defaultSortOrder: 'asc'
 };
 
