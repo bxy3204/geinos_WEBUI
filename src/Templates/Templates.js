@@ -88,18 +88,15 @@ class Templates extends Component {
 
     handleNameChange(event) {
         console.log(event);
-        if (this.state.template_names.indexOf(event.value) >= 0)
+        console.log(this.state.template_names);
+        for (var i = 0; i < this.state.template_names.length; i++)
         {
-            this.getTemplateByName(event.value);
-            console.log("heyyy");
+            //console.log(this.state.template_names[i].value);
+            if (this.state.template_names[i].value == event.value)
+            {
+                this.getTemplateByName(event.value);
+            }
         }
-        else
-        {
-            var tmp = this.state.template_names;
-            tmp.push(event.value);
-            this.setState({template_names: tmp});
-        }
-        this.render();
         this.setState({name: event.value});
         console.log(this.state.name);
     }
