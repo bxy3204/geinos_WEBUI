@@ -257,7 +257,11 @@ class Devices extends Component {
 
 
                 <Button className="button-add-submit" disabled = {!complete} onClick={this.addDevice} type="submit">Add</Button>
-                <input className="button-import-submit" type="file" onChange={this.uploadImportFile} />
+                <div>
+                    <br></br>
+                <label htmlFor="file_input" className={'label_file_input'}>Import from file</label>
+                <input className="button-import-submit" type="file" onChange={this.uploadImportFile} id='file_input' />
+                </div>
                 <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>
                     <TableHeaderColumn dataField="vendor_id"  width="150"  dataSort>Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="model_number"  width="150" dataSort>Model</TableHeaderColumn>

@@ -26,6 +26,18 @@ textarea{
 
 }
 
+.label_file_input_template{
+    border-radius: 5px;
+    border: 1px solid #eea236;
+    background-color: #f0ad4e;
+    padding: 5px 10px;
+    color: white;
+}
+.file-upload{
+    display:inline-block !important;
+    opacity: 0;
+}
+
 .Select{
     width: 500px;
 }

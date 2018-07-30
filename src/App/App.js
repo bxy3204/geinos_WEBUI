@@ -170,7 +170,7 @@ class App extends Component {
                         <div>
 
                         </div>
-                        <Button className="button-submit" disabled = {!complete} onClick={this.log_in} >Login</Button>
+                        <Button className="button-submit" onClick={this.log_in} >Login</Button>
                     </form>
                 </div>
 

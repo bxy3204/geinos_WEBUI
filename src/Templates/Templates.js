@@ -261,6 +261,8 @@ class Templates extends Component {
                     </div>
 
                     <div>
+                        <br></br>
+                        <label htmlFor="file" className={'label_file_input_template'}>Import from file</label>
                         <FormGroup
                             className=  "file-upload"
                             controlId="file"
@@ -279,7 +281,8 @@ class Templates extends Component {
                         <Button className="button-templates-submit" disabled = {!complete} onClick={this.addTemplate}  >Add</Button>
 
                     </div>
-
+                    <br></br>
+                    <br></br>
             <BootstrapTable className="table-user" data={products} striped={true} hover={true} deleteRow pagination search options={options}>
                 <TableHeaderColumn dataField="name"  width="150"  dataSort>Name</TableHeaderColumn>
                 <TableHeaderColumn dataFormat={this.cellButton.bind(this)} width="150" >View</TableHeaderColumn>
