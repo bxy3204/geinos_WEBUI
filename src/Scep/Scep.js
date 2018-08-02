@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Scep.css'
-import {Button} from 'react-bootstrap'
-import {add_scep, get_scep} from '../REST_API/Scep_API'
+import {Button, Label} from 'react-bootstrap'
+import {add_scep, get_scep, get_thumb} from '../REST_API/Scep_API'
 import {FormGroupCreate, ScepDigestDropdownFormGroupCreate, ScepEncryptDropdownFormGroupCreate} from '../common/common'
 import {verify_token} from '../REST_API/Login_API'
 import ReactDOM from "react-dom";
@@ -12,6 +12,7 @@ class Scep extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.addUser = this.addUser.bind(this)
+    this.setThumb = this.setThumb.bind(this)
     this.state = {
       name: '',
       password: '',
@@ -25,9 +26,35 @@ class Scep extends Component {
       org_unit: '',
       status: '',
       message: '',
-      sys_server: ''
-
+      sys_server: '',
+      thumb_only: 'FALSE',
+      thumb: 'FALSE'
     }
+  }
+  setThumb(){
+      get_thumb().then((fetched) => {
+          fetched.json().then((data) => {
+              console.log(data)
+              this.setState({message: data.message})
+              /*
+                      Status codes between 400 and 500 are being forced to 400 because
+                      they map to a specific CSS style class labeled with that status code.
+                      The style name is used in render().
+                       */
+              if (data.status >= 400 && data.status < 500) {
+                  this.setState({status: 400})
+                  this.setState({thumb: 'FALSE'})
+              } else if (data.status >= 200 && data.status < 300) {
+                  this.setState({status: 200})
+                  this.setState({thumb: 'TRUE'})
+              } else {
+                  // any other status than success or error will be treated as 102, informational
+                  // this reflects in the css file to ensure proper message notification
+                  this.setState({status: 102})
+              }
+              this.componentDidMount()
+          })
+      })
   }
 
   addUser () {
@@ -42,7 +69,8 @@ class Scep extends Component {
       locale: this.state.locale,
       organization: this.state.organization,
       org_unit: this.state.org_unit,
-      sys_server: this.state.sys_server
+      sys_server: this.state.sys_server,
+      thumb_only: this.state.thumb_only
 
     }
     add_scep(newUser).then((fetched) => {
@@ -56,9 +84,12 @@ class Scep extends Component {
                  */
         if (data.status >= 400 && data.status < 500) {
           this.setState({status: 400})
+            this.setState({thumb: 'FALSE'})
         } else if (data.status >= 200 && data.status < 300) {
           this.setState({status: 200})
+          this.setState({thumb: 'TRUE'})
         } else {
+
           // any other status than success or error will be treated as 102, informational
           // this reflects in the css file to ensure proper message notification
           this.setState({status: 102})
@@ -87,6 +118,7 @@ class Scep extends Component {
       this.setState({organization: items.data[0]['organization']})
       this.setState({org_unit: items.data[0]['org_unit']})
       this.setState({sys_server: items.data[0]['sys_server']})
+      this.setState({thumb_onl: 'FALSE'})
     }
     ).catch(err => {
       console.log(err)
@@ -97,6 +129,7 @@ class Scep extends Component {
   handleChange (e) {
     this.setState({ [e.target.id]: e.target.value})
   }
+
 
   render () {
     const usrLink = this.state.name; const usrIsValid = usrLink && usrLink.indexOf(' ') < 0
@@ -233,6 +266,7 @@ class Scep extends Component {
           />
         </form>
         <Button className="scep-button-submit" disabled={!complete} onClick={this.addUser} >Update</Button>
+        <Button className="scep-button-thumb" onClick={this.setThumb} >Retry Thumbprint</Button>
       </div>
     )
   }

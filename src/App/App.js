@@ -104,7 +104,7 @@ class App extends Component {
               <li><NavLink onClick={() => this.verify()} to="/Templates">Templates</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Assignments">Assignments</NavLink></li>
               <h1>Status</h1>
-              <li><NavLink to="/Tasks">Tasks</NavLink></li>
+              <li><NavLink onClick={() => this.verify()} to="/Tasks">Tasks</NavLink></li>
               <li><NavLink onClick={() => this.verify()} to="/Logs">Event Logs</NavLink></li>
 
             </ul>
@@ -114,7 +114,7 @@ class App extends Component {
               <Route exact path="/UserAuthentication" component={Users_Authentication}/>
               <Route path="/Devices" component={Devices}/>
               <Route exact path="/DeviceGroups" component={DeviceGroups}/>
-                <Route exact path="/DeviceGroups" component={Tasks}/>
+                <Route exact path="/Tasks" component={Tasks}/>
               <Route path="/Templates" component={Templates}/>
               <Route path="/Parameters" component={Parameters}/>
               <Route path="/Assignments" component={Assignments}/>
