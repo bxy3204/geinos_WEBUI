@@ -7,7 +7,9 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {get_param} from "../REST_API/Parameter_API";
 import SkyLight from 'react-skylight';
 import {verify_token} from "../REST_API/Login_API";
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import Select from 'react-select';
+import Creatable from 'react-select/lib/Creatable';
 
 export function uploadFail(error) {
     return {
@@ -33,6 +35,7 @@ class Templates extends Component {
             status: '',
             message: '',
             content: '',
+            template_names: [],
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -42,6 +45,7 @@ class Templates extends Component {
         this.handleTextChange = this.handleTextChange.bind(this);
         this.addTemplate = this.addTemplate.bind(this);
 		this.getTemplate = this.getTemplate.bind(this);
+        this.getTemplateByName = this.getTemplateByName.bind(this);
     }
 
     componentDidMount() {
@@ -58,6 +62,17 @@ class Templates extends Component {
         get_templates().then((items) => {
                 this.setState({templates: items.data});
                 console.log(this.state.templates);
+                this.setState({template_names: []});
+                var arr = []
+                for(var i = 0, size = items.data.length; i < size ; i++)
+                {
+                    let dev={
+                        value: items.data[i]['name'],
+                        label: items.data[i]['name']
+                    };
+                    arr.push(dev);
+                }
+                this.setState({template_names: arr});
             }
         );
         ReactDOM.findDOMNode(this).scrollTop = 0
@@ -71,11 +86,20 @@ class Templates extends Component {
         this.setState({filetext: event.target.value},);
     }
 
-    handleNameChange(e) {
-        this.setState({ [e.target.id]: e.target.value});
+    handleNameChange(event) {
+        console.log(event);
+        console.log(this.state.template_names);
+        for (var i = 0; i < this.state.template_names.length; i++)
+        {
+            //console.log(this.state.template_names[i].value);
+            if (this.state.template_names[i].value == event.value)
+            {
+                this.getTemplateByName(event.value);
+            }
+        }
+        this.setState({name: event.value});
+        console.log(this.state.name);
     }
-
-
 
     handleSelectChange = (selectedOption) => {
         this.setState({ selectedOption });
@@ -120,6 +144,12 @@ class Templates extends Component {
         );
     }
 
+    getTemplateByName(name){
+        get_template(name).then((items) => {
+                this.setState({filetext: items.data});
+            }
+        );
+    }
 
     onFilesChange(event) {
         let reader = new FileReader();
@@ -224,19 +254,18 @@ class Templates extends Component {
                     <div>
                         <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
                         </div>
+
                         <FormGroup
                             className=  { 'name-input' }
                             controlId="name"
                         >
                             <ControlLabel>Template Name</ControlLabel>
-
-                            <FormControl
-                                type="text"
+                            <Creatable
+                                name="form-field-name"
                                 value={this.state.name}
-                                placeholder="Enter Template Name"
                                 onChange={this.handleNameChange}
+                                options={this.state.template_names}
                             />
-                            <FormControl.Feedback />
                         </FormGroup>
                     </div>
 

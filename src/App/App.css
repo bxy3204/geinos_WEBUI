@@ -136,3 +136,38 @@ ul.header li a {
   color: white;
   margin-right:auto;
 }
+
+
+.symbol {
+  font-size: 0.9em;
+  font-family: Times New Roman;
+  border-radius: 1em;
+  padding: .1em .6em .1em .6em;
+  font-weight: bolder;
+  color: white;
+  background-color: #4E5A56;
+}
+
+.icon-102{ background-color: #3229CF; }
+.icon-400 { background: #e64943; font-family: Consolas; }
+.icon-200 { background: #13c823; }
+
+.icon-102:before { content: 'i'; }
+.icon-400:before { content: 'x'; }
+.icon-200:before { content: '\002713'; }
+
+.notify {
+  background-color:#e3f7fc;
+  color:#555;
+  border:.1em solid;
+  border-color: #8ed9f6;
+  border-radius:10px;
+  font-family:Tahoma,Geneva,Arial,sans-serif;
+  font-size:1.1em;
+  margin:3px;
+  cursor: default;
+}
+
+.n400 { background: #ffecec; border-color: #fad9d7; }
+.n200 { background: #e9ffd9; border-color: #D1FAB6;  display: none;}
+.n { background: #e9ffd9; border-color: #D1FAB6; display: none; }
