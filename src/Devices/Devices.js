@@ -48,7 +48,6 @@ class Devices extends Component {
             deviceList:'',
             location:'',
             scep:'False',
-            device_models: [],
             devices: [],
             importFile : null,
             status: '',
@@ -56,18 +55,6 @@ class Devices extends Component {
             content: '',
         }
 
-    }
-    componentWillMount(){
-        let device_models = ['MDS Orbit ECR', 'MDS Orbit MCR-4E2S', 'MDS Orbit MCR-2E1S', 'MDS Orbit MCR-1E2S'];
-        let devicetypes = [];
-        for(let i=0; i<device_models.length; i++){
-            let dev={
-                value: device_models[i],
-                label: device_models[i]
-            };
-            devicetypes.push(dev);
-        }
-        this.setState({device_models:devicetypes})
     }
 
     componentDidMount() {
@@ -96,7 +83,7 @@ class Devices extends Component {
         }
         const newDevice={
             name: this.state.name,
-            model: this.state.device_model.value,
+            model: this.state.device_model,
             serial: this.state.serial,
             location: this.state.location,
             scep: this.state.scep,
@@ -205,14 +192,19 @@ class Devices extends Component {
                 />
             </FormGroup>
 
-                <ControlLabel>Model </ControlLabel><ControlLabel className="asterisk">   * </ControlLabel>
-            <Select
+            <FormGroup
                 className = {'model-input'}
-                name="form-field-name"
-                value={this.state.device_model}
-                onChange={this.handleChange}
-                options={this.state.device_models}
-            />
+                controlId="device_model"
+            >
+                <ControlLabel>Model </ControlLabel>
+
+                <FormControl
+                    type="text"
+                    value={this.state.device_model}
+                    placeholder="Enter Device Model"
+                    onChange={this.handleNameChange}
+                />
+            </FormGroup>
 
                 <FormGroup
                     className = {'serial-input'}
