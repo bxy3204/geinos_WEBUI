@@ -32,3 +32,19 @@ export function get_assignments () {
     return response.json()
   })
 }
+
+export function delete_assignments(names) {
+    let route = get_route()
+    let creds = get_creds()
+    const jsondata = {
+        group_names: names
+    }
+    console.log(jsondata)
+    fetch(route + '/assign', {
+        method: 'delete',
+        body: JSON.stringify(jsondata),
+        headers: new Headers({
+            'Authorization': creds,
+            'content-type': 'application/json'})
+    })
+}

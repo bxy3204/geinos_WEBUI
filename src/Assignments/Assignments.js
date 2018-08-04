@@ -3,24 +3,14 @@ import './Assignments.css';
 import Select from 'react-select'
 import { Button, ControlLabel} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {assign, get_assignments} from "../REST_API/Assignments_API";
+import {assign, get_assignments, delete_assignments} from "../REST_API/Assignments_API";
 import {get_device_groups} from "../REST_API/DeviceGroups_API";
-import {get_templates} from "../REST_API/Templates_API";
+import {delete_templates, get_templates} from "../REST_API/Templates_API";
 import {verify_token} from "../REST_API/Login_API";
 import * as ReactDOM from "react-dom";
 
 
 let products = [];
-
-function onDeleteRow(rowKeys) {
-    alert('You deleted: ' + rowKeys)
-
-}
-const options = {
-    afterDeleteRow: onDeleteRow,
-    defaultSortName: 'device_group_name',
-    defaultSortOrder: 'asc'
-};
 
 const selectRowProp = {
     mode: "checkbox",
@@ -44,7 +34,8 @@ class Assignments extends Component {
             deviceGroups: '',
             status: '',
             message: '',
-        }
+        };
+        this.onDeleteRow = this.onDeleteRow.bind(this);
     }
     handleChange(e) {
         this.setState({ [e.target.id]: e.target.value});
@@ -57,6 +48,11 @@ class Assignments extends Component {
     handleSelectTemplateChange = (template) => {
         this.setState({ template });
     };
+
+    onDeleteRow(rowKeys) {
+        alert('You deleted: ' + rowKeys);
+        delete_assignments(rowKeys);
+    }
 
     assign_template(){
         const newAssign={
@@ -158,9 +154,12 @@ class Assignments extends Component {
         ReactDOM.findDOMNode(this).scrollTop = 0
     }
 
-
     render() {
-
+        const options = {
+            afterDeleteRow: this.onDeleteRow,
+            defaultSortName: 'device_group_name',
+            defaultSortOrder: 'asc'
+        };
         let listOfGroups = this.state.group_list;
 
         let listOfTemplates = this.state.template_list;
@@ -201,9 +200,9 @@ class Assignments extends Component {
                     options= {listOfGroups}
                 />
                 <Button className="button-assign-submit" disabled = {!complete} type="submit" onClick={this.assign_template}>Assign</Button>
-                <BootstrapTable className="table-assign" data={products} options={options}   striped={true} hover={true} deleteRow pagination search>
-                    <TableHeaderColumn dataField="device_group_name" isKey={true}  width="150"  dataSort>Device Group</TableHeaderColumn>
-                    <TableHeaderColumn dataField="template_name"  width="150" dataSort>Template</TableHeaderColumn>
+                <BootstrapTable className="table-assign" data={products} options={options}  selectRow={selectRowProp} striped={true} hover={true} deleteRow pagination search>
+                    <TableHeaderColumn dataField="device_group_name" isKey={true} width="150"  dataSort>Device Group</TableHeaderColumn>
+                    <TableHeaderColumn dataField="template_name" width="150" dataSort>Template</TableHeaderColumn>
                     <TableHeaderColumn dataField="Added"  width="200" dataSort >Added</TableHeaderColumn>
                     <TableHeaderColumn dataField="Connected"  width="200" dataSort >Registered</TableHeaderColumn>
                     <TableHeaderColumn dataField="Authorized"  width="200" dataSort >SCEP Enrolled</TableHeaderColumn>
