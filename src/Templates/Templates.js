@@ -165,62 +165,6 @@ class Templates extends Component {
 
     }
 
-    faxformat(cell, row, view=true){
-        if (view)
-        {
-            this.simpleDialog.show();
-            this.setState({content:"Loading..."});
-        }
-        console.log(row);
-        get_template(row["name"]).then((data) => {
-            console.log(data)
-            console.log("data" + data.data);
-            if (view)
-            {
-                this.setState({content:data.data});
-            }
-            else
-            {
-                this.setState({filetext: data.data});
-            }
-        }).catch((error) => {
-            console.log('error: ' + error);
-        });
-    }
-    viewformat(cell, row, view=true){
-        if (view)
-        {
-            this.anotherDialog.show()
-            this.setState({content:"Loading..."});
-        }
-        console.log(row);
-        get_template(row["name"]).then((data) => {
-            console.log(data)
-            console.log("data" + data.data);
-            this.setState({content:data.data});
-        }).catch((error) => {
-            console.log('error: ' + error);
-        });
-    }
-    cellButton(cell, row, enumObject, rowIndex) {
-        return       <div>
-            <section>
-                <button onClick={() => this.viewformat(cell, row)}>View</button>
-            </section>
-            <SkyLight className = {'skymodal'} hideOnOverlayClicked ref={ref => this.anotherDialog = ref} title="Template File">
-                {this.state.content}
-            </SkyLight>
-        </div>;
-    }
-
-    importCellButton(cell, row, enumObject, rowIndex) {
-        return       <div>
-            <section>
-                <button onClick={() => this.faxformat(cell, row, false)}>Clone</button>
-            </section>
-        </div>;
-    }
-
     render() {
         const options = {
             defaultSortName: 'name',
@@ -314,8 +258,6 @@ class Templates extends Component {
                     <br></br>
             <BootstrapTable className="table-user" data={products} striped={true} hover={true} deleteRow pagination search options={options}>
                 <TableHeaderColumn dataField="name"  width="150"  dataSort>Name</TableHeaderColumn>
-                <TableHeaderColumn dataFormat={this.cellButton.bind(this)} width="150" >View</TableHeaderColumn>
-                <TableHeaderColumn dataFormat={this.importCellButton.bind(this)} width="150" >Clone</TableHeaderColumn>
                 <TableHeaderColumn dataField="date_created"  isKey={true}  width="200" dataSort >Date Created</TableHeaderColumn>
             </BootstrapTable>
 
