@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import 'react-select/dist/react-select.css';
 import './Templates.css';
-import {add_template, get_template, get_templates} from "../REST_API/Templates_API";
+import {add_template, get_template, get_templates, delete_templates} from "../REST_API/Templates_API";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {get_param} from "../REST_API/Parameter_API";
+import {delete_param, get_param} from "../REST_API/Parameter_API";
 import SkyLight from 'react-skylight';
 import {verify_token} from "../REST_API/Login_API";
 import ReactDOM from 'react-dom';
@@ -19,6 +19,11 @@ export function uploadFail(error) {
 }
 
 let products = [];
+
+const selectRowProp = {
+    mode: 'checkbox',
+    clickToSelect: true
+}
 
 class Templates extends Component {
 
@@ -46,6 +51,7 @@ class Templates extends Component {
         this.addTemplate = this.addTemplate.bind(this);
 		this.getTemplate = this.getTemplate.bind(this);
         this.getTemplateByName = this.getTemplateByName.bind(this);
+        this.onDeleteRow = this.onDeleteRow.bind(this);
     }
 
     componentDidMount() {
@@ -75,6 +81,8 @@ class Templates extends Component {
                 this.setState({template_names: arr});
             }
         );
+        this.setState({name: ''});
+        this.setState({filetext: ''});
         ReactDOM.findDOMNode(this).scrollTop = 0
     }
 
@@ -165,8 +173,33 @@ class Templates extends Component {
 
     }
 
+    onDeleteRow(rowKeys) {
+        alert('You deleted: ' + rowKeys)
+        delete_templates(rowKeys).then((fetched) => {
+            fetched.json().then((data) => {
+                console.log(data)
+                this.setState({message: data.message})
+                /*
+                      Status codes between 400 and 500 are being forced to 400 because
+                      they map to a specific CSS style class labeled with that status code.
+                      The style name is used in render().
+                       */
+                if (data.status >= 400 && data.status < 500) {
+                    this.setState({status: 400})
+                } else if (data.status >= 200 && data.status < 300) {
+                    this.setState({status: 200})
+                } else {
+                    // any other status than success or error will be treated as 102, informational
+                    // this reflects in the css file to ensure proper message notification
+                    this.setState({status: 102})
+                }
+            })
+        })
+    }
+
     render() {
         const options = {
+            afterDeleteRow: this.onDeleteRow,
             defaultSortName: 'name',
             defaultSortOrder: 'asc'
         }
@@ -256,9 +289,9 @@ class Templates extends Component {
                     </div>
                     <br></br>
                     <br></br>
-            <BootstrapTable className="table-user" data={products} striped={true} hover={true} deleteRow pagination search options={options}>
-                <TableHeaderColumn dataField="name"  width="150"  dataSort>Name</TableHeaderColumn>
-                <TableHeaderColumn dataField="date_created"  isKey={true}  width="200" dataSort >Date Created</TableHeaderColumn>
+            <BootstrapTable className="table-user" data={products} selectRow={selectRowProp} striped={true} hover={true} deleteRow pagination search options={options}>
+                <TableHeaderColumn dataField="name" isKey={true} width="150" dataSort>Name</TableHeaderColumn>
+                <TableHeaderColumn dataField="date_created" width="200" dataSort >Date Created</TableHeaderColumn>
             </BootstrapTable>
 
                 </div>

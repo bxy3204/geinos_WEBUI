@@ -42,3 +42,20 @@ export function add_template (file) {
         'Authorization': creds})
     })
 }
+
+export function delete_templates (names) {
+    let route = get_route()
+    let creds = get_creds()
+    const jsondata = {
+        names: names
+    }
+    console.log(jsondata)
+    fetch(route + '/templates', {
+        method: 'delete',
+        body: JSON.stringify(jsondata),
+        headers: new Headers({
+            'Authorization': creds,
+            'content-type': 'application/json'})
+    })
+}
+
