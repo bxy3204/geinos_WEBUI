@@ -21,7 +21,7 @@ export function delete_user (users) {
   let jsondata = {
     rmusr: users
   }
-  fetch(route + '/users', {
+  return fetch(route + '/users', {
     method: 'delete',
     body: JSON.stringify(jsondata),
     headers: new Headers({

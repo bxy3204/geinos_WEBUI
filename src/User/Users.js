@@ -13,8 +13,12 @@ let products = []
 function onDeleteRow (rowKeys) {
   console.log('DELE')
   console.log(rowKeys)
-  alert('You deleted: ' + rowKeys)
-  delete_user(rowKeys)
+  delete_user(rowKeys).then((fetched) => {
+      fetched.json().then((data) => {
+          alert(data.message)
+
+      })
+  })
 }
 
 const options = {
@@ -69,6 +73,7 @@ class Users extends Component {
     }
     if (this.getVerifyPassword() && this.getValidationState()) {
       add_user(newUser).then((fetched) => {
+        console.log(fetched)
         fetched.json().then((data) => {
           this.setState({message: data.message})
           /*
@@ -90,6 +95,7 @@ class Users extends Component {
 
         })
       })
+        console.log(this.status)
     }
     /*
     .catch((error) => {

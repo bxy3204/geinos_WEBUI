@@ -250,7 +250,8 @@ class DeviceGroups extends Component {
                         <button type="button" onClick={this.handleRemoveShareholder(idx)} className="small">-</button>
                     </div>
                 ))}
-                <button type="button" onClick={this.handleAddShareholder} className="small">Add Filter</button>
+                <button type="button" onClick={this.handleAddShareholder} className="button-group-submit">Add Filter</button>
+                <div> </div>
 
                 <Button className="button-group-submit" disabled = {!complete} type="submit" onClick={this.addGroup}>Add</Button>
                 <BootstrapTable className="table-group" data={products} selectRow={selectRowProp} options={options}   striped={true} hover={true} deleteRow pagination search>

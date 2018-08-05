@@ -60,6 +60,7 @@ class App extends Component {
             password: this.state.password
         }
         login(newUser).then(result => result.json()).then((data) => {
+            this.setState({status:''}) //This is to reset from previous login attempts
             this.setState({message:data.message});
             /*
             Status codes between 400 and 500 are being forced to 400 because
@@ -69,13 +70,7 @@ class App extends Component {
             if(data.status >= 400 && data.status < 500){
                 this.setState({status:400});
             }
-            else if(data.status >= 200 && data.status < 300){
-                this.setState({status:200});
-            } else {
-                //any other status than success or error will be treated as 102, informational
-                // this reflects in the css file to ensure proper message notification
-                this.setState({status:102});
-            }
+
             this.componentDidMount();
             this.saveItem('session', data['auth_token'])
             if(data['auth_token']){
