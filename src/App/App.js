@@ -162,7 +162,6 @@ class App extends Component {
                     <div className="Home">
                         <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
                         </div>
-                        <h2>Login</h2>
                     </div>
                     <form className="form-login_user">
                         <FormGroupCreate
@@ -171,13 +170,13 @@ class App extends Component {
                             label="User Name"
                             value={this.state.name}
                             change={this.handleChange}
-                            placeholder="Enter user name"
+                            placeholder="Enter username"
                             type="text"
                         />
                         <FormGroupCreate
                             className = {'pass-input-login'}
-                            controlId="password"
-                            label="password"
+                            controlId="Password"
+                            label="Password"
                             value={this.state.password}
                             change={this.handleChange}
                             placeholder="Enter password"
@@ -186,7 +185,7 @@ class App extends Component {
                         <div>
 
                         </div>
-                        <Button className="button-submit" onClick={this.log_in} >Login</Button>
+                        <Button className="submission" onClick={this.log_in} >Login</Button>
                     </form>
                 </div>
 

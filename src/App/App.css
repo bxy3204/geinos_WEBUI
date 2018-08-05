@@ -118,6 +118,7 @@ ul.header li a {
 .login-name-input{
   width: 30%;
   display:inline-block;
+  text-align: center;
 }
 
 
@@ -125,20 +126,25 @@ ul.header li a {
   width: 30%;
   width: 30%;
   padding-bottom: 3.3%;
+  text-align: center;
 }
 
-.button-submit{
+.submission{
   position: relative;
-  width: fit-content;
   bottom: 0px;
   background-color: #f0ad4e;
   border-color: #eea236;
   color: white;
   margin-right:auto;
+  width: 30%;
+  display:inline-block;
+  text-align: center;
+
 }
 
 
 .symbol {
+  align-items: center;
   font-size: 0.9em;
   font-family: Times New Roman;
   border-radius: 1em;
