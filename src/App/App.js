@@ -29,6 +29,8 @@ class App extends Component {
     this.state = {
       auth: false,
       name: '',
+
+
       password: '',
       status: '',
       message: '',
@@ -175,7 +177,7 @@ class App extends Component {
                         />
                         <FormGroupCreate
                             className = {'pass-input-login'}
-                            controlId="Password"
+                            controlId="password"
                             label="Password"
                             value={this.state.password}
                             change={this.handleChange}
