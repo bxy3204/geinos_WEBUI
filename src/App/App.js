@@ -46,6 +46,10 @@ class App extends Component {
           if (!status && window.location.pathname.toString() !== '/Login') {
               window.location.replace(window.location.origin.toString() + '/Login')
           }
+      }).catch(function (err) {
+          console.log(err)
+      }).catch(function (err) {
+          console.log(err)
       })
   }
     async saveItem (item, selectedValue) {

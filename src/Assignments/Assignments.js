@@ -54,6 +54,8 @@ class Assignments extends Component {
             fetched.json().then((data) => {
                 alert(data.message + " - Status:" + data.status)
             })
+        }).catch(function (err) {
+            console.log(err)
         })
     }
 
@@ -81,7 +83,11 @@ class Assignments extends Component {
                     this.setState({status:102});
                 }
                 this.componentDidMount();
+            }).catch(function (err) {
+                console.log(err)
             });
+        }).catch(function (err) {
+            console.log(err)
         });
         this.setState({ template:'' });
         this.setState({ group:'' });
@@ -94,11 +100,15 @@ class Assignments extends Component {
             if(!status){
                 window.location.replace(window.location.origin.toString());
             }
-        });
+        }).catch(function (err) {
+            console.log(err)
+        })
         get_assignments().then((items) => {
                 this.setState({assignments: items.data});
             }
-        );
+        ).catch(function (err) {
+            console.log(err)
+        })
         get_templates().then((items) => {
                 //this.setState({template_list: items.data});
                 /*for (let i = 0; i <= items.data.length -1; i++) {
@@ -124,7 +134,9 @@ class Assignments extends Component {
                 }
             this.setState({ template_list:groups});
             }
-        );
+        ).catch(function (err) {
+            console.log(err)
+        })
         get_device_groups().then((items) => {
                 //this.setState({group_list: items.data});
                 /*for (let i = 0; i <= items.data.length -1; i++) {
@@ -153,7 +165,9 @@ class Assignments extends Component {
                     this.setState({group_list:grouplist})
                 }
             }
-        );
+        ).catch(function (err) {
+            console.log(err)
+        })
         ReactDOM.findDOMNode(this).scrollTop = 0
     }
 
