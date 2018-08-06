@@ -38,7 +38,7 @@ export function FiltersDropdownFormGroupCreate (props) {
         controlId={props.controlId}
     >
         <FormControl componentClass="select" placeholder="select" onChange={props.change}>
-
+            <option value=""></option>
             <option value="vendor_id">vendor_id</option>
             <option value="serial_number">serial_number</option>
             <option value="model_number">model_number</option>

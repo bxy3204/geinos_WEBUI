@@ -80,6 +80,8 @@ class App extends Component {
             if(data['auth_token']){
               this.setState({auth:true});
             }
+        }).catch(function (err) {
+            console.log(err)
         })
     }
 

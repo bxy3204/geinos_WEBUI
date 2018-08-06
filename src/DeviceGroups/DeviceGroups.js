@@ -37,6 +37,7 @@ class DeviceGroups extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleModelChange = this.handleModelChange.bind(this);
         this.addGroup = this.addGroup.bind(this);
+        this.handleShareholderParmChange = this.handleShareholderParmChange.bind(this);
         this.state = {
             name: '',
             filter:'',
@@ -115,6 +116,7 @@ class DeviceGroups extends Component {
             console.log("in for loop")
         });
         newGroup.filters = filtersformated.slice(0, -1); //the slice is to remove the last comma
+        console.log("filters: " + newGroup.filters)
         add_device_group(newGroup).then((fetched) => {
             fetched.json().then((data) => {
                 console.log(data);
@@ -168,13 +170,13 @@ class DeviceGroups extends Component {
             if (idx !== sidx) return shareholder;
             return { ...shareholder, parm: evt.target.value };
         });
+        console.log("i" + idx)
+        console.log("e" + evt)
+        console.log("filters")
         console.log(this.state.filters);
         this.setState({ filters: newfilters });
     }
-    handleSubmit = (evt) => {
-        const { name, filters } = this.state;
-        alert(`Incorporated: ${name} with ${filters.length} filters`);
-    }
+
 
     handleAddShareholder = () => {
         this.setState({
@@ -224,7 +226,7 @@ class DeviceGroups extends Component {
                             placeholder={`Filter #${idx + 1}`}
                             controlId="role"
                             value={shareholder.parm}
-                            onChange={this.handleShareholderParmChange(idx)}
+                            change={this.handleShareholderParmChange(idx)}
                         />
                         <input
                             className={'filter-value'}
