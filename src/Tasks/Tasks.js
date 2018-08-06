@@ -40,6 +40,10 @@ class Tasks extends Component {
 
     return (
       <div className="container-tasks">
+          <div className="Home">
+              <h2>Tasks</h2>
+          </div>
+          <br></br>
         <BootstrapTable className="table-tasks" data={this.state.tasks} options={options} striped={true} hover={true} pagination>
           <TableHeaderColumn dataField="serial_number" isKey={true} width="150" dataSort>Device</TableHeaderColumn>
           <TableHeaderColumn dataField="status" width="150" dataSort>Status</TableHeaderColumn>

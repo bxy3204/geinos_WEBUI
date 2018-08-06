@@ -222,7 +222,7 @@ class DeviceGroups extends Component {
                 <div className={"notify n" +this.state.status} ><span className={"symbol icon-"+this.state.status}></span> {this.state.message}
                 </div>
                 <FormGroupCreate
-                    className={ 'group-name-input'}
+                    className={'group-name-input'}
                     controlId="name"
                     label="Group Name"
 
@@ -237,12 +237,14 @@ class DeviceGroups extends Component {
                     <div className="shareholder">
 
                         <FiltersDropdownFormGroupCreate
+                            className = {'filter-type-name'}
                             placeholder={`Filter #${idx + 1}`}
                             controlId="role"
                             value={shareholder.parm}
                             onChange={this.handleShareholderParmChange(idx)}
                         />
                         <input
+                            className={'filter-value'}
                             type="text"
                             placeholder={`Value #${idx + 1}`}
                             value={shareholder.name}

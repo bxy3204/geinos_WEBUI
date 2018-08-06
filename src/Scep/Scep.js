@@ -28,7 +28,7 @@ class Scep extends Component {
       message: '',
       sys_server: '',
       thumb_only: 'FALSE',
-      thumb: 'FALSE'
+      thumb: 'Not Available'
     }
   }
   setThumb(){
@@ -106,7 +106,7 @@ class Scep extends Component {
       }
     })
     get_scep().then((items) => {
-      console.log(items.data[0]['country'])
+      console.log(items.data[0])
       this.setState({name: items.data[0]['username']})
       this.setState({password: items.data[0]['password']})
       this.setState({server: items.data[0]['server']})
@@ -118,7 +118,8 @@ class Scep extends Component {
       this.setState({organization: items.data[0]['organization']})
       this.setState({org_unit: items.data[0]['org_unit']})
       this.setState({sys_server: items.data[0]['sys_server']})
-      this.setState({thumb_onl: 'FALSE'})
+      this.setState({thumb_only: 'FALSE'})
+      this.setState({thumb: items.data[0]['thumbprint']})
     }
     ).catch(err => {
       console.log(err)
@@ -188,6 +189,7 @@ class Scep extends Component {
             type="text"
 
           />
+            <h2>ThumbPrint: {this.state.thumb}</h2>
           <div className="System _Header_div">
             <h2 className="System_Header">Device Settings</h2>
           </div>

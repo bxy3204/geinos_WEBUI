@@ -3,6 +3,10 @@
     width: 20%;
     border-bottom: 2px solid red;
 }
+.filter-type-name{
+    width: 20%;
+
+}
 
 div.group-name-input label.control-label:after {
     content: " *";
@@ -22,6 +26,9 @@ div.group-type-input label.control-label:after {
 }
 .group-type-input{
     width: 20%;
+}
+.filter-value{
+   margin-bottom: 1%;
 }
 
 .button-group-submit{

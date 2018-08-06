@@ -94,18 +94,19 @@ class Templates extends Component {
     }
 
     handleNameChange(event) {
-        console.log(event);
-        console.log(this.state.template_names);
-        for (var i = 0; i < this.state.template_names.length; i++)
-        {
-            //console.log(this.state.template_names[i].value);
-            if (event && event.value && this.state.template_names[i].value === event.value)
-            {
-                this.getTemplateByName(event.value);
+        if (event && event.value) {
+            console.log(event);
+            console.log(this.state.template_names);
+            for (var i = 0; i < this.state.template_names.length; i++) {
+                //console.log(this.state.template_names[i].value);
+                if (this.state.template_names[i].value === event.value) {
+                    this.getTemplateByName(event.value);
+                }
             }
+
+            this.setState({name: event.value});
+            console.log(this.state.name);
         }
-        this.setState({name: event.value});
-        console.log(this.state.name);
     }
 
     handleSelectChange = (selectedOption) => {
