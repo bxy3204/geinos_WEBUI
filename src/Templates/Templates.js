@@ -99,7 +99,7 @@ class Templates extends Component {
         for (var i = 0; i < this.state.template_names.length; i++)
         {
             //console.log(this.state.template_names[i].value);
-            if (this.state.template_names[i].value === event.value)
+            if (event && event.value && this.state.template_names[i].value === event.value)
             {
                 this.getTemplateByName(event.value);
             }
