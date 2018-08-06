@@ -68,11 +68,15 @@ class Parameters extends Component {
       if (!status) {
         window.location.replace(window.location.origin.toString())
       }
+    }).catch(function (err) {
+        console.log(err)
     })
     get_param().then((items) => {
       this.setState({params_list: items.data})
     }
-    )
+    ).catch(function (err) {
+        console.log(err)
+    })
       ReactDOM.findDOMNode(this).scrollTop = 0
   }
 
@@ -103,7 +107,11 @@ class Parameters extends Component {
             this.setState({status: 102})
           }
           this.componentDidMount()
+        }).catch(function (err) {
+            console.log(err)
         })
+      }).catch(function (err) {
+          console.log(err)
       })
     } else if (this.state.param_type.localeCompare('Dynamic-IP-Range') === 0) {
       newparam = {
@@ -132,6 +140,8 @@ class Parameters extends Component {
           }
           this.componentDidMount()
         })
+      }).catch(function (err) {
+          console.log(err)
       })
     } else {
       newparam = {
@@ -158,7 +168,11 @@ class Parameters extends Component {
             this.setState({status: 102})
           }
           this.componentDidMount()
+        }).catch(function (err) {
+            console.log(err)
         })
+      }).catch(function (err) {
+          console.log(err)
       })
     }
     this.setState({name: ''})

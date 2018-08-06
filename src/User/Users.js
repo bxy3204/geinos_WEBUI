@@ -16,7 +16,11 @@ function onDeleteRow (rowKeys) {
       fetched.json().then((data) => {
           alert(data.message + " - Status:" + data.status)
 
+      }).catch(function (err) {
+          console.log(err)
       })
+  }).catch(function (err) {
+      console.log(err)
   })
 }
 

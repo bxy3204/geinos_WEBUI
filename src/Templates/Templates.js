@@ -59,11 +59,15 @@ class Templates extends Component {
                 window.location.replace(window.location.origin.toString());
 
             }
+        }).catch(function (err) {
+            console.log(err)
         });
         get_param().then((items) => {
                 this.setState({params_list: items.data});
             }
-        );
+        ).catch(function (err) {
+            console.log(err)
+        });
         get_templates().then((items) => {
                 this.setState({templates: items.data});
                 console.log(this.state.templates);
@@ -79,7 +83,9 @@ class Templates extends Component {
                 }
                 this.setState({template_names: arr});
             }
-        );
+        ).catch(function (err) {
+            console.log(err)
+        });
         this.setState({name: ''});
         this.setState({filetext: ''});
         ReactDOM.findDOMNode(this).scrollTop = 0
@@ -141,6 +147,8 @@ class Templates extends Component {
                 this.componentDidMount();
 
             });
+        }).catch(function (err) {
+            console.log(err)
         });
         //window.location.replace(window.location.origin.toString());
     }
@@ -149,14 +157,18 @@ class Templates extends Component {
         get_template(this.state.name).then((items) => {
                 this.setState({filetext: items.data});
             }
-        );
+        ).catch(function (err) {
+            console.log(err)
+        });
     }
 
     getTemplateByName(name){
         get_template(name).then((items) => {
                 this.setState({filetext: items.data});
             }
-        );
+        ).catch(function (err) {
+            console.log(err)
+        });
     }
 
     onFilesChange(event) {
@@ -174,8 +186,9 @@ class Templates extends Component {
     }
 
     onDeleteRow(rowKeys) {
-        alert('You deleted: ' + rowKeys);
-        delete_templates(rowKeys);
+        delete_templates(rowKeys).catch(function (err) {
+            console.log(err)
+        });
     }
 
     render() {
