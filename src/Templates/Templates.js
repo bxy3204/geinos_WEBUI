@@ -186,9 +186,16 @@ class Templates extends Component {
     }
 
     onDeleteRow(rowKeys) {
-        delete_templates(rowKeys).catch(function (err) {
+        delete_templates(rowKeys).then((fetched) => {
+            fetched.json().then((data) => {
+                alert(data.message + " - Status:" + data.status)
+
+            }).catch(function (err) {
+                console.log(err)
+            })
+        }).catch(function (err) {
             console.log(err)
-        });
+        })
     }
 
     render() {
