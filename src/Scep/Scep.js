@@ -53,7 +53,11 @@ class Scep extends Component {
                   this.setState({status: 102})
               }
               this.componentDidMount()
+          }).catch(function (err) {
+              console.log(err)
           })
+      }).catch(function (err) {
+          console.log(err)
       })
   }
 

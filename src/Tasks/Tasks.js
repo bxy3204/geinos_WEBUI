@@ -24,12 +24,16 @@ class Tasks extends Component {
       if (!status) {
         window.location.replace(window.location.origin.toString())
       }
+    }).catch(function (err) {
+        console.log(err)
     })
     get_tasks().then((items) => {
       console.log(items.data)
       this.setState({tasks: items.data})
     }
-    )
+    ).catch(function (err) {
+        console.log(err)
+    })
   }
 
   render () {

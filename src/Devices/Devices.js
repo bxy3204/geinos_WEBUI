@@ -65,6 +65,8 @@ class Devices extends Component {
             if(!status){
                 window.location.replace(window.location.origin.toString());
             }
+        }).catch(function (err) {
+            console.log(err)
         });
         get_devices().then((items) => {
 
