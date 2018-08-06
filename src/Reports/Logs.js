@@ -33,7 +33,7 @@ class Logs extends Component {
   render () {
     const options = {
       defaultSortName: 'date_created',
-      defaultSortOrder: 'desc'
+      defaultSortOrder: 'asc'
     }
 
     return (
