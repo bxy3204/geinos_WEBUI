@@ -4,7 +4,7 @@ import {FormGroupCreate} from "../common/common";
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {add_device_group, get_device_groups,delete_group} from "../REST_API/DeviceGroups_API";
-import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import {ControlLabel} from 'react-bootstrap';
 import Select from 'react-select';
 import {verify_token} from "../REST_API/Login_API";
 import ReactDOM from "react-dom";

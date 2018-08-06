@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Select from 'react-select'
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import 'react-select/dist/react-select.css';
@@ -156,6 +155,8 @@ class Devices extends Component {
         return       <div>
             <section>
                 <button onClick={() => this.faxformat(cell, row)}>Open</button>
+                {row['IP'].length > 0 && <button onClick={() => this.faxformat(cell, row)}>Open</button>}
+
             </section>
             <SkyLight className = {'skymodal'}  hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Config File">
                 {this.state.content}

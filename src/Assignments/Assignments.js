@@ -5,7 +5,7 @@ import { Button, ControlLabel} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {assign, get_assignments, delete_assignments} from "../REST_API/Assignments_API";
 import {get_device_groups} from "../REST_API/DeviceGroups_API";
-import {delete_templates, get_templates} from "../REST_API/Templates_API";
+import {get_templates} from "../REST_API/Templates_API";
 import {verify_token} from "../REST_API/Login_API";
 import * as ReactDOM from "react-dom";
 

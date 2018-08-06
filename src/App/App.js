@@ -57,11 +57,13 @@ class App extends Component {
     }
 
     log_in () {
+        console.log("Working")
         const newUser = {
             name: this.state.name,
             password: this.state.password
         }
         login(newUser).then(result => result.json()).then((data) => {
+
             this.setState({status:''}) //This is to reset from previous login attempts
             this.setState({message:data.message});
             /*
@@ -143,12 +145,6 @@ class App extends Component {
         </Router>
       )
     } else {
-      const nameLink = this.state.name; const nameIsValid = nameLink && nameLink.indexOf(' ') < 0
-      const passwordLink = this.state.password; const passwordIsValid = passwordLink && passwordLink.length >= 6
-      var complete = false
-      if (nameIsValid && passwordIsValid) {
-        complete = true
-      }
       return (
 
         <Router>

@@ -4,11 +4,10 @@ import 'react-select/dist/react-select.css';
 import './Templates.css';
 import {add_template, get_template, get_templates, delete_templates} from "../REST_API/Templates_API";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import {delete_param, get_param} from "../REST_API/Parameter_API";
+import {get_param} from "../REST_API/Parameter_API";
 import SkyLight from 'react-skylight';
 import {verify_token} from "../REST_API/Login_API";
 import ReactDOM from 'react-dom';
-import Select from 'react-select';
 import Creatable from 'react-select/lib/Creatable';
 
 export function uploadFail(error) {
@@ -100,7 +99,7 @@ class Templates extends Component {
         for (var i = 0; i < this.state.template_names.length; i++)
         {
             //console.log(this.state.template_names[i].value);
-            if (this.state.template_names[i].value == event.value)
+            if (this.state.template_names[i].value === event.value)
             {
                 this.getTemplateByName(event.value);
             }

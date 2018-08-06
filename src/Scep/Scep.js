@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Scep.css'
-import {Button, Label} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import {add_scep, get_scep, get_thumb} from '../REST_API/Scep_API'
 import {FormGroupCreate, ScepDigestDropdownFormGroupCreate, ScepEncryptDropdownFormGroupCreate} from '../common/common'
 import {verify_token} from '../REST_API/Login_API'
