@@ -32,6 +32,21 @@ export function DropdownFormGroupCreate (props) {
     </FormControl>
   </FormGroup>
 }
+export function FiltersDropdownFormGroupCreate (props) {
+    return <FormGroup
+        className={props.className}
+        controlId={props.controlId}
+    >
+        <FormControl componentClass="select" placeholder="select" onChange={props.change}>
+
+            <option value="vendor_id">vendor_id</option>
+            <option value="serial_number">serial_number</option>
+            <option value="model_number">model_number</option>
+            <option value="device_status">device_status</option>
+            <option value="IP">IP</option>
+        </FormControl>
+    </FormGroup>
+}
 
 export function ScepEncryptDropdownFormGroupCreate (props) {
   return <FormGroup

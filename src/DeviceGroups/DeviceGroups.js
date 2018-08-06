@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './DeviceGroups.css';
-import {FormGroupCreate} from "../common/common";
+import {FormGroupCreate, FiltersDropdownFormGroupCreate} from "../common/common";
 import {Button} from 'react-bootstrap'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {add_device_group, get_device_groups,delete_group} from "../REST_API/DeviceGroups_API";
@@ -235,9 +235,10 @@ class DeviceGroups extends Component {
 
                 {this.state.filters.map((shareholder, idx) => (
                     <div className="shareholder">
-                        <input
-                            type="text"
+
+                        <FiltersDropdownFormGroupCreate
                             placeholder={`Filter #${idx + 1}`}
+                            controlId="role"
                             value={shareholder.parm}
                             onChange={this.handleShareholderParmChange(idx)}
                         />
