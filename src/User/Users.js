@@ -11,11 +11,10 @@ import ReactDOM from "react-dom";
 let products = []
 
 function onDeleteRow (rowKeys) {
-  console.log('DELE')
-  console.log(rowKeys)
+
   delete_user(rowKeys).then((fetched) => {
       fetched.json().then((data) => {
-          alert(data.message)
+          alert(data.message + " - Status:" + data.status)
 
       })
   })

@@ -39,8 +39,7 @@ export function delete_assignments(names) {
     const jsondata = {
         group_names: names
     }
-    console.log(jsondata)
-    fetch(route + '/assign', {
+    return fetch(route + '/assign', {
         method: 'delete',
         body: JSON.stringify(jsondata),
         headers: new Headers({

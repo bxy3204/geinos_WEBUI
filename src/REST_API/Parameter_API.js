@@ -74,7 +74,7 @@ export function delete_param (param_names) {
     param_names: param_names
   }
   console.log(jsondata)
-  fetch(route + '/parameters', {
+  return fetch(route + '/parameters', {
     method: 'delete',
     body: JSON.stringify(jsondata),
     headers: new Headers({

@@ -13,8 +13,12 @@ import ReactDOM from "react-dom";
 let products = [];
 
 function onDeleteRow(rowKeys) {
-    alert('You deleted: ' + rowKeys);
-    delete_device(rowKeys)
+    delete_device(rowKeys).then((fetched) => {
+        fetched.json().then((data) => {
+            alert(data.message + " - Status:" + data.status)
+        })
+    });
+
 }
 
 
@@ -124,7 +128,7 @@ class Devices extends Component {
 
     handleChange = (device_model) => {
         this.setState({ device_model });
-    }
+    };
 
     uploadImportFile(e) {
         this.setState({importFile:e.target.files[0]})
@@ -140,7 +144,7 @@ class Devices extends Component {
         console.log(row);
         retrieve_config(row["serial_number"]).then((fetched) => {
             fetched.json().then((data) => {
-                console.log(data)
+                console.log(data);
                 console.log("data" + data.data);
                 this.setState({content:data.data});
 

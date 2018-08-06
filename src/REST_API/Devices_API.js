@@ -57,7 +57,7 @@ export function import_devices (file) {
   let creds = get_creds()
   const formData = new FormData()
   formData.append('file', file)
-  fetch(route + '/devices', {
+  return fetch(route + '/devices', {
     method: 'put',
     body: formData,
     headers: new Headers({
@@ -71,7 +71,7 @@ export function delete_device (serial_nums) {
   let jsondata = {
     serial_nums: serial_nums
   }
-  fetch(route + '/devices', {
+  return fetch(route + '/devices', {
     method: 'delete',
     body: JSON.stringify(jsondata),
     headers: new Headers({

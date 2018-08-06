@@ -50,8 +50,11 @@ class Assignments extends Component {
     };
 
     onDeleteRow(rowKeys) {
-        alert('You deleted: ' + rowKeys);
-        delete_assignments(rowKeys);
+        delete_assignments(rowKeys).then((fetched) => {
+            fetched.json().then((data) => {
+                alert(data.message + " - Status:" + data.status)
+            })
+        })
     }
 
     assign_template(){
